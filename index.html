@@ -3,7 +3,40 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ScentSignal - Best Fragrance Prices in the UK</title>
+<title>ScentSignal - Compare Fragrance Prices Across UK Retailers</title>
+<meta name="description" content="Compare fragrance and perfume prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more. Find the cheapest price for any fragrance in the UK instantly."/>
+<meta name="keywords" content="fragrance price comparison UK, cheapest perfume UK, perfume price tracker, cologne deals UK, best fragrance prices, compare perfume prices, cheap aftershave UK, fragrance deals"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="ScentSignal"/>
+<link rel="canonical" href="https://www.scentsignal.co.uk/"/>
+
+<!-- Open Graph - for sharing on social media -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.scentsignal.co.uk/"/>
+<meta property="og:title" content="ScentSignal - Compare Fragrance Prices Across UK Retailers"/>
+<meta property="og:description" content="Search any fragrance and instantly compare prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more. Always find the best UK price."/>
+<meta property="og:site_name" content="ScentSignal"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="ScentSignal - Compare Fragrance Prices UK"/>
+<meta name="twitter:description" content="Search any fragrance and instantly compare prices across all major UK retailers. Find the cheapest price every time."/>
+
+<!-- Schema markup - helps Google understand what the site does -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ScentSignal",
+  "url": "https://www.scentsignal.co.uk",
+  "description": "UK fragrance price comparison site. Compare perfume and cologne prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.scentsignal.co.uk/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -20,14 +53,7 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--white);color:var(--text);font-family:'Lora',serif;overflow-x:hidden;min-height:100vh}
-.cur,.cur-ring{display:none}
-@media(pointer:fine){
-  body{cursor:none}
-  .cur{display:block;position:fixed;width:8px;height:8px;background:var(--terra);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s}
-  .cur-ring{display:block;position:fixed;width:32px;height:32px;border:1.5px solid var(--terra);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;opacity:.5}
-  .cur.h{width:16px;height:16px;background:var(--rust)}
-  .cur-ring.h{width:48px;height:48px;opacity:1}
-}
+.cur,.cur-ring{display:none!important}
 
 /* PAGES */
 .page{display:none}.page.active{display:block}
@@ -543,7 +569,7 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
           <div class="fcp"><span class="fcp-name">eBay</span><span class="fcp-price">£24.50</span></div>
           <div class="fcp"><span class="fcp-name">Fragrance Direct</span><span class="fcp-price">£26.99</span></div>
         </div>
-        <a class="fc-link" href="#">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="fc-link" href="#" onclick="goProd('armaf');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="fcard" onclick="goProd('lattafa')">
         <p class="fc-brand">Lattafa</p><h3 class="fc-name">Oud For Glory</h3><p class="fc-type">Eau de Parfum - 100ml</p>
@@ -552,7 +578,7 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
           <div class="fcp"><span class="fcp-name">Amazon UK</span><span class="fcp-price">£21.00</span></div>
           <div class="fcp"><span class="fcp-name">eBay</span><span class="fcp-price">£23.49</span></div>
         </div>
-        <a class="fc-link" href="#">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="fc-link" href="#" onclick="goProd('lattafa');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
       <div class="fcard" onclick="goProd('sauvage')">
         <p class="fc-brand">Dior</p><h3 class="fc-name">Sauvage EDP</h3><p class="fc-type">Eau de Parfum - 100ml</p>
@@ -561,7 +587,7 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
           <div class="fcp"><span class="fcp-name">Boots</span><span class="fcp-price">£79.00</span></div>
           <div class="fcp"><span class="fcp-name">John Lewis</span><span class="fcp-price">£84.00</span></div>
         </div>
-        <a class="fc-link" href="#">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="fc-link" href="#" onclick="goProd('sauvage');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
@@ -762,6 +788,43 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
 </div>
 
 <script>
+const SUPABASE_URL = 'https://hzqvvinrqlnkeuztuzib.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6cXZ2aW5ycWxua2V1enR1emliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NDY2NTYsImV4cCI6MjA5NjQyMjY1Nn0.6L3GvHHxUV_-erSJRvlbrlvyIiOdFI7gF0llQkaPgQI';
+const AMAZON_TAG = 'scentsignal10-21';
+
+// Fetch headers for Supabase
+const headers = {
+  'apikey': SUPABASE_KEY,
+  'Authorization': `Bearer ${SUPABASE_KEY}`,
+  'Content-Type': 'application/json'
+};
+
+// Cache products in memory after first load
+let productsCache = null;
+
+async function fetchProducts() {
+  if (productsCache) return productsCache;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, { headers });
+    const data = await res.json();
+    productsCache = data;
+    return data;
+  } catch(e) {
+    console.error('Failed to fetch products:', e);
+    return [];
+  }
+}
+
+async function fetchSellers(productKey) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/sellers?product_key=eq.${productKey}&order=price.asc`, { headers });
+    return await res.json();
+  } catch(e) {
+    console.error('Failed to fetch sellers:', e);
+    return [];
+  }
+}
+
 const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
 document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});
 document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').forEach(el=>{
@@ -771,65 +834,101 @@ document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').for
 
 function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0)}
 
-const prods={
-  armaf:{brand:'Armaf',name:'Club de Nuit Intense Man',meta:'Eau de Parfum - 105ml - Launched 2015',
-    details:{house:'Armaf',year:'2015',conc:'Eau de Parfum',gender:'Masculine',longevity:'8-12 hours',sillage:'Heavy'},
-    seasons:['Autumn','Winter'],occ:['Evening','Night Out','Office'],
-    sellers:[{n:'Amazon UK',p:22.99,s:true},{n:'eBay',p:24.50,s:true},{n:'Fragrance Direct',p:26.99,s:true},{n:'The Perfume Shop',p:28.00,s:true},{n:'Superdrug',p:29.99,s:false},{n:'Boots',p:31.00,s:true}]},
-  sauvage:{brand:'Dior',name:'Sauvage EDP',meta:'Eau de Parfum - 100ml - Launched 2018',
-    details:{house:'Dior',year:'2018',conc:'Eau de Parfum',gender:'Masculine',longevity:'10-14 hours',sillage:'Very Heavy'},
-    seasons:['Autumn','Winter','Spring'],occ:['Evening','Office','Date Night'],
-    sellers:[{n:'Superdrug',p:72.00,s:true},{n:'Boots',p:79.00,s:true},{n:'Amazon UK',p:81.50,s:true},{n:'John Lewis',p:84.00,s:true},{n:'The Perfume Shop',p:85.00,s:true},{n:'Lookfantastic',p:87.00,s:true}]},
-  lattafa:{brand:'Lattafa',name:'Oud For Glory',meta:'Eau de Parfum - 100ml - Launched 2019',
-    details:{house:'Lattafa',year:'2019',conc:'Eau de Parfum',gender:'Unisex',longevity:'12+ hours',sillage:'Heavy'},
-    seasons:['Autumn','Winter'],occ:['Evening','Special Occasion'],
-    sellers:[{n:'Fragrance Direct',p:18.99,s:true},{n:'Amazon UK',p:21.00,s:true},{n:'eBay',p:23.49,s:true},{n:'Superdrug',p:25.00,s:false}]},
-  creed:{brand:'Creed',name:'Aventus',meta:'Eau de Parfum - 100ml - Launched 2010',
-    details:{house:'Creed',year:'2010',conc:'Eau de Parfum',gender:'Masculine',longevity:'8-10 hours',sillage:'Moderate'},
-    seasons:['Spring','Summer','Autumn'],occ:['Office','Casual','Evening'],
-    sellers:[{n:'eBay',p:198.00,s:true},{n:'Amazon UK',p:219.00,s:true},{n:'John Lewis',p:235.00,s:true},{n:'Boots',p:240.00,s:true},{n:'The Perfume Shop',p:245.00,s:true}]},
-  million:{brand:'Paco Rabanne',name:'1 Million EDT',meta:'Eau de Toilette - 100ml - Launched 2008',
-    details:{house:'Paco Rabanne',year:'2008',conc:'Eau de Toilette',gender:'Masculine',longevity:'6-8 hours',sillage:'Moderate'},
-    seasons:['Autumn','Winter'],occ:['Night Out','Evening','Date Night'],
-    sellers:[{n:'Fragrance Direct',p:47.00,s:true},{n:'Superdrug',p:48.00,s:true},{n:'Boots',p:52.00,s:true},{n:'Amazon UK',p:54.99,s:true},{n:'The Perfume Shop',p:56.00,s:true}]}
-};
+function getSellerLink(sellerName, productName, asin) {
+  const search = encodeURIComponent(productName);
+  if (sellerName === 'Amazon UK') {
+    if (asin) return `https://www.amazon.co.uk/dp/${asin}/?tag=${AMAZON_TAG}`;
+    return `https://www.amazon.co.uk/s?k=${search}&tag=${AMAZON_TAG}`;
+  }
+  if (sellerName === 'eBay') return `https://www.ebay.co.uk/sch/i.html?_nkw=${search}&_sacat=0`;
+  if (sellerName === 'Fragrance Direct') return `https://www.fragrancedirect.co.uk/search#q=${search}`;
+  if (sellerName === 'The Perfume Shop') return `https://www.theperfumeshop.com/search?q=${search}`;
+  if (sellerName === 'Superdrug') return `https://www.superdrug.com/search?q=${search}`;
+  if (sellerName === 'Boots') return `https://www.boots.com/search?q=${search}`;
+  if (sellerName === 'Lookfantastic') return `https://www.lookfantastic.com/health-beauty/search.list?search=${search}`;
+  if (sellerName === 'John Lewis') return `https://www.johnlewis.com/search?search-term=${search}`;
+  return '#';
+}
 
-function goProd(key){
-  const p=prods[key];if(!p)return;
-  const sorted=[...p.sellers].sort((a,b)=>a.p-b.p);
-  document.getElementById('ph-crumb').textContent=p.name;
-  document.getElementById('ph-brand').textContent=p.brand;
-  document.getElementById('ph-name').textContent=p.name;
-  document.getElementById('ph-meta').textContent=p.meta;
-  document.getElementById('ph-price').textContent='£'+sorted[0].p.toFixed(2);
-  document.getElementById('ph-from').textContent='on '+sorted[0].n;
-  document.getElementById('di-house').textContent=p.details.house;
-  document.getElementById('di-year').textContent=p.details.year;
-  document.getElementById('di-conc').textContent=p.details.conc;
-  document.getElementById('di-gender').textContent=p.details.gender;
-  document.getElementById('di-long').textContent=p.details.longevity;
-  document.getElementById('di-sil').textContent=p.details.sillage;
-  const allS=['Spring','Summer','Autumn','Winter'];
-  document.getElementById('di-seasons').innerHTML=allS.map(s=>`<span class="dtag ${p.seasons.includes(s)?'on':''}">${s}</span>`).join('');
-  document.getElementById('pd-prices').innerHTML=sorted.map((s,i)=>`
-    <a class="pe${i===0?' best':''}" href="#">
-      <span class="pe-rank">${i+1}</span>
-      <span class="pe-seller">${s.n}</span>
-      <span class="pe-stk ${s.s?'stk-y':'stk-n'}">${s.s?'In Stock':'Check'}</span>
-      <span class="pe-price">£${s.p.toFixed(2)}</span>
-      ${i===0?'<span class="pe-badge">BEST</span>':''}
-      <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>`).join('');
+async function goProd(key) {
   show('product');
+  // Show loading state
+  document.getElementById('ph-name').textContent = 'Loading...';
+  document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching prices...</p>';
+
+  try {
+    // Fetch product and sellers in parallel
+    const [products, sellers] = await Promise.all([
+      fetchProducts(),
+      fetchSellers(key)
+    ]);
+
+    const p = products.find(x => x.key === key);
+    if (!p) return;
+
+    // Update header
+    document.getElementById('ph-crumb').textContent = p.name;
+    document.getElementById('ph-brand').textContent = p.brand;
+    document.getElementById('ph-name').textContent = p.name;
+    document.getElementById('ph-meta').textContent = p.meta;
+    document.getElementById('di-house').textContent = p.house || p.brand;
+    document.getElementById('di-year').textContent = p.year || '-';
+    document.getElementById('di-conc').textContent = p.concentration || '-';
+    document.getElementById('di-gender').textContent = p.gender || '-';
+    document.getElementById('di-long').textContent = p.longevity || '-';
+    document.getElementById('di-sil').textContent = p.sillage || '-';
+
+    // Best price
+    if (sellers.length > 0) {
+      document.getElementById('ph-price').textContent = '£' + parseFloat(sellers[0].price).toFixed(2);
+      document.getElementById('ph-from').textContent = 'on ' + sellers[0].seller_name;
+    }
+
+    // Seasons
+    const allS = ['Spring','Summer','Autumn','Winter'];
+    const seasons = p.seasons || [];
+    document.getElementById('di-seasons').innerHTML = allS.map(s =>
+      `<span class="dtag ${seasons.includes(s)?'on':''}">${s}</span>`).join('');
+
+    // Occasions
+    const occ = p.occasions || [];
+    document.getElementById('di-occ').innerHTML = occ.map(o =>
+      `<span class="dtag on">${o}</span>`).join('');
+
+    // Price list
+    document.getElementById('pd-prices').innerHTML = sellers.map((s,i) => `
+      <a class="pe${i===0?' best':''}" href="${getSellerLink(s.seller_name, p.name, p.asin)}" target="_blank" rel="noopener sponsored">
+        <span class="pe-rank">${i+1}</span>
+        <span class="pe-seller">${s.seller_name}</span>
+        <span class="pe-stk ${s.in_stock?'stk-y':'stk-n'}">${s.in_stock?'In Stock':'Check'}</span>
+        <span class="pe-price">£${parseFloat(s.price).toFixed(2)}</span>
+        ${i===0?'<span class="pe-badge">BEST</span>':''}
+        <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>`).join('');
+
+  } catch(e) {
+    document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Could not load prices. Try again.</p>';
+  }
 }
 
-function doSearch(){
-  const q=document.getElementById('homeSearch').value.trim().toLowerCase();if(!q)return;
-  for(const[k,v]of Object.entries(prods)){if(v.name.toLowerCase().includes(q)||v.brand.toLowerCase().includes(q)||q.includes(k)){goProd(k);return}}
-  goProd('armaf');
+async function doSearch() {
+  const q = document.getElementById('homeSearch').value.trim().toLowerCase();
+  if (!q) return;
+  const products = await fetchProducts();
+  const match = products.find(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.brand.toLowerCase().includes(q) ||
+    p.key.toLowerCase().includes(q)
+  );
+  if (match) goProd(match.key);
+  else if (products.length > 0) goProd(products[0].key);
 }
-document.getElementById('homeSearch').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
-document.querySelectorAll('.sz').forEach(b=>b.addEventListener('click',function(){document.querySelectorAll('.sz').forEach(x=>x.classList.remove('on'));this.classList.add('on')}));
+
+document.getElementById('homeSearch').addEventListener('keydown', e => { if(e.key==='Enter') doSearch() });
+document.querySelectorAll('.sz').forEach(b => b.addEventListener('click', function(){
+  document.querySelectorAll('.sz').forEach(x => x.classList.remove('on'));
+  this.classList.add('on');
+}));
 
 function openModal(){document.getElementById('modalOv').classList.add('on')}
 function closeModal(){document.getElementById('modalOv').classList.remove('on')}
@@ -846,9 +945,10 @@ function submitContact(){
   if(!email||!msg)return;
   document.getElementById('contactForm').innerHTML=`<div style="text-align:center;padding:32px 0"><div style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--terra);margin-bottom:14px">✓</div><h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em">Message Sent</h2><p style="font-size:14px;color:var(--mid);line-height:1.6;font-family:'Lora',serif;font-style:italic">Thanks ${name||'for reaching out'}. We will get back to you within 48 hours.</p></div>`;
 }
-function initCk(){if(localStorage.getItem('ss_ck'))return;setTimeout(()=>document.getElementById('ckBanner').classList.add('show'),2000)}
-function ckAccept(){localStorage.setItem('ss_ck','yes');sprayIt();ckDismiss()}
-function ckClose(){localStorage.setItem('ss_ck','no');ckDismiss()}
+
+function initCk(){if(localStorage.getItem('sc_ck'))return;setTimeout(()=>document.getElementById('ckBanner').classList.add('show'),2000)}
+function ckAccept(){localStorage.setItem('sc_ck','yes');sprayIt();ckDismiss()}
+function ckClose(){localStorage.setItem('sc_ck','no');ckDismiss()}
 function ckDismiss(){const b=document.getElementById('ckBanner');b.classList.add('bye');setTimeout(()=>b.remove(),600)}
 function sprayIt(){
   const c=document.getElementById('spParts');c.innerHTML='';
