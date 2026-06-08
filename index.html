@@ -627,21 +627,11 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
       <div class="product-left">
         <div class="notes-row">
           <p class="notes-title">Fragrance Notes</p>
-          <div id="pd-notes">
-            <div class="note-level"><span class="nl-label">Top</span><div class="nl-pills"><span class="npill">Pineapple</span><span class="npill">Blackcurrant</span><span class="npill">Apple</span><span class="npill">Bergamot</span></div></div>
-            <div class="note-level"><span class="nl-label">Heart</span><div class="nl-pills"><span class="npill">Birch</span><span class="npill">Jasmine</span><span class="npill">Rose</span></div></div>
-            <div class="note-level"><span class="nl-label">Base</span><div class="nl-pills"><span class="npill">Musk</span><span class="npill">Oakmoss</span><span class="npill">Ambergris</span><span class="npill">Vanilla</span></div></div>
-          </div>
+          <div id="pd-notes"></div>
         </div>
         <div class="accords">
           <p class="notes-title">Scent Profile</p>
-          <div id="pd-accords">
-            <div class="accord"><span class="accord-name">Woody</span><div class="accord-track"><div class="accord-fill" style="width:85%"></div></div><span class="accord-val">85%</span></div>
-            <div class="accord"><span class="accord-name">Smoky</span><div class="accord-track"><div class="accord-fill" style="width:75%"></div></div><span class="accord-val">75%</span></div>
-            <div class="accord"><span class="accord-name">Fresh</span><div class="accord-track"><div class="accord-fill" style="width:62%"></div></div><span class="accord-val">62%</span></div>
-            <div class="accord"><span class="accord-name">Fruity</span><div class="accord-track"><div class="accord-fill" style="width:55%"></div></div><span class="accord-val">55%</span></div>
-            <div class="accord"><span class="accord-name">Sweet</span><div class="accord-track"><div class="accord-fill" style="width:30%"></div></div><span class="accord-val">30%</span></div>
-          </div>
+          <div id="pd-accords"></div>
         </div>
         <div class="details-grid" id="pd-details">
           <div class="detail-cell"><p class="dc-key">House</p><p class="dc-val" id="di-house">Armaf</p></div>
@@ -854,20 +844,43 @@ function getSellerLink(sellerName, productName, asin) {
   return '#';
 }
 
-// Local fallback data - always works even if database is slow
 const localProds = {
-  armaf:{key:'armaf',brand:'Armaf',name:'Club de Nuit Intense Man EDP',meta:'Eau de Parfum - 105ml - Launched 2015',gender:'Masculine',house:'Armaf',year:'2015',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Office']},
-  sauvage:{key:'sauvage',brand:'Dior',name:'Sauvage EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Dior',year:'2018',concentration:'Eau de Parfum',longevity:'10-14 hours',sillage:'Very Heavy',seasons:['Autumn','Winter','Spring'],occasions:['Evening','Office','Date Night']},
-  lattafa:{key:'lattafa',brand:'Lattafa',name:'Oud For Glory EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Unisex',house:'Lattafa',year:'2019',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion']},
-  creed:{key:'creed',brand:'Creed',name:'Aventus EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2010',gender:'Masculine',house:'Creed',year:'2010',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Evening']},
-  million:{key:'million',brand:'Paco Rabanne',name:'1 Million EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2008',gender:'Masculine',house:'Paco Rabanne',year:'2008',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Night Out','Evening','Date Night']},
-  bleuChanel:{key:'bleuChanel',brand:'Chanel',name:'Bleu de Chanel EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2014',gender:'Masculine',house:'Chanel',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Autumn','Winter'],occasions:['Office','Evening','Date Night']},
-  yslY:{key:'yslY',brand:'YSL',name:'Y EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Yves Saint Laurent',year:'2018',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Date Night']},
-  versaceEros:{key:'versaceEros',brand:'Versace',name:'Eros EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2012',gender:'Masculine',house:'Versace',year:'2012',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Heavy',seasons:['Spring','Summer'],occasions:['Night Out','Evening','Casual']},
-  blackOpium:{key:'blackOpium',brand:'YSL',name:'Black Opium EDP 90ml',meta:'Eau de Parfum - 90ml - Launched 2014',gender:'Feminine',house:'Yves Saint Laurent',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night']},
-  goodGirl:{key:'goodGirl',brand:'Carolina Herrera',name:'Good Girl EDP 80ml',meta:'Eau de Parfum - 80ml - Launched 2016',gender:'Feminine',house:'Carolina Herrera',year:'2016',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night']},
-  invictus:{key:'invictus',brand:'Paco Rabanne',name:'Invictus EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2013',gender:'Masculine',house:'Paco Rabanne',year:'2013',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Office','Sports']},
-  armaniCode:{key:'armaniCode',brand:'Giorgio Armani',name:'Code EDP 110ml',meta:'Eau de Parfum - 110ml - Launched 2021',gender:'Masculine',house:'Giorgio Armani',year:'2021',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Office','Date Night']}
+  armaf:{key:'armaf',brand:'Armaf',name:'Club de Nuit Intense Man EDP',meta:'Eau de Parfum - 105ml - Launched 2015',gender:'Masculine',house:'Armaf',year:'2015',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Office'],
+    top_notes:['Pineapple','Blackcurrant','Apple','Bergamot'],heart_notes:['Birch','Jasmine','Rose'],base_notes:['Musk','Oakmoss','Ambergris','Vanilla'],
+    accords:[{name:'Woody',pct:85},{name:'Smoky',pct:75},{name:'Fresh',pct:62},{name:'Fruity',pct:55},{name:'Sweet',pct:30}]},
+  sauvage:{key:'sauvage',brand:'Dior',name:'Sauvage EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Dior',year:'2018',concentration:'Eau de Parfum',longevity:'10-14 hours',sillage:'Very Heavy',seasons:['Autumn','Winter','Spring'],occasions:['Evening','Office','Date Night'],
+    top_notes:['Bergamot','Pepper'],heart_notes:['Lavender','Star Anise','Geranium'],base_notes:['Ambroxan','Cedar','Vetiver'],
+    accords:[{name:'Fresh',pct:90},{name:'Woody',pct:70},{name:'Spicy',pct:65},{name:'Aromatic',pct:60},{name:'Musky',pct:45}]},
+  lattafa:{key:'lattafa',brand:'Lattafa',name:'Oud For Glory EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Unisex',house:'Lattafa',year:'2019',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],
+    top_notes:['Saffron','Rose'],heart_notes:['Oud','Patchouli'],base_notes:['Musk','Amber','Sandalwood'],
+    accords:[{name:'Oud',pct:95},{name:'Woody',pct:80},{name:'Sweet',pct:60},{name:'Smoky',pct:55},{name:'Spicy',pct:50}]},
+  creed:{key:'creed',brand:'Creed',name:'Aventus EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2010',gender:'Masculine',house:'Creed',year:'2010',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Evening'],
+    top_notes:['Pineapple','Bergamot','Apple','Blackcurrant'],heart_notes:['Rose','Birch','Jasmine','Patchouli'],base_notes:['Musk','Oakmoss','Ambergris','Vanilla'],
+    accords:[{name:'Fruity',pct:85},{name:'Woody',pct:75},{name:'Smoky',pct:65},{name:'Fresh',pct:60},{name:'Sweet',pct:35}]},
+  million:{key:'million',brand:'Paco Rabanne',name:'1 Million EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2008',gender:'Masculine',house:'Paco Rabanne',year:'2008',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Night Out','Evening','Date Night'],
+    top_notes:['Grapefruit','Mint','Blood Mandarin'],heart_notes:['Rose','Cinnamon','Spices'],base_notes:['Leather','Amber','Patchouli','White Wood'],
+    accords:[{name:'Sweet',pct:88},{name:'Spicy',pct:75},{name:'Warm',pct:70},{name:'Leathery',pct:60},{name:'Fruity',pct:45}]},
+  bleuChanel:{key:'bleuChanel',brand:'Chanel',name:'Bleu de Chanel EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2014',gender:'Masculine',house:'Chanel',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Autumn','Winter'],occasions:['Office','Evening','Date Night'],
+    top_notes:['Lemon','Mint','Pink Pepper'],heart_notes:['Ginger','Nutmeg','Jasmine'],base_notes:['Incense','Vetiver','Cedar','Sandalwood'],
+    accords:[{name:'Woody',pct:80},{name:'Fresh',pct:75},{name:'Aromatic',pct:65},{name:'Spicy',pct:50},{name:'Citrus',pct:45}]},
+  yslY:{key:'yslY',brand:'YSL',name:'Y EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Yves Saint Laurent',year:'2018',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Date Night'],
+    top_notes:['Ginger','Bergamot','Apple'],heart_notes:['Geranium','Sage','Juniper'],base_notes:['Ambergris','Cedar','Fir Balsam'],
+    accords:[{name:'Fresh',pct:85},{name:'Woody',pct:70},{name:'Aromatic',pct:65},{name:'Spicy',pct:45},{name:'Citrus',pct:40}]},
+  versaceEros:{key:'versaceEros',brand:'Versace',name:'Eros EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2012',gender:'Masculine',house:'Versace',year:'2012',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Heavy',seasons:['Spring','Summer'],occasions:['Night Out','Evening','Casual'],
+    top_notes:['Mint','Green Apple','Lemon'],heart_notes:['Ambroxan','Geranium','Clary Sage'],base_notes:['Vanilla','Vetiver','Oakmoss','Cedarwood'],
+    accords:[{name:'Fresh',pct:80},{name:'Sweet',pct:72},{name:'Woody',pct:60},{name:'Aromatic',pct:55},{name:'Citrus',pct:50}]},
+  blackOpium:{key:'blackOpium',brand:'YSL',name:'Black Opium EDP 90ml',meta:'Eau de Parfum - 90ml - Launched 2014',gender:'Feminine',house:'Yves Saint Laurent',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night'],
+    top_notes:['Pink Pepper','Orange Blossom','Pear'],heart_notes:['Coffee','Jasmine'],base_notes:['Vanilla','Patchouli','Cedar','Cashmere Wood'],
+    accords:[{name:'Sweet',pct:90},{name:'Gourmand',pct:80},{name:'Warm',pct:70},{name:'Floral',pct:55},{name:'Spicy',pct:45}]},
+  goodGirl:{key:'goodGirl',brand:'Carolina Herrera',name:'Good Girl EDP 80ml',meta:'Eau de Parfum - 80ml - Launched 2016',gender:'Feminine',house:'Carolina Herrera',year:'2016',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night'],
+    top_notes:['Almond','Coffee','Tuberose'],heart_notes:['Jasmine','Tuberose'],base_notes:['Tonka Bean','Cacao','Vetiver','Sandalwood'],
+    accords:[{name:'Sweet',pct:85},{name:'Floral',pct:75},{name:'Gourmand',pct:70},{name:'Warm',pct:60},{name:'Powdery',pct:45}]},
+  invictus:{key:'invictus',brand:'Paco Rabanne',name:'Invictus EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2013',gender:'Masculine',house:'Paco Rabanne',year:'2013',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Office','Sports'],
+    top_notes:['Grapefruit','Marine','Bay Laurel'],heart_notes:['Jasmine','Guaiac Wood'],base_notes:['Oakmoss','Ambergris','Patchouli'],
+    accords:[{name:'Fresh',pct:85},{name:'Aquatic',pct:75},{name:'Woody',pct:60},{name:'Citrus',pct:55},{name:'Sweet',pct:35}]},
+  armaniCode:{key:'armaniCode',brand:'Giorgio Armani',name:'Code EDP 110ml',meta:'Eau de Parfum - 110ml - Launched 2021',gender:'Masculine',house:'Giorgio Armani',year:'2021',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Office','Date Night'],
+    top_notes:['Bergamot','Lemon'],heart_notes:['Cardamom','Tonka Bean'],base_notes:['Guaiac Wood','Amber','Leather'],
+    accords:[{name:'Warm',pct:82},{name:'Woody',pct:72},{name:'Spicy',pct:65},{name:'Sweet',pct:55},{name:'Aromatic',pct:45}]}
 };
 
 const localSellers = {
@@ -923,6 +936,25 @@ function renderProduct(p, sellers) {
     img.style.display = 'none';
     placeholder.style.display = 'block';
   }
+
+  // Notes
+  const topNotes = p.top_notes || [];
+  const heartNotes = p.heart_notes || [];
+  const baseNotes = p.base_notes || [];
+  document.getElementById('pd-notes').innerHTML = `
+    <div class="note-level"><span class="nl-label">Top</span><div class="nl-pills">${topNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+    <div class="note-level"><span class="nl-label">Heart</span><div class="nl-pills">${heartNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+    <div class="note-level"><span class="nl-label">Base</span><div class="nl-pills">${baseNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+  `;
+
+  // Accords
+  const accords = p.accords || [];
+  document.getElementById('pd-accords').innerHTML = accords.map(a => `
+    <div class="accord">
+      <span class="accord-name">${a.name}</span>
+      <div class="accord-track"><div class="accord-fill" style="width:${a.pct}%"></div></div>
+      <span class="accord-val">${a.pct}%</span>
+    </div>`).join('');
 
   // Header
   document.getElementById('ph-crumb').textContent = p.name;
@@ -1055,4 +1087,4 @@ loadFeatured();
 initCk();
 </script>
 </body>
-                                                                                                                          </html>
+</html>
