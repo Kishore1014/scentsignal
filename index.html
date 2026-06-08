@@ -10,6 +10,10 @@
 <meta name="author" content="ScentSignal"/>
 <link rel="canonical" href="https://www.scentsignal.co.uk/"/>
 
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23c97a30'/%3E%3Cstop offset='100%25' style='stop-color:%238b3a1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='100' fill='url(%23bg)'/%3E%3Crect x='82' y='55' width='36' height='8' rx='2' fill='rgba(255,255,255,0.9)'/%3E%3Crect x='88' y='45' width='24' height='12' rx='2' fill='rgba(255,255,255,0.9)'/%3E%3Cpath d='M72 63 Q68 75 68 95 L68 148 Q68 155 75 155 L125 155 Q132 155 132 148 L132 95 Q132 75 128 63 Z' fill='rgba(255,255,255,0.15)' stroke='rgba(255,255,255,0.6)' stroke-width='2'/%3E%3Ctext x='100' y='122' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23c97a30'/%3E%3Cstop offset='100%25' style='stop-color:%238b3a1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='100' fill='url(%23bg)'/%3E%3Ctext x='100' y='122' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E"/>
+
 <!-- Open Graph - for sharing on social media -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.scentsignal.co.uk/"/>
@@ -68,9 +72,9 @@ nav{
 .logo{
   font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
   letter-spacing:-.01em;color:var(--ink);text-decoration:none;cursor:pointer;
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:10px;
 }
-.logo-dot{width:8px;height:8px;background:var(--terra);border-radius:50%;display:inline-block}
+.logo-dot{width:8px;height:8px;background:var(--terra);border-radius:50%;display:none}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-family:'Syne',sans-serif;font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;letter-spacing:.02em;transition:color .2s;cursor:pointer}
 .nav-links a:hover{color:var(--terra)}
@@ -453,7 +457,16 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
 
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#" onclick="show('home');return false;"><span class="logo-dot"></span>ScentSignal</a>
+    <a class="logo" href="#" onclick="show('home');return false;">
+    <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="border-radius:50%;flex-shrink:0">
+      <defs><radialGradient id="lg" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#c97a30"/><stop offset="100%" style="stop-color:#8b3a1e"/></radialGradient></defs>
+      <circle cx="100" cy="100" r="100" fill="url(#lg)"/>
+      <rect x="82" y="55" width="36" height="8" rx="2" fill="rgba(255,255,255,0.9)"/>
+      <rect x="88" y="45" width="24" height="12" rx="2" fill="rgba(255,255,255,0.9)"/>
+      <path d="M72 63 Q68 75 68 95 L68 148 Q68 155 75 155 L125 155 Q132 155 132 148 L132 95 Q132 75 128 63 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+      <text x="100" y="122" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="white" text-anchor="middle">SS</text>
+    </svg>
+    ScentSignal</a>
     <ul class="nav-links">
       <li><a href="#" onclick="show('home');return false;">Home</a></li>
       <li><a href="#" onclick="show('about');return false;">About</a></li>
@@ -497,23 +510,31 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
   </section>
 
   <div class="ticker">
-    <div class="ticker-inner">
-      <span class="ticker-item">Armaf Club de Nuit<span>£22.99</span></span>
-      <span class="ticker-item">Dior Sauvage EDP<span>£72.00</span></span>
-      <span class="ticker-item">Lattafa Oud For Glory<span>£18.99</span></span>
-      <span class="ticker-item">Creed Aventus<span>£198.00</span></span>
-      <span class="ticker-item">Paco Rabanne 1 Million<span>£47.00</span></span>
-      <span class="ticker-item">Bleu de Chanel EDP<span>£68.00</span></span>
-      <span class="ticker-item">YSL Y EDP<span>£54.00</span></span>
-      <span class="ticker-item">Versace Eros<span>£38.00</span></span>
-      <span class="ticker-item">Armaf Club de Nuit<span>£22.99</span></span>
-      <span class="ticker-item">Dior Sauvage EDP<span>£72.00</span></span>
-      <span class="ticker-item">Lattafa Oud For Glory<span>£18.99</span></span>
-      <span class="ticker-item">Creed Aventus<span>£198.00</span></span>
-      <span class="ticker-item">Paco Rabanne 1 Million<span>£47.00</span></span>
-      <span class="ticker-item">Bleu de Chanel EDP<span>£68.00</span></span>
-      <span class="ticker-item">YSL Y EDP<span>£54.00</span></span>
-      <span class="ticker-item">Versace Eros<span>£38.00</span></span>
+    <div class="ticker-inner" id="tickerInner">
+      <span class="ticker-item" onclick="goProd('armaf')" style="cursor:pointer">Armaf Club de Nuit<span>£22.99</span></span>
+      <span class="ticker-item" onclick="goProd('sauvage')" style="cursor:pointer">Dior Sauvage EDP<span>£72.00</span></span>
+      <span class="ticker-item" onclick="goProd('lattafa')" style="cursor:pointer">Lattafa Oud For Glory<span>£18.99</span></span>
+      <span class="ticker-item" onclick="goProd('creed')" style="cursor:pointer">Creed Aventus<span>£198.00</span></span>
+      <span class="ticker-item" onclick="goProd('million')" style="cursor:pointer">Paco Rabanne 1 Million<span>£47.00</span></span>
+      <span class="ticker-item" onclick="goProd('bleuChanel')" style="cursor:pointer">Bleu de Chanel EDP<span>£85.00</span></span>
+      <span class="ticker-item" onclick="goProd('yslY')" style="cursor:pointer">YSL Y EDP<span>£54.00</span></span>
+      <span class="ticker-item" onclick="goProd('versaceEros')" style="cursor:pointer">Versace Eros<span>£38.00</span></span>
+      <span class="ticker-item" onclick="goProd('blackOpium')" style="cursor:pointer">YSL Black Opium<span>£68.00</span></span>
+      <span class="ticker-item" onclick="goProd('goodGirl')" style="cursor:pointer">Carolina Herrera Good Girl<span>£58.00</span></span>
+      <span class="ticker-item" onclick="goProd('invictus')" style="cursor:pointer">Paco Rabanne Invictus<span>£44.00</span></span>
+      <span class="ticker-item" onclick="goProd('armaniCode')" style="cursor:pointer">Armani Code EDP<span>£65.00</span></span>
+      <span class="ticker-item" onclick="goProd('armaf')" style="cursor:pointer">Armaf Club de Nuit<span>£22.99</span></span>
+      <span class="ticker-item" onclick="goProd('sauvage')" style="cursor:pointer">Dior Sauvage EDP<span>£72.00</span></span>
+      <span class="ticker-item" onclick="goProd('lattafa')" style="cursor:pointer">Lattafa Oud For Glory<span>£18.99</span></span>
+      <span class="ticker-item" onclick="goProd('creed')" style="cursor:pointer">Creed Aventus<span>£198.00</span></span>
+      <span class="ticker-item" onclick="goProd('million')" style="cursor:pointer">Paco Rabanne 1 Million<span>£47.00</span></span>
+      <span class="ticker-item" onclick="goProd('bleuChanel')" style="cursor:pointer">Bleu de Chanel EDP<span>£85.00</span></span>
+      <span class="ticker-item" onclick="goProd('yslY')" style="cursor:pointer">YSL Y EDP<span>£54.00</span></span>
+      <span class="ticker-item" onclick="goProd('versaceEros')" style="cursor:pointer">Versace Eros<span>£38.00</span></span>
+      <span class="ticker-item" onclick="goProd('blackOpium')" style="cursor:pointer">YSL Black Opium<span>£68.00</span></span>
+      <span class="ticker-item" onclick="goProd('goodGirl')" style="cursor:pointer">Carolina Herrera Good Girl<span>£58.00</span></span>
+      <span class="ticker-item" onclick="goProd('invictus')" style="cursor:pointer">Paco Rabanne Invictus<span>£44.00</span></span>
+      <span class="ticker-item" onclick="goProd('armaniCode')" style="cursor:pointer">Armani Code EDP<span>£65.00</span></span>
     </div>
   </div>
 
@@ -562,33 +583,9 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
   <div class="featured">
     <p class="section-tag">Featured today</p>
     <h2 class="section-h">Popular <em>right now</em></h2>
-    <div class="fgrid">
-      <div class="fcard" onclick="goProd('armaf')">
-        <p class="fc-brand">Armaf</p><h3 class="fc-name">Club de Nuit Intense Man</h3><p class="fc-type">Eau de Parfum - 105ml</p>
-        <div class="fc-prices">
-          <div class="fcp top"><span class="fcp-name">Amazon UK</span><span class="fcp-badge">BEST</span><span class="fcp-price">£22.99</span></div>
-          <div class="fcp"><span class="fcp-name">eBay</span><span class="fcp-price">£24.50</span></div>
-          <div class="fcp"><span class="fcp-name">Fragrance Direct</span><span class="fcp-price">£26.99</span></div>
-        </div>
-        <a class="fc-link" href="#" onclick="goProd('armaf');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="fcard" onclick="goProd('lattafa')">
-        <p class="fc-brand">Lattafa</p><h3 class="fc-name">Oud For Glory</h3><p class="fc-type">Eau de Parfum - 100ml</p>
-        <div class="fc-prices">
-          <div class="fcp top"><span class="fcp-name">Fragrance Direct</span><span class="fcp-badge">BEST</span><span class="fcp-price">£18.99</span></div>
-          <div class="fcp"><span class="fcp-name">Amazon UK</span><span class="fcp-price">£21.00</span></div>
-          <div class="fcp"><span class="fcp-name">eBay</span><span class="fcp-price">£23.49</span></div>
-        </div>
-        <a class="fc-link" href="#" onclick="goProd('lattafa');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="fcard" onclick="goProd('sauvage')">
-        <p class="fc-brand">Dior</p><h3 class="fc-name">Sauvage EDP</h3><p class="fc-type">Eau de Parfum - 100ml</p>
-        <div class="fc-prices">
-          <div class="fcp top"><span class="fcp-name">Superdrug</span><span class="fcp-badge">BEST</span><span class="fcp-price">£72.00</span></div>
-          <div class="fcp"><span class="fcp-name">Boots</span><span class="fcp-price">£79.00</span></div>
-          <div class="fcp"><span class="fcp-name">John Lewis</span><span class="fcp-price">£84.00</span></div>
-        </div>
-        <a class="fc-link" href="#" onclick="goProd('sauvage');return false;">Compare all <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="fgrid" id="featuredGrid">
+      <div class="fcard" style="display:flex;align-items:center;justify-content:center;min-height:200px">
+        <p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic">Loading...</p>
       </div>
     </div>
   </div>
@@ -606,10 +603,16 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
     <div class="product-header">
       <div class="breadcrumb"><a href="#" onclick="show('home');return false;">Home</a> / <a href="#" onclick="show('home');return false;">Search</a> / <span id="ph-crumb">Armaf Club de Nuit</span></div>
       <div class="ph-grid">
-        <div>
-          <p class="ph-brand" id="ph-brand">Armaf</p>
-          <h1 class="ph-name" id="ph-name">Club de Nuit Intense Man</h1>
-          <p class="ph-meta" id="ph-meta">Eau de Parfum - 105ml - Launched 2015</p>
+        <div style="display:flex;align-items:center;gap:28px">
+          <div id="ph-img-wrap" style="width:100px;height:100px;flex-shrink:0;background:var(--off);border:1.5px solid var(--clay);display:flex;align-items:center;justify-content:center;overflow:hidden">
+            <img id="ph-img" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:none"/>
+            <svg id="ph-img-placeholder" width="40" height="40" fill="none" stroke="var(--sand)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3H8L6 7h12l-2-4z"/><circle cx="12" cy="13" r="2"/></svg>
+          </div>
+          <div>
+            <p class="ph-brand" id="ph-brand">Armaf</p>
+            <h1 class="ph-name" id="ph-name">Club de Nuit Intense Man</h1>
+            <p class="ph-meta" id="ph-meta">Eau de Parfum - 105ml - Launched 2015</p>
+          </div>
         </div>
         <div></div>
         <div class="ph-best">
@@ -851,65 +854,115 @@ function getSellerLink(sellerName, productName, asin) {
   return '#';
 }
 
+// Local fallback data - always works even if database is slow
+const localProds = {
+  armaf:{key:'armaf',brand:'Armaf',name:'Club de Nuit Intense Man EDP',meta:'Eau de Parfum - 105ml - Launched 2015',gender:'Masculine',house:'Armaf',year:'2015',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Office']},
+  sauvage:{key:'sauvage',brand:'Dior',name:'Sauvage EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Dior',year:'2018',concentration:'Eau de Parfum',longevity:'10-14 hours',sillage:'Very Heavy',seasons:['Autumn','Winter','Spring'],occasions:['Evening','Office','Date Night']},
+  lattafa:{key:'lattafa',brand:'Lattafa',name:'Oud For Glory EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Unisex',house:'Lattafa',year:'2019',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion']},
+  creed:{key:'creed',brand:'Creed',name:'Aventus EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2010',gender:'Masculine',house:'Creed',year:'2010',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Evening']},
+  million:{key:'million',brand:'Paco Rabanne',name:'1 Million EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2008',gender:'Masculine',house:'Paco Rabanne',year:'2008',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Night Out','Evening','Date Night']},
+  bleuChanel:{key:'bleuChanel',brand:'Chanel',name:'Bleu de Chanel EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2014',gender:'Masculine',house:'Chanel',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Autumn','Winter'],occasions:['Office','Evening','Date Night']},
+  yslY:{key:'yslY',brand:'YSL',name:'Y EDP 100ml',meta:'Eau de Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Yves Saint Laurent',year:'2018',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer','Autumn'],occasions:['Office','Casual','Date Night']},
+  versaceEros:{key:'versaceEros',brand:'Versace',name:'Eros EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2012',gender:'Masculine',house:'Versace',year:'2012',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Heavy',seasons:['Spring','Summer'],occasions:['Night Out','Evening','Casual']},
+  blackOpium:{key:'blackOpium',brand:'YSL',name:'Black Opium EDP 90ml',meta:'Eau de Parfum - 90ml - Launched 2014',gender:'Feminine',house:'Yves Saint Laurent',year:'2014',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night']},
+  goodGirl:{key:'goodGirl',brand:'Carolina Herrera',name:'Good Girl EDP 80ml',meta:'Eau de Parfum - 80ml - Launched 2016',gender:'Feminine',house:'Carolina Herrera',year:'2016',concentration:'Eau de Parfum',longevity:'8-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out','Date Night']},
+  invictus:{key:'invictus',brand:'Paco Rabanne',name:'Invictus EDT 100ml',meta:'Eau de Toilette - 100ml - Launched 2013',gender:'Masculine',house:'Paco Rabanne',year:'2013',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Office','Sports']},
+  armaniCode:{key:'armaniCode',brand:'Giorgio Armani',name:'Code EDP 110ml',meta:'Eau de Parfum - 110ml - Launched 2021',gender:'Masculine',house:'Giorgio Armani',year:'2021',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Office','Date Night']}
+};
+
+const localSellers = {
+  armaf:[{seller_name:'Amazon UK',price:22.99,in_stock:true},{seller_name:'eBay',price:24.50,in_stock:true},{seller_name:'Fragrance Direct',price:26.99,in_stock:true},{seller_name:'The Perfume Shop',price:28.00,in_stock:true},{seller_name:'Boots',price:31.00,in_stock:true}],
+  sauvage:[{seller_name:'Superdrug',price:72.00,in_stock:true},{seller_name:'Boots',price:79.00,in_stock:true},{seller_name:'Amazon UK',price:81.50,in_stock:true},{seller_name:'John Lewis',price:84.00,in_stock:true},{seller_name:'The Perfume Shop',price:85.00,in_stock:true}],
+  lattafa:[{seller_name:'Fragrance Direct',price:18.99,in_stock:true},{seller_name:'Amazon UK',price:21.00,in_stock:true},{seller_name:'eBay',price:23.49,in_stock:true}],
+  creed:[{seller_name:'eBay',price:198.00,in_stock:true},{seller_name:'Amazon UK',price:219.00,in_stock:true},{seller_name:'John Lewis',price:235.00,in_stock:true},{seller_name:'Boots',price:240.00,in_stock:true}],
+  million:[{seller_name:'Fragrance Direct',price:47.00,in_stock:true},{seller_name:'Superdrug',price:48.00,in_stock:true},{seller_name:'Boots',price:52.00,in_stock:true},{seller_name:'Amazon UK',price:54.99,in_stock:true}],
+  bleuChanel:[{seller_name:'Superdrug',price:85.00,in_stock:true},{seller_name:'Lookfantastic',price:88.00,in_stock:true},{seller_name:'Boots',price:89.00,in_stock:true},{seller_name:'Amazon UK',price:92.00,in_stock:true}],
+  yslY:[{seller_name:'Superdrug',price:54.00,in_stock:true},{seller_name:'Lookfantastic',price:56.00,in_stock:true},{seller_name:'Amazon UK',price:57.00,in_stock:true},{seller_name:'Boots',price:59.00,in_stock:true}],
+  versaceEros:[{seller_name:'Fragrance Direct',price:38.00,in_stock:true},{seller_name:'Amazon UK',price:40.00,in_stock:true},{seller_name:'Superdrug',price:42.00,in_stock:true},{seller_name:'Boots',price:45.00,in_stock:true}],
+  blackOpium:[{seller_name:'Superdrug',price:68.00,in_stock:true},{seller_name:'Lookfantastic',price:69.00,in_stock:true},{seller_name:'Amazon UK',price:70.00,in_stock:true},{seller_name:'Boots',price:72.00,in_stock:true}],
+  goodGirl:[{seller_name:'Fragrance Direct',price:58.00,in_stock:true},{seller_name:'Amazon UK',price:61.00,in_stock:true},{seller_name:'Lookfantastic',price:62.00,in_stock:true},{seller_name:'Boots',price:66.00,in_stock:true}],
+  invictus:[{seller_name:'Fragrance Direct',price:44.00,in_stock:true},{seller_name:'Amazon UK',price:46.00,in_stock:true},{seller_name:'Superdrug',price:48.00,in_stock:true},{seller_name:'Boots',price:52.00,in_stock:true}],
+  armaniCode:[{seller_name:'Superdrug',price:65.00,in_stock:true},{seller_name:'Amazon UK',price:67.00,in_stock:true},{seller_name:'Lookfantastic',price:68.00,in_stock:true},{seller_name:'Boots',price:70.00,in_stock:true}]
+};
+
 async function goProd(key) {
   show('product');
-  // Show loading state
   document.getElementById('ph-name').textContent = 'Loading...';
   document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching prices...</p>';
 
+  // Use local data immediately while database loads
+  let p = localProds[key] || null;
+  let sellers = localSellers[key] || [];
+
+  // Show local data right away so it never shows wrong product
+  if (p) renderProduct(p, sellers);
+
+  // Then try to get database data
   try {
-    // Fetch product and sellers in parallel
-    const [products, sellers] = await Promise.all([
+    const [dbProducts, dbSellers] = await Promise.all([
       fetchProducts(),
       fetchSellers(key)
     ]);
-
-    const p = products.find(x => x.key === key);
-    if (!p) return;
-
-    // Update header
-    document.getElementById('ph-crumb').textContent = p.name;
-    document.getElementById('ph-brand').textContent = p.brand;
-    document.getElementById('ph-name').textContent = p.name;
-    document.getElementById('ph-meta').textContent = p.meta;
-    document.getElementById('di-house').textContent = p.house || p.brand;
-    document.getElementById('di-year').textContent = p.year || '-';
-    document.getElementById('di-conc').textContent = p.concentration || '-';
-    document.getElementById('di-gender').textContent = p.gender || '-';
-    document.getElementById('di-long').textContent = p.longevity || '-';
-    document.getElementById('di-sil').textContent = p.sillage || '-';
-
-    // Best price
-    if (sellers.length > 0) {
-      document.getElementById('ph-price').textContent = '£' + parseFloat(sellers[0].price).toFixed(2);
-      document.getElementById('ph-from').textContent = 'on ' + sellers[0].seller_name;
-    }
-
-    // Seasons
-    const allS = ['Spring','Summer','Autumn','Winter'];
-    const seasons = p.seasons || [];
-    document.getElementById('di-seasons').innerHTML = allS.map(s =>
-      `<span class="dtag ${seasons.includes(s)?'on':''}">${s}</span>`).join('');
-
-    // Occasions
-    const occ = p.occasions || [];
-    document.getElementById('di-occ').innerHTML = occ.map(o =>
-      `<span class="dtag on">${o}</span>`).join('');
-
-    // Price list
-    document.getElementById('pd-prices').innerHTML = sellers.map((s,i) => `
-      <a class="pe${i===0?' best':''}" href="${getSellerLink(s.seller_name, p.name, p.asin)}" target="_blank" rel="noopener sponsored">
-        <span class="pe-rank">${i+1}</span>
-        <span class="pe-seller">${s.seller_name}</span>
-        <span class="pe-stk ${s.in_stock?'stk-y':'stk-n'}">${s.in_stock?'In Stock':'Check'}</span>
-        <span class="pe-price">£${parseFloat(s.price).toFixed(2)}</span>
-        ${i===0?'<span class="pe-badge">BEST</span>':''}
-        <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>`).join('');
-
+    const dbP = dbProducts.find(x => x.key === key);
+    if (dbP) renderProduct(dbP, dbSellers.length > 0 ? dbSellers : sellers);
   } catch(e) {
-    document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Could not load prices. Try again.</p>';
+    console.error('Database fetch failed, using local data:', e);
   }
+}
+
+function renderProduct(p, sellers) {
+  // Image
+  const img = document.getElementById('ph-img');
+  const placeholder = document.getElementById('ph-img-placeholder');
+  if (p.image_url) {
+    img.src = p.image_url;
+    img.alt = p.name;
+    img.style.display = 'block';
+    placeholder.style.display = 'none';
+  } else {
+    img.style.display = 'none';
+    placeholder.style.display = 'block';
+  }
+
+  // Header
+  document.getElementById('ph-crumb').textContent = p.name;
+  document.getElementById('ph-brand').textContent = p.brand;
+  document.getElementById('ph-name').textContent = p.name;
+  document.getElementById('ph-meta').textContent = p.meta;
+  document.getElementById('di-house').textContent = p.house || p.brand;
+  document.getElementById('di-year').textContent = p.year || '-';
+  document.getElementById('di-conc').textContent = p.concentration || '-';
+  document.getElementById('di-gender').textContent = p.gender || '-';
+  document.getElementById('di-long').textContent = p.longevity || '-';
+  document.getElementById('di-sil').textContent = p.sillage || '-';
+
+  // Best price
+  if (sellers.length > 0) {
+    document.getElementById('ph-price').textContent = '£' + parseFloat(sellers[0].price).toFixed(2);
+    document.getElementById('ph-from').textContent = 'on ' + sellers[0].seller_name;
+  }
+
+  // Seasons
+  const allS = ['Spring','Summer','Autumn','Winter'];
+  const seasons = p.seasons || [];
+  document.getElementById('di-seasons').innerHTML = allS.map(s =>
+    `<span class="dtag ${seasons.includes(s)?'on':''}">${s}</span>`).join('');
+
+  // Occasions
+  const occ = p.occasions || [];
+  document.getElementById('di-occ').innerHTML = occ.map(o =>
+    `<span class="dtag on">${o}</span>`).join('');
+
+  // Prices
+  document.getElementById('pd-prices').innerHTML = sellers.map((s,i) => `
+    <a class="pe${i===0?' best':''}" href="${getSellerLink(s.seller_name, p.name, p.asin)}" target="_blank" rel="noopener sponsored">
+      <span class="pe-rank">${i+1}</span>
+      <span class="pe-seller">${s.seller_name}</span>
+      <span class="pe-stk ${s.in_stock?'stk-y':'stk-n'}">${s.in_stock?'In Stock':'Check'}</span>
+      <span class="pe-price">£${parseFloat(s.price).toFixed(2)}</span>
+      ${i===0?'<span class="pe-badge">BEST</span>':''}
+      <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>`).join('');
 }
 
 async function doSearch() {
@@ -957,7 +1010,49 @@ function sprayIt(){
   el.style.cssText=`width:${sz}px;height:${sz}px;left:60%;bottom:20px;--dx:${Math.sin(a*Math.PI/180)*d}px;--dy:${-Math.abs(Math.cos(a*Math.PI/180))*d}px;animation-delay:${Math.random()*.15}s`;c.appendChild(el)}
   c.style.display='block';setTimeout(()=>c.style.display='none',1000);
 }
+async function loadFeatured() {
+  try {
+    const featured = ['armaf','sauvage','lattafa','creed','million','bleuChanel'];
+    const products = await fetchProducts();
+    const featProds = featured.map(k => products.find(p => p.key === k)).filter(Boolean).slice(0,3);
+
+    const grid = document.getElementById('featuredGrid');
+    if (!grid) return;
+
+    // Fetch sellers for each featured product
+    const sellerPromises = featProds.map(p => fetchSellers(p.key));
+    const allSellers = await Promise.all(sellerPromises);
+
+    grid.innerHTML = featProds.map((p, i) => {
+      const sellers = allSellers[i].slice(0,3);
+      const best = sellers[0];
+      return `
+        <div class="fcard" onclick="goProd('${p.key}')">
+          <p class="fc-brand">${p.brand}</p>
+          <h3 class="fc-name">${p.name}</h3>
+          <p class="fc-type">${p.meta}</p>
+          <div class="fc-prices">
+            ${sellers.map((s,si) => `
+              <div class="fcp ${si===0?'top':''}">
+                <span class="fcp-name">${s.seller_name}</span>
+                ${si===0?'<span class="fcp-badge">BEST</span>':''}
+                <span class="fcp-price">£${parseFloat(s.price).toFixed(2)}</span>
+              </div>`).join('')}
+          </div>
+          <a class="fc-link" href="#" onclick="goProd('${p.key}');return false;">
+            Compare all
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>`;
+    }).join('');
+  } catch(e) {
+    console.error('Failed to load featured:', e);
+  }
+}
+
+// Load featured on page start
+loadFeatured();
 initCk();
 </script>
 </body>
-</html>
+                                                                                                                          </html>
