@@ -793,6 +793,25 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
+const FRAGELLA_KEY = 'pub_17f8fd1ff122f39ca9c527b6344699157d02a065f0bec152';
+const fragellaCache = {};
+
+async function fetchFragellaData(name) {
+  if (fragellaCache[name]) return fragellaCache[name];
+  try {
+    const res = await fetch(`https://api.fragella.com/api/v1/fragrances?search=${encodeURIComponent(name)}&limit=1`, {
+      headers: { 'x-api-key': FRAGELLA_KEY }
+    });
+    const data = await res.json();
+    const fragrance = Array.isArray(data) ? data[0] : (data.data ? data.data[0] : null);
+    if (fragrance) fragellaCache[name] = fragrance;
+    return fragrance || null;
+  } catch(e) {
+    console.error('Fragella fetch failed:', e);
+    return null;
+  }
+}
+
 // Cache products in memory after first load
 let productsCache = null;
 
@@ -903,23 +922,48 @@ async function goProd(key) {
   document.getElementById('ph-name').textContent = 'Loading...';
   document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching prices...</p>';
 
-  // Use local data immediately while database loads
+  // Use local data immediately
   let p = localProds[key] || null;
   let sellers = localSellers[key] || [];
-
-  // Show local data right away so it never shows wrong product
   if (p) renderProduct(p, sellers);
 
-  // Then try to get database data
+  // Fetch database data and Fragella data in parallel
   try {
-    const [dbProducts, dbSellers] = await Promise.all([
+    const [dbProducts, dbSellers, fragellaData] = await Promise.all([
       fetchProducts(),
-      fetchSellers(key)
+      fetchSellers(key),
+      p ? fetchFragellaData(p.name) : Promise.resolve(null)
     ]);
+
     const dbP = dbProducts.find(x => x.key === key);
-    if (dbP) renderProduct(dbP, dbSellers.length > 0 ? dbSellers : sellers);
+    const finalP = dbP || p;
+    const finalSellers = dbSellers.length > 0 ? dbSellers : sellers;
+
+    if (finalP && fragellaData) {
+      // Correct Fragella field names from docs
+      const imgUrl = fragellaData['Image URL'] || fragellaData['image_url'] || fragellaData['imageUrl'] || null;
+      if (imgUrl) finalP.image_url = imgUrl;
+
+      const topNotes = fragellaData['Notes'] ? fragellaData['Notes']['Top'] : (fragellaData['top_notes'] || []);
+      const middleNotes = fragellaData['Notes'] ? fragellaData['Notes']['Middle'] : (fragellaData['middle_notes'] || fragellaData['heart_notes'] || []);
+      const baseNotes = fragellaData['Notes'] ? fragellaData['Notes']['Base'] : (fragellaData['base_notes'] || []);
+
+      if (topNotes && topNotes.length > 0) finalP.top_notes = topNotes.map(n => n.name || n);
+      if (middleNotes && middleNotes.length > 0) finalP.heart_notes = middleNotes.map(n => n.name || n);
+      if (baseNotes && baseNotes.length > 0) finalP.base_notes = baseNotes.map(n => n.name || n);
+
+      const accords = fragellaData['Main Accords Percentage'] || fragellaData['accords'] || fragellaData['main_accords'] || [];
+      if (accords.length > 0) {
+        finalP.accords = accords.slice(0,5).map(a => ({
+          name: a.name || a.accord || a,
+          pct: a.percentage || a.pct || 70
+        }));
+      }
+    }
+
+    if (finalP) renderProduct(finalP, finalSellers);
   } catch(e) {
-    console.error('Database fetch failed, using local data:', e);
+    console.error('Failed to load product data:', e);
   }
 }
 
@@ -1000,14 +1044,72 @@ function renderProduct(p, sellers) {
 async function doSearch() {
   const q = document.getElementById('homeSearch').value.trim().toLowerCase();
   if (!q) return;
+
+  // First check local products
+  const localMatch = Object.values(localProds).find(p =>
+    p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q)
+  );
+  if (localMatch) { goProd(localMatch.key); return; }
+
+  // Then check database
   const products = await fetchProducts();
-  const match = products.find(p =>
+  const dbMatch = products.find(p =>
     p.name.toLowerCase().includes(q) ||
     p.brand.toLowerCase().includes(q) ||
     p.key.toLowerCase().includes(q)
   );
-  if (match) goProd(match.key);
-  else if (products.length > 0) goProd(products[0].key);
+  if (dbMatch) { goProd(dbMatch.key); return; }
+
+  // If not found anywhere show a search result from Fragella directly
+  show('product');
+  document.getElementById('ph-name').textContent = 'Searching...';
+  document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching data...</p>';
+
+  try {
+    const fragella = await fetchFragellaData(q);
+    if (fragella) {
+      const topNotes = fragella['Notes'] ? fragella['Notes']['Top'] : (fragella['top_notes'] || []);
+      const middleNotes = fragella['Notes'] ? fragella['Notes']['Middle'] : (fragella['middle_notes'] || []);
+      const baseNotes = fragella['Notes'] ? fragella['Notes']['Base'] : (fragella['base_notes'] || []);
+      const accords = fragella['Main Accords Percentage'] || fragella['accords'] || [];
+
+      const p = {
+        key: 'search_result',
+        brand: fragella['Brand'] || fragella.brand || '',
+        name: fragella['Name'] || fragella.name || q,
+        meta: `${fragella['OilType'] || fragella.concentration || 'Eau de Parfum'}`,
+        gender: fragella['Gender'] || fragella.gender || 'Unisex',
+        house: fragella['Brand'] || fragella.brand || '',
+        year: fragella['Launch Year'] || fragella.year || '',
+        concentration: fragella['OilType'] || fragella.concentration || '',
+        longevity: fragella['Longevity'] || fragella.longevity || '',
+        sillage: fragella['Sillage'] || fragella.sillage || '',
+        seasons: [],
+        occasions: [],
+        image_url: fragella['Image URL'] || fragella.image_url || null,
+        top_notes: topNotes.map(n => n.name || n),
+        heart_notes: middleNotes.map(n => n.name || n),
+        base_notes: baseNotes.map(n => n.name || n),
+        accords: accords.slice(0,5).map(a => ({
+          name: a.name || a.accord || a,
+          pct: a.percentage || a.pct || 70
+        }))
+      };
+      renderProduct(p, []);
+      document.getElementById('pd-prices').innerHTML = `
+        <p style="color:var(--mid);font-size:13px;padding:16px 0;line-height:1.6">
+          Price comparison for this fragrance is coming soon.<br>
+          <a href="https://www.amazon.co.uk/s?k=${encodeURIComponent(p.name)}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored" style="color:var(--terra);font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase">
+            View on Amazon UK →
+          </a>
+        </p>`;
+    } else {
+      document.getElementById('ph-name').textContent = 'Not found';
+      document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">No results found. Try a different search.</p>';
+    }
+  } catch(e) {
+    document.getElementById('ph-name').textContent = 'Search failed';
+  }
 }
 
 document.getElementById('homeSearch').addEventListener('keydown', e => { if(e.key==='Enter') doSearch() });
@@ -1086,5 +1188,6 @@ async function loadFeatured() {
 loadFeatured();
 initCk();
 </script>
+<script src="https://cdn.fragella.com/enrich.js" data-client-id="pub_17f8fd1ff122f39ca9c527b6344699157d02a065f0bec152"></script>
 </body>
 </html>
