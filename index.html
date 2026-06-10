@@ -11,8 +11,8 @@
 <link rel="canonical" href="https://www.scentsignal.co.uk/"/>
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23c97a30'/%3E%3Cstop offset='100%25' style='stop-color:%238b3a1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='100' fill='url(%23bg)'/%3E%3Crect x='82' y='55' width='36' height='8' rx='2' fill='rgba(255,255,255,0.9)'/%3E%3Crect x='88' y='45' width='24' height='12' rx='2' fill='rgba(255,255,255,0.9)'/%3E%3Cpath d='M72 63 Q68 75 68 95 L68 148 Q68 155 75 155 L125 155 Q132 155 132 148 L132 95 Q132 75 128 63 Z' fill='rgba(255,255,255,0.15)' stroke='rgba(255,255,255,0.6)' stroke-width='2'/%3E%3Ctext x='100' y='122' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23c97a30'/%3E%3Cstop offset='100%25' style='stop-color:%238b3a1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='100' fill='url(%23bg)'/%3E%3Ctext x='100' y='122' font-family='Georgia,serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E"/>
+<link rel="icon" type="image/jpeg" href="logo.jpg"/>
+<link rel="apple-touch-icon" href="logo.jpg"/>
 
 <!-- Open Graph - for sharing on social media -->
 <meta property="og:type" content="website"/>
@@ -411,8 +411,30 @@ nav{
 .spp{position:absolute;border-radius:50%;background:var(--terra);animation:spfy .8s ease-out forwards}
 @keyframes spfy{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
 
-/* FOOTER */
-footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-items:center;justify-content:space-between}
+/* STICKY SEARCH BAR */
+.sticky-search{
+  position:sticky;top:64px;z-index:90;
+  background:var(--white);border-bottom:1.5px solid var(--clay);
+  padding:10px 48px;display:none;
+}
+.sticky-search.visible{display:block}
+.sticky-search-row{
+  display:flex;border:1.5px solid var(--clay);background:var(--white);
+  max-width:600px;transition:border-color .2s;
+}
+.sticky-search-row:focus-within{border-color:var(--terra)}
+.sticky-search-row input{
+  flex:1;border:none;outline:none;padding:10px 16px;
+  font-family:'Lora',serif;font-size:14px;color:var(--ink);background:none;cursor:pointer;
+}
+.sticky-search-row input::placeholder{color:var(--sand);font-style:italic}
+.sticky-search-row button{
+  background:var(--terra);color:var(--white);border:none;
+  padding:10px 20px;font-family:'Syne',sans-serif;font-size:11px;
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+}
+.sticky-search-row button:hover{background:var(--rust)}
+@media(max-width:900px){.sticky-search{padding:10px 16px}}
 .fl{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
 .fl span{color:var(--terra)}
 .fn{font-size:12px;color:var(--mid);font-family:'Lora',serif;font-style:italic}
@@ -458,14 +480,7 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
 <nav>
   <div class="nav-inner">
     <a class="logo" href="#" onclick="show('home');return false;">
-    <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="border-radius:50%;flex-shrink:0">
-      <defs><radialGradient id="lg" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#c97a30"/><stop offset="100%" style="stop-color:#8b3a1e"/></radialGradient></defs>
-      <circle cx="100" cy="100" r="100" fill="url(#lg)"/>
-      <rect x="82" y="55" width="36" height="8" rx="2" fill="rgba(255,255,255,0.9)"/>
-      <rect x="88" y="45" width="24" height="12" rx="2" fill="rgba(255,255,255,0.9)"/>
-      <path d="M72 63 Q68 75 68 95 L68 148 Q68 155 75 155 L125 155 Q132 155 132 148 L132 95 Q132 75 128 63 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-      <text x="100" y="122" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="white" text-anchor="middle">SS</text>
-    </svg>
+    <img src="logo.jpg" alt="ScentSignal" style="width:38px;height:38px;object-fit:cover;border-radius:8px;flex-shrink:0"/>
     ScentSignal</a>
     <ul class="nav-links">
       <li><a href="#" onclick="show('home');return false;">Home</a></li>
@@ -599,6 +614,12 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
 
 <!-- PRODUCT PAGE -->
 <div id="page-product" class="page">
+  <div class="sticky-search" id="stickySearch">
+    <div class="sticky-search-row">
+      <input type="text" id="stickySearchInput" placeholder="Search another fragrance..." autocomplete="off"/>
+      <button onclick="doStickySearch()">Search</button>
+    </div>
+  </div>
   <div class="product-page">
     <div class="product-header">
       <div class="breadcrumb"><a href="#" onclick="show('home');return false;">Home</a> / <a href="#" onclick="show('home');return false;">Search</a> / <span id="ph-crumb">Armaf Club de Nuit</span></div>
@@ -653,11 +674,6 @@ footer{border-top:1.5px solid var(--clay);padding:40px 64px;display:flex;align-i
 
       <div class="product-right">
         <p class="price-panel-title">Compare Prices</p>
-        <div class="size-row">
-          <button class="sz on">105ml</button>
-          <button class="sz">50ml</button>
-          <button class="sz">30ml</button>
-        </div>
         <div class="price-entries" id="pd-prices"></div>
         <div class="alert-box">
           <p>Get notified when this drops below your <strong>target price.</strong></p>
@@ -845,7 +861,27 @@ document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').for
   el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h')});
 });
 
-function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0)}
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  // Show sticky search on all non-home pages
+  const sticky = document.getElementById('stickySearch');
+  if (sticky) sticky.classList.toggle('visible', id !== 'home');
+}
+
+function doStickySearch(){
+  const q = document.getElementById('stickySearchInput').value.trim();
+  if (!q) return;
+  document.getElementById('homeSearch').value = q;
+  doSearch();
+  document.getElementById('stickySearchInput').value = '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('stickySearchInput');
+  if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') doStickySearch(); });
+});
 
 function getSellerLink(sellerName, productName, asin) {
   const search = encodeURIComponent(productName);
@@ -1120,12 +1156,28 @@ async function doSearch() {
       };
       renderProduct(p, []);
       document.getElementById('pd-prices').innerHTML = `
-        <p style="color:var(--mid);font-size:13px;padding:16px 0;line-height:1.6">
-          Price comparison for this fragrance is coming soon.<br>
-          <a href="https://www.amazon.co.uk/s?k=${encodeURIComponent(p.name)}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored" style="color:var(--terra);font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase">
-            View on Amazon UK →
-          </a>
-        </p>`;
+        <a class="pe best" href="https://www.amazon.co.uk/s?k=${encodeURIComponent(p.name)}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored">
+          <span class="pe-rank">1</span>
+          <span class="pe-seller">Amazon UK</span>
+          <span class="pe-stk stk-y">View on Amazon</span>
+          <span class="pe-price">Check Price</span>
+          <span class="pe-badge">BEST</span>
+          <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">
+          <span class="pe-rank">2</span>
+          <span class="pe-seller">eBay</span>
+          <span class="pe-stk stk-y">View on eBay</span>
+          <span class="pe-price">Check Price</span>
+          <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">
+          <span class="pe-rank">3</span>
+          <span class="pe-seller">Fragrance Direct</span>
+          <span class="pe-stk stk-y">View</span>
+          <span class="pe-price">Check Price</span>
+          <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>`;
     } else {
       document.getElementById('ph-name').textContent = 'Not found';
       document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">No results found. Try a different search.</p>';
