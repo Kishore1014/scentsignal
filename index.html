@@ -488,9 +488,10 @@ nav{
       <h1 class="hero-h1">One search.<br/><em>Every price.</em><br/>Best deal wins.</h1>
       <p class="hero-p">Stop tabbing between sites. Search any fragrance and we compare every major UK retailer instantly - sorted cheapest first.</p>
       <div class="search-form">
-        <div class="search-row">
-          <input id="homeSearch" type="text" placeholder="Search any fragrance..." autocomplete="off"/>
+        <div class="search-row" style="position:relative">
+          <input id="homeSearch" type="text" placeholder="Search any fragrance..." autocomplete="off" oninput="showSuggestions(this.value)" onkeydown="if(event.key==='Enter')doSearch()"/>
           <button onclick="doSearch()">Search</button>
+          <div id="suggestionBox" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1.5px solid var(--clay);border-top:none;z-index:200;max-height:260px;overflow-y:auto"></div>
         </div>
         <div class="quick-searches">
           <button class="qs" onclick="goProd('armaf')">Armaf Club de Nuit</button>
@@ -859,14 +860,114 @@ document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').for
   el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h')});
 });
 
+// All fragrance names for suggestions
+const allFragrances = [
+  {key:'armaf',name:'Armaf Club de Nuit Intense Man',brand:'Armaf'},
+  {key:'sauvage',name:'Dior Sauvage EDP',brand:'Dior'},
+  {key:'lattafa',name:'Lattafa Oud For Glory',brand:'Lattafa'},
+  {key:'creed',name:'Creed Aventus',brand:'Creed'},
+  {key:'million',name:'Paco Rabanne 1 Million',brand:'Paco Rabanne'},
+  {key:'bleuChanel',name:'Bleu de Chanel EDP',brand:'Chanel'},
+  {key:'yslY',name:'YSL Y EDP',brand:'YSL'},
+  {key:'versaceEros',name:'Versace Eros',brand:'Versace'},
+  {key:'acquaDiGio',name:'Armani Acqua di Gio',brand:'Giorgio Armani'},
+  {key:'spicebomb',name:'Viktor & Rolf Spicebomb',brand:'Viktor & Rolf'},
+  {key:'leMale',name:'Jean Paul Gaultier Le Male',brand:'Jean Paul Gaultier'},
+  {key:'tomFordOud',name:'Tom Ford Oud Wood',brand:'Tom Ford'},
+  {key:'tomFordBlack',name:'Tom Ford Black Orchid',brand:'Tom Ford'},
+  {key:'narciso',name:'Narciso Rodriguez For Him',brand:'Narciso Rodriguez'},
+  {key:'cocoMademoiselle',name:'Chanel Coco Mademoiselle',brand:'Chanel'},
+  {key:'blackOpium',name:'YSL Black Opium',brand:'YSL'},
+  {key:'laVieBelle',name:'Lancome La Vie Est Belle',brand:'Lancome'},
+  {key:'goodGirl',name:'Carolina Herrera Good Girl',brand:'Carolina Herrera'},
+  {key:'daisy',name:'Marc Jacobs Daisy',brand:'Marc Jacobs'},
+  {key:'alienMugler',name:'Mugler Alien',brand:'Mugler'},
+  {key:'angelMugler',name:'Mugler Angel',brand:'Mugler'},
+  {key:'siArmani',name:'Giorgio Armani Si',brand:'Giorgio Armani'},
+  {key:'flowerbomb',name:'Viktor & Rolf Flowerbomb',brand:'Viktor & Rolf'},
+  {key:'chanelN5',name:'Chanel No 5',brand:'Chanel'},
+  {key:'linterdit',name:'Givenchy L\'Interdit',brand:'Givenchy'},
+  {key:'boss',name:'Hugo Boss Bottled',brand:'Hugo Boss'},
+  {key:'lightBlue',name:'Dolce & Gabbana Light Blue',brand:'Dolce & Gabbana'},
+  {key:'coachDreams',name:'Coach Dreams',brand:'Coach'},
+  {key:'burberryHer',name:'Burberry Her',brand:'Burberry'},
+  {key:'jadore',name:'Dior J\'adore',brand:'Dior'},
+  {key:'missDior',name:'Miss Dior EDP',brand:'Dior'},
+  {key:'pradaCandy',name:'Prada Candy',brand:'Prada'},
+  {key:'givenchy',name:'Givenchy Gentleman',brand:'Givenchy'},
+  {key:'invictus',name:'Paco Rabanne Invictus',brand:'Paco Rabanne'},
+  {key:'yslLHomme',name:'YSL L\'Homme',brand:'YSL'},
+  {key:'armaniCode',name:'Armani Code EDP',brand:'Giorgio Armani'},
+  {key:'montblanc',name:'Mont Blanc Legend',brand:'Mont Blanc'},
+  {key:'isseymiyake',name:'Issey Miyake L\'Eau d\'Issey',brand:'Issey Miyake'},
+  {key:'lattafaRaghba',name:'Lattafa Raghba',brand:'Lattafa'},
+  {key:'armafWoman',name:'Armaf Club de Nuit Woman',brand:'Armaf'},
+  {key:'rasasi',name:'Rasasi La Yuqawam',brand:'Rasasi'},
+  {key:'dunhill',name:'Dunhill Desire',brand:'Dunhill'},
+  {key:'versaceBright',name:'Versace Bright Crystal',brand:'Versace'},
+  {key:'juicyCouture',name:'Juicy Couture Viva La Juicy',brand:'Juicy Couture'},
+  {key:'theOneMan',name:'Dolce & Gabbana The One',brand:'Dolce & Gabbana'},
+  {key:'pinkSugar',name:'Aquolina Pink Sugar',brand:'Aquolina'},
+  {key:'carolina212',name:'Carolina Herrera 212',brand:'Carolina Herrera'},
+  {key:'lattafaAsad',name:'Lattafa Asad',brand:'Lattafa'},
+  {key:'narcisoPure',name:'Narciso Rodriguez Pure Musc',brand:'Narciso Rodriguez'},
+  {key:'afnan',name:'Afnan Supremacy Silver',brand:'Afnan'}
+];
+
+function showSuggestions(val) {
+  const box = document.getElementById('suggestionBox');
+  if (!val || val.length < 1) { box.style.display='none'; return; }
+  const q = val.toLowerCase();
+  const matches = allFragrances.filter(f =>
+    f.name.toLowerCase().includes(q) || f.brand.toLowerCase().includes(q)
+  ).sort((a,b) => a.name.localeCompare(b.name)).slice(0, 6);
+  if (!matches.length) { box.style.display='none'; return; }
+  box.innerHTML = matches.map(f => `
+    <div onclick="pickSuggestion('${f.key}','${f.name.replace(/'/g,"\\'")}')
+" style="padding:10px 16px;cursor:pointer;font-family:'Lora',serif;font-size:13px;border-bottom:1px solid var(--off);display:flex;align-items:center;gap:10px" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
+      <span style="font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);min-width:60px">${f.brand}</span>
+      <span style="color:var(--ink)">${f.name}</span>
+    </div>`).join('');
+  box.style.display = 'block';
+}
+
+function pickSuggestion(key, name) {
+  document.getElementById('homeSearch').value = name;
+  document.getElementById('suggestionBox').style.display = 'none';
+  goProd(key);
+}
+
+document.addEventListener('click', function(e) {
+  const box = document.getElementById('suggestionBox');
+  if (box && !box.contains(e.target) && e.target.id !== 'homeSearch') {
+    box.style.display = 'none';
+  }
+});
+
 function show(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   window.scrollTo(0,0);
-  // Show sticky search on all non-home pages
   const sticky = document.getElementById('stickySearch');
   if (sticky) sticky.classList.toggle('visible', id !== 'home');
+  // Push to browser history so back button works
+  if (history.state !== id) {
+    history.pushState(id, '', '#' + id);
+  }
 }
+
+// Handle browser back/forward
+window.addEventListener('popstate', function(e) {
+  const id = e.state || 'home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0,0);
+  const sticky = document.getElementById('stickySearch');
+  if (sticky) sticky.classList.toggle('visible', id !== 'home');
+});
+
+// Set initial history state
+history.replaceState('home', '', '#home');
 
 function doStickySearch(){
   const q = document.getElementById('stickySearchInput').value.trim();
