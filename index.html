@@ -188,6 +188,8 @@ nav{
   clip-path:polygon(0 0,100% 0,60% 100%,0 100%);
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.slide-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out}
+.slide-img.active{opacity:1}
 .scent-label{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
 .scent-sub{font-family:'Lora',serif;font-size:12px;color:var(--mid);font-style:italic}
 
@@ -485,7 +487,7 @@ nav{
     <ul class="nav-links">
       <li><a href="#" onclick="show('home');return false;">Home</a></li>
       <li><a href="#" onclick="show('about');return false;">About</a></li>
-      <li><a href="#">Top Deals</a></li>
+      <li><a href="#" onclick="showTopDeals();return false;">Top Deals</a></li>
       <li><a href="#" onclick="show('contact');return false;">Contact</a></li>
     </ul>
     <a class="nav-btn" href="#" onclick="openModal();return false;">Price Alert</a>
@@ -517,9 +519,16 @@ nav{
       <div class="ring-deco"></div>
       <div class="ring-deco-2"></div>
       <div class="scent-visual">
-        <div class="scent-bottle"></div>
-        <p class="scent-label">Armaf Club de Nuit</p>
-        <p class="scent-sub">Best price: £22.99 on Amazon UK</p>
+        <div id="heroSlider" style="width:220px;height:280px;position:relative;z-index:2;border-radius:4px;overflow:hidden;box-shadow:0 20px 60px rgba(139,58,30,.25);animation:float 4s ease-in-out infinite">
+          <img src="img1.jpg" class="slide-img active" alt="Fragrance"/>
+          <img src="img2.jpg" class="slide-img" alt="Fragrance"/>
+          <img src="img3.jpg" class="slide-img" alt="Fragrance"/>
+          <img src="img4.jpg" class="slide-img" alt="Fragrance"/>
+          <img src="img5.jpg" class="slide-img" alt="Fragrance"/>
+          <img src="img6.jpg" class="slide-img" alt="Fragrance"/>
+        </div>
+        <p class="scent-label" style="margin-top:20px">Compare any fragrance</p>
+        <p class="scent-sub">Best UK price, instantly</p>
       </div>
     </div>
   </section>
@@ -564,17 +573,17 @@ nav{
     <p class="section-tag">How it works</p>
     <h2 class="section-h">Three steps to the <em>best deal</em></h2>
     <div class="steps">
-      <div class="step" data-n="01">
+      <div class="step" data-n="01" onclick="document.getElementById('homeSearch').focus()" style="cursor:pointer">
         <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
         <h3 class="step-t">Search any fragrance</h3>
         <p class="step-d">Type any name, brand or house. From Armaf to Creed, designer to niche - we have it covered.</p>
       </div>
-      <div class="step" data-n="02">
+      <div class="step" data-n="02" onclick="goProd('sauvage')" style="cursor:pointer">
         <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
         <h3 class="step-t">See all prices ranked</h3>
         <p class="step-d">Every UK retailer listed side by side. One price per retailer, cheapest at the top. No confusion.</p>
       </div>
-      <div class="step" data-n="03">
+      <div class="step" data-n="03" onclick="goProd('armaf')" style="cursor:pointer">
         <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         <h3 class="step-t">Click and buy direct</h3>
         <p class="step-d">Go straight to the retailer. You buy directly from them at the price shown. No markup from us.</p>
@@ -1243,7 +1252,22 @@ function submitContact(){
   document.getElementById('contactForm').innerHTML=`<div style="text-align:center;padding:32px 0"><div style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--terra);margin-bottom:14px">✓</div><h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em">Message Sent</h2><p style="font-size:14px;color:var(--mid);line-height:1.6;font-family:'Lora',serif;font-style:italic">Thanks ${name||'for reaching out'}. We will get back to you within 48 hours.</p></div>`;
 }
 
-function initCk(){if(localStorage.getItem('sc_ck'))return;setTimeout(()=>document.getElementById('ckBanner').classList.add('show'),2000)}
+function showTopDeals(){
+  show('home');
+  setTimeout(() => {
+    const el = document.querySelector('.featured');
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+function initCk(){
+  // Remove old cookie key to ensure banner shows
+  if (localStorage.getItem('sc_ck')) return;
+  setTimeout(()=>{
+    const banner = document.getElementById('ckBanner');
+    if (banner) banner.classList.add('show');
+  }, 2000);
+}
 function ckAccept(){localStorage.setItem('sc_ck','yes');sprayIt();ckDismiss()}
 function ckClose(){localStorage.setItem('sc_ck','no');ckDismiss()}
 function ckDismiss(){const b=document.getElementById('ckBanner');b.classList.add('bye');setTimeout(()=>b.remove(),600)}
@@ -1295,6 +1319,18 @@ async function loadFeatured() {
 
 // Load featured on page start
 loadFeatured();
+// Hero slideshow - changes every 7 seconds
+function initSlider(){
+  const slides = document.querySelectorAll('.slide-img');
+  if (!slides.length) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 7000);
+}
+initSlider();
 initCk();
 </script>
 <script src="https://cdn.fragella.com/enrich.js" data-client-id="pub_17f8fd1ff122f39ca9c527b6344699157d02a065f0bec152"></script>
