@@ -815,29 +815,23 @@ const fragellaCache = {};
 async function fetchFragellaData(name) {
   const cacheKey = name.toLowerCase().trim();
   if (fragellaCache[cacheKey]) return fragellaCache[cacheKey];
-
-  const queries = [name, name.toUpperCase(), name.toLowerCase()];
-
-  for (const query of queries) {
-    try {
-      const res = await fetch(
-        `https://api.fragella.com/api/v1/fragrances?search=${encodeURIComponent(query)}&limit=1`,
-        { headers: { 'x-api-key': FRAGELLA_KEY, 'Content-Type': 'application/json' } }
-      );
-      if (!res.ok) { console.warn('Fragella status:', res.status, 'for query:', query); continue; }
-      const data = await res.json();
-      console.log('Fragella response for', query, ':', data);
-      const fragrance = Array.isArray(data) ? data[0] : (data.data ? data.data[0] : data);
-      if (fragrance && fragrance['Name']) {
-        fragellaCache[cacheKey] = fragrance;
-        return fragrance;
-      }
-    } catch(e) {
-      console.error('Fragella error for', query, ':', e.message);
+  try {
+    const res = await fetch(
+      `https://api.fragella.com/api/v1/fragrances?search=${encodeURIComponent(name)}&limit=1`,
+      { headers: { 'x-api-key': FRAGELLA_KEY } }
+    );
+    if (!res.ok) { console.warn('Fragella status:', res.status); return null; }
+    const data = await res.json();
+    const fragrance = Array.isArray(data) ? data[0] : (data.data ? data.data[0] : data);
+    if (fragrance && fragrance['Name']) {
+      fragellaCache[cacheKey] = fragrance;
+      return fragrance;
     }
+    return null;
+  } catch(e) {
+    console.error('Fragella error:', e.message);
+    return null;
   }
-  console.warn('Fragella found nothing for:', name);
-  return null;
 }
 
 // Cache products in memory after first load
