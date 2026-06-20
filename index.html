@@ -231,7 +231,7 @@ nav{
 .retailers{padding:60px 64px;background:var(--ink);display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center}
 .ret-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);white-space:nowrap}
 .ret-divider{width:1px;height:28px;background:rgba(201,185,154,.2)}
-.ret-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:rgba(250,249,246,.2);letter-spacing:.02em;transition:color .3s;cursor:pointer}
+.ret-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:rgba(250,249,246,.2);letter-spacing:.02em;transition:color .3s;cursor:pointer;text-decoration:none}
 .ret-name:hover{color:rgba(250,249,246,.8)}
 
 /* FEATURED */
@@ -581,14 +581,14 @@ nav{
   <div class="retailers">
     <span class="ret-label">We compare</span>
     <div class="ret-divider"></div>
-    <span class="ret-name">Amazon</span>
-    <span class="ret-name">eBay</span>
-    <span class="ret-name">Superdrug</span>
-    <span class="ret-name">Boots</span>
-    <span class="ret-name">Fragrance Direct</span>
-    <span class="ret-name">The Perfume Shop</span>
-    <span class="ret-name">Lookfantastic</span>
-    <span class="ret-name">John Lewis</span>
+    <a class="ret-name" href="https://www.amazon.co.uk/s?k=fragrance+perfume&tag=scentsignal10-21" target="_blank" rel="noopener sponsored">Amazon</a>
+    <a class="ret-name" href="https://www.ebay.co.uk/sch/i.html?_nkw=perfume+fragrance&_sacat=0" target="_blank" rel="noopener sponsored">eBay</a>
+    <a class="ret-name" href="https://www.superdrug.com/fragrance" target="_blank" rel="noopener">Superdrug</a>
+    <a class="ret-name" href="https://www.boots.com/beauty/fragrance" target="_blank" rel="noopener">Boots</a>
+    <a class="ret-name" href="https://www.fragrancedirect.co.uk/fragrance" target="_blank" rel="noopener">Fragrance Direct</a>
+    <a class="ret-name" href="https://www.theperfumeshop.com/fragrance" target="_blank" rel="noopener">The Perfume Shop</a>
+    <a class="ret-name" href="https://www.lookfantastic.com/fragrance.list" target="_blank" rel="noopener">Lookfantastic</a>
+    <a class="ret-name" href="https://www.johnlewis.com/beauty/fragrance/c6000024380" target="_blank" rel="noopener">John Lewis</a>
   </div>
 
   <div class="featured">
@@ -1484,7 +1484,6 @@ async function doSearch() {
   const q = raw.toLowerCase();
   if (!q) return;
 
-  // Show loading immediately
   show('product');
   document.getElementById('ph-name').textContent = 'Searching...';
   document.getElementById('ph-brand').textContent = '';
@@ -1495,12 +1494,82 @@ async function doSearch() {
   document.getElementById('pd-notes').innerHTML = '';
   document.getElementById('pd-accords').innerHTML = '';
 
-  // Check local products for price data
-  const localMatch = Object.values(localProds).find(p => {
-    const name = p.name.toLowerCase();
-    const brand = p.brand.toLowerCase();
-    return name === q || brand === q || (q.length > 3 && (name.includes(q) || brand.includes(q)));
-  });
+  const pctMap = {'Dominant':90,'Strong':75,'Moderate':60,'Subtle':40,'Trace':25};
+  const seasonMap = {'spring':'Spring','summer':'Summer','fall':'Autumn','winter':'Winter'};
+  const occMap = {'professional':'Office','casual':'Casual','night out':'Night Out','romantic':'Date Night','sport':'Sports'};
+
+  const fragella = await fetchFragellaData(raw);
+
+  if (fragella && fragella['Name']) {
+    const notes = fragella['Notes'] || {};
+    const accordsObj = fragella['Main Accords Percentage'] || {};
+    const fragName = fragella['Name'] || raw;
+    const fragBrand = fragella['Brand'] || '';
+
+    const p = {
+      key: 'search_result',
+      brand: fragBrand,
+      name: fragName,
+      meta: (fragella['OilType'] || 'Eau de Parfum') + (fragella['Year'] ? ' - Launched ' + fragella['Year'] : ''),
+      gender: fragella['Gender'] || 'Unisex',
+      house: fragBrand,
+      year: fragella['Year'] || '',
+      concentration: fragella['OilType'] || '',
+      longevity: fragella['Longevity'] || '',
+      sillage: fragella['Sillage'] || '',
+      seasons: (fragella['Season Ranking'] || []).slice(0,2).map(s => seasonMap[s.name] || s.name),
+      occasions: (fragella['Occasion Ranking'] || []).slice(0,3).map(o => occMap[o.name] || o.name),
+      image_url: fragella['Image URL'] || null,
+      top_notes: (notes['Top'] || []).map(n => n.name),
+      heart_notes: (notes['Middle'] || []).map(n => n.name),
+      base_notes: (notes['Base'] || []).map(n => n.name),
+      accords: Object.entries(accordsObj).slice(0,5).map(([name, strength]) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        pct: pctMap[strength] || 50
+      }))
+    };
+
+    let sellers = [];
+    try {
+      const products = await fetchProducts();
+      const dbMatch = products.find(pr => pr.name.toLowerCase().includes(fragName.toLowerCase().split(' ').slice(0,2).join(' ')));
+      if (dbMatch) sellers = await fetchSellers(dbMatch.key);
+      if (sellers.length === 0) {
+        const lk = Object.keys(localProds).find(k => localProds[k].name.toLowerCase().includes(fragName.toLowerCase().split(' ').slice(0,2).join(' ')));
+        if (lk) sellers = localSellers[lk] || [];
+      }
+    } catch(e) {}
+
+    renderProduct(p, sellers);
+
+    if (sellers.length === 0) {
+      const enc = encodeURIComponent(fragName);
+      document.getElementById('pd-prices').innerHTML = `
+        <a class="pe best" href="https://www.amazon.co.uk/s?k=${enc}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored"><span class="pe-rank">1</span><span class="pe-seller">Amazon UK</span><span class="pe-stk stk-y">View on Amazon</span><span class="pe-price">Check Price</span><span class="pe-badge">BEST</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc}&_sacat=0" target="_blank" rel="noopener sponsored"><span class="pe-rank">2</span><span class="pe-seller">eBay</span><span class="pe-stk stk-y">View on eBay</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.aliexpress.com/wholesale?SearchText=${enc}&aff_id=${ALIEXPRESS_TAG}&aff_platform=portals-tool" target="_blank" rel="noopener sponsored"><span class="pe-rank">3</span><span class="pe-seller">AliExpress</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">4</span><span class="pe-seller">Fragrance Direct</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.theperfumeshop.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">5</span><span class="pe-seller">The Perfume Shop</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.boots.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">6</span><span class="pe-seller">Boots</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.superdrug.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">7</span><span class="pe-seller">Superdrug</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+    }
+
+  } else {
+    const enc = encodeURIComponent(raw);
+    document.getElementById('ph-name').textContent = raw;
+    document.getElementById('ph-brand').textContent = 'Search Results';
+    document.getElementById('ph-meta').textContent = 'Showing available retailers';
+    document.getElementById('pd-prices').innerHTML = `
+      <p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic;margin-bottom:16px">Searching across UK retailers for "${raw}":</p>
+      <a class="pe best" href="https://www.amazon.co.uk/s?k=${enc}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored"><span class="pe-rank">1</span><span class="pe-seller">Amazon UK</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><span class="pe-badge">BEST</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc}&_sacat=0" target="_blank" rel="noopener sponsored"><span class="pe-rank">2</span><span class="pe-seller">eBay</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">3</span><span class="pe-seller">Fragrance Direct</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.theperfumeshop.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">4</span><span class="pe-seller">The Perfume Shop</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.boots.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">5</span><span class="pe-seller">Boots</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.superdrug.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">6</span><span class="pe-seller">Superdrug</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+  }
+}
+
 
   // Check database for price data
   let dbMatch = null;
