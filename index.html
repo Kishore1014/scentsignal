@@ -611,9 +611,12 @@ nav{
 <!-- PRODUCT PAGE -->
 <div id="page-product" class="page">
   <div class="sticky-search" id="stickySearch">
-    <div class="sticky-search-row">
-      <input type="text" id="stickySearchInput" placeholder="Search another fragrance..." autocomplete="off"/>
+    <div class="sticky-search-row" style="position:relative">
+      <input type="text" id="stickySearchInput" placeholder="Search another fragrance..." autocomplete="off"
+        oninput="showStickySuggestions(this.value)"
+        onkeydown="if(event.key==='Enter')doStickySearch()"/>
       <button onclick="doStickySearch()">Search</button>
+      <div id="stickySuggestionBox" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1.5px solid var(--clay);border-top:none;z-index:200;max-height:260px;overflow-y:auto"></div>
     </div>
   </div>
   <div class="product-page">
@@ -1127,18 +1130,45 @@ window.addEventListener('popstate', function(e) {
 // Set initial history state
 history.replaceState('home', '', '#home');
 
+function showStickySuggestions(val) {
+  const box = document.getElementById('stickySuggestionBox');
+  if (!val || val.length < 1) { box.style.display='none'; return; }
+  const q = val.toLowerCase();
+  const matches = allFragrances.filter(f =>
+    f.name.toLowerCase().includes(q) || f.brand.toLowerCase().includes(q)
+  ).sort((a,b) => a.name.localeCompare(b.name)).slice(0, 6);
+  if (!matches.length) { box.style.display='none'; return; }
+  box.innerHTML = matches.map(f => `
+    <div onclick="pickStickySuggestion('${f.key}','${f.name.replace(/'/g,"\\'")}')"
+      style="padding:10px 16px;cursor:pointer;font-family:'Lora',serif;font-size:13px;border-bottom:1px solid var(--off);display:flex;align-items:center;gap:10px"
+      onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
+      <span style="font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);min-width:60px">${f.brand}</span>
+      <span style="color:var(--ink)">${f.name}</span>
+    </div>`).join('');
+  box.style.display = 'block';
+}
+
+function pickStickySuggestion(key, name) {
+  document.getElementById('stickySuggestionBox').style.display = 'none';
+  document.getElementById('stickySearchInput').value = '';
+  goProd(key);
+}
+
 function doStickySearch(){
   const q = document.getElementById('stickySearchInput').value.trim();
   if (!q) return;
-  // Clear fragella cache so fresh results come back
-  delete fragellaCache[q];
-  delete fragellaCache[q.toLowerCase()];
-  // Set both search inputs
-  document.getElementById('homeSearch').value = q;
+  document.getElementById('stickySuggestionBox').style.display = 'none';
   document.getElementById('stickySearchInput').value = '';
-  // Force fresh search
+  document.getElementById('homeSearch').value = q;
   doSearch();
 }
+
+document.addEventListener('click', function(e) {
+  const box = document.getElementById('stickySuggestionBox');
+  if (box && !box.contains(e.target) && e.target.id !== 'stickySearchInput') {
+    box.style.display = 'none';
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const inp = document.getElementById('stickySearchInput');
