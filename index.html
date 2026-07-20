@@ -61,7 +61,7 @@ body{background:var(--white);color:var(--text);font-family:'Lora',serif;overflow
 a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name,.pill,.nav-btn,.logo,.nav-links a,.flinks a,.back-btn,.see-all,.fc-link{cursor:pointer!important}
 
 /* PAGES */
-.page{display:none}.page.active{display:block}
+.page{display:none;width:100%;overflow-x:hidden}.page.active{display:block}
 
 /* ===== NAV ===== */
 nav{
@@ -264,24 +264,27 @@ nav{
 .product-page{padding-top:64px;min-height:100vh}
 .product-header{
   background:var(--off);border-bottom:1.5px solid var(--clay);
-  padding:48px 64px 40px;
+  padding:16px 20px;
+  width:100%;
+  box-sizing:border-box;
 }
-.breadcrumb{font-family:'Syne',sans-serif;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.breadcrumb{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;color:var(--mid);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .breadcrumb a{color:var(--terra);text-decoration:none;cursor:pointer}
 .breadcrumb a:hover{text-decoration:underline}
-.ph-grid{display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:end}
-.ph-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
-.ph-name{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:800;color:var(--ink);line-height:1.02;letter-spacing:-.025em;margin-bottom:6px}
-.ph-meta{font-family:'Lora',serif;font-size:14px;color:var(--mid);font-style:italic}
-.ph-best{text-align:right}
-.ph-best-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
-.ph-price{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--terra);letter-spacing:-.03em;line-height:1}
-.ph-from{font-size:13px;color:var(--mid);font-family:'Lora',serif;font-style:italic}
+.ph-grid{display:flex;flex-direction:row;gap:12px;align-items:flex-start}
+.ph-grid-text{flex:1;min-width:0}
+.ph-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:4px}
+.ph-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--ink);line-height:1.25;letter-spacing:-.01em;margin-bottom:3px;word-break:break-word}
+.ph-meta{font-family:'Lora',serif;font-size:12px;color:var(--mid);font-style:italic;margin-bottom:10px}
+.ph-best{margin-top:8px;padding-top:8px;border-top:1px solid var(--clay)}
+.ph-best-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:2px}
+.ph-price{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--terra);letter-spacing:-.02em;line-height:1}
+.ph-from{font-size:11px;color:var(--mid);font-family:'Lora',serif;font-style:italic}
 
 /* PRODUCT BODY */
-.product-body{display:grid;grid-template-columns:1fr 380px;gap:0;border-bottom:1.5px solid var(--clay)}
-.product-left{padding:56px 64px;border-right:1.5px solid var(--clay)}
-.product-right{padding:40px 36px}
+.product-body{display:grid;grid-template-columns:1fr 380px;gap:0;border-bottom:1.5px solid var(--clay);width:100%;overflow-x:hidden}
+.product-left{padding:28px 20px;border-right:1.5px solid var(--clay);min-width:0}
+.product-right{padding:20px;min-width:0}
 
 /* Notes - horizontal pill strip */
 .notes-row{margin-bottom:40px}
@@ -407,12 +410,12 @@ nav{
 .sticky-search{
   position:sticky;top:64px;z-index:90;
   background:var(--white);border-bottom:1.5px solid var(--clay);
-  padding:10px 48px;display:none;
+  padding:8px 16px;display:none;
 }
 .sticky-search.visible{display:block}
 .sticky-search-row{
   display:flex;border:1.5px solid var(--clay);background:var(--white);
-  max-width:600px;transition:border-color .2s;
+  max-width:100%;transition:border-color .2s;
 }
 .sticky-search-row:focus-within{border-color:var(--terra)}
 .sticky-search-row input{
@@ -445,7 +448,7 @@ nav{
   .retailers{padding:40px 24px;gap:24px}
   .product-header{padding:36px 24px}.ph-grid{grid-template-columns:1fr;gap:20px}
   .ph-best{text-align:left}
-  .product-body{grid-template-columns:1fr}.product-left{padding:36px 24px;border-right:none}
+  .product-body{grid-template-columns:1fr}.product-left{padding:20px;border-right:none}.product-right{padding:20px;border-top:1.5px solid var(--clay)}.similar-section{padding:40px 24px}
   .product-right{padding:24px}.similar-section{padding:40px 24px}
   .sim-grid{grid-template-columns:repeat(2,1fr)}
   .about-hero{grid-template-columns:1fr;padding:48px 24px}
@@ -505,7 +508,7 @@ nav{
 </nav>
 
 <!-- HOME -->
-<div id="page-home" class="page active">
+<div id="page-home" class="page active" style="width:100%;overflow-x:hidden">
   <section class="hero">
     <div class="hero-left">
       <p class="hero-tag">UK Fragrance Price Comparison</p>
@@ -647,7 +650,7 @@ nav{
 </div>
 
 <!-- PRODUCT PAGE -->
-<div id="page-product" class="page">
+<div id="page-product" class="page" style="width:100%;overflow-x:hidden">
   <div class="sticky-search" id="stickySearch">
     <div class="sticky-search-row" style="position:relative">
       <input type="text" id="stickySearchInput" placeholder="Search another fragrance..." autocomplete="off"
@@ -661,22 +664,19 @@ nav{
     <div class="product-header">
       <div class="breadcrumb"><a href="#" onclick="show('home');return false;">Home</a> / <a href="#" onclick="show('home');return false;">Search</a> / <span id="ph-crumb">Armaf Club de Nuit</span></div>
       <div class="ph-grid">
-        <div style="display:flex;align-items:center;gap:28px">
-          <div id="ph-img-wrap" style="width:100px;height:100px;flex-shrink:0;background:var(--off);border:1.5px solid var(--clay);display:flex;align-items:center;justify-content:center;overflow:hidden">
-            <img id="ph-img" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:none"/>
-            <svg id="ph-img-placeholder" width="40" height="40" fill="none" stroke="var(--sand)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3H8L6 7h12l-2-4z"/><circle cx="12" cy="13" r="2"/></svg>
-          </div>
-          <div>
-            <p class="ph-brand" id="ph-brand">Armaf</p>
-            <h1 class="ph-name" id="ph-name">Club de Nuit Intense Man</h1>
-            <p class="ph-meta" id="ph-meta">Eau de Parfum - 105ml - Launched 2015</p>
-          </div>
+        <div id="ph-img-wrap" style="width:64px;height:64px;flex-shrink:0;background:var(--white);border:1.5px solid var(--clay);display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img id="ph-img" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:none"/>
+          <svg id="ph-img-placeholder" width="24" height="24" fill="none" stroke="var(--sand)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3H8L6 7h12l-2-4z"/><circle cx="12" cy="13" r="2"/></svg>
         </div>
-        <div></div>
-        <div class="ph-best">
-          <p class="ph-best-label">Best UK Price</p>
-          <p class="ph-price" id="ph-price">£22.99</p>
-          <p class="ph-from" id="ph-from">on Amazon UK</p>
+        <div class="ph-grid-text">
+          <p class="ph-brand" id="ph-brand">Armaf</p>
+          <h1 class="ph-name" id="ph-name">Club de Nuit Intense Man</h1>
+          <p class="ph-meta" id="ph-meta">Eau de Parfum - 105ml - Launched 2015</p>
+          <div class="ph-best" style="margin-top:12px">
+            <p class="ph-best-label">Best UK Price</p>
+            <p class="ph-price" id="ph-price">£22.99</p>
+            <p class="ph-from" id="ph-from">on Amazon UK</p>
+          </div>
         </div>
       </div>
     </div>
@@ -937,58 +937,20 @@ document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').for
 
 // All fragrance names for suggestions
 const allFragrances = [
-  {key:'armaf',name:'Armaf Club de Nuit Intense Man',brand:'Armaf'},
-  {key:'sauvage',name:'Dior Sauvage EDP',brand:'Dior'},
-  {key:'lattafa',name:'Lattafa Oud For Glory',brand:'Lattafa'},
-  {key:'creed',name:'Creed Aventus',brand:'Creed'},
-  {key:'million',name:'Paco Rabanne 1 Million',brand:'Paco Rabanne'},
-  {key:'bleuChanel',name:'Bleu de Chanel EDP',brand:'Chanel'},
-  {key:'yslY',name:'YSL Y EDP',brand:'YSL'},
-  {key:'versaceEros',name:'Versace Eros',brand:'Versace'},
-  {key:'acquaDiGio',name:'Armani Acqua di Gio',brand:'Giorgio Armani'},
-  {key:'spicebomb',name:'Viktor & Rolf Spicebomb',brand:'Viktor & Rolf'},
-  {key:'leMale',name:'Jean Paul Gaultier Le Male',brand:'Jean Paul Gaultier'},
-  {key:'tomFordOud',name:'Tom Ford Oud Wood',brand:'Tom Ford'},
-  {key:'tomFordBlack',name:'Tom Ford Black Orchid',brand:'Tom Ford'},
-  {key:'narciso',name:'Narciso Rodriguez For Him',brand:'Narciso Rodriguez'},
-  {key:'cocoMademoiselle',name:'Chanel Coco Mademoiselle',brand:'Chanel'},
-  {key:'blackOpium',name:'YSL Black Opium',brand:'YSL'},
-  {key:'laVieBelle',name:'Lancome La Vie Est Belle',brand:'Lancome'},
-  {key:'goodGirl',name:'Carolina Herrera Good Girl',brand:'Carolina Herrera'},
-  {key:'daisy',name:'Marc Jacobs Daisy',brand:'Marc Jacobs'},
-  {key:'alienMugler',name:'Mugler Alien',brand:'Mugler'},
-  {key:'angelMugler',name:'Mugler Angel',brand:'Mugler'},
-  {key:'siArmani',name:'Giorgio Armani Si',brand:'Giorgio Armani'},
-  {key:'flowerbomb',name:'Viktor & Rolf Flowerbomb',brand:'Viktor & Rolf'},
-  {key:'chanelN5',name:'Chanel No 5',brand:'Chanel'},
-  {key:'linterdit',name:'Givenchy L\'Interdit',brand:'Givenchy'},
-  {key:'boss',name:'Hugo Boss Bottled',brand:'Hugo Boss'},
-  {key:'lightBlue',name:'Dolce & Gabbana Light Blue',brand:'Dolce & Gabbana'},
-  {key:'coachDreams',name:'Coach Dreams',brand:'Coach'},
-  {key:'burberryHer',name:'Burberry Her',brand:'Burberry'},
-  {key:'jadore',name:'Dior J\'adore',brand:'Dior'},
-  {key:'missDior',name:'Miss Dior EDP',brand:'Dior'},
-  {key:'pradaCandy',name:'Prada Candy',brand:'Prada'},
-  {key:'givenchy',name:'Givenchy Gentleman',brand:'Givenchy'},
-  {key:'invictus',name:'Paco Rabanne Invictus',brand:'Paco Rabanne'},
-  {key:'yslLHomme',name:'YSL L\'Homme',brand:'YSL'},
-  {key:'armaniCode',name:'Armani Code EDP',brand:'Giorgio Armani'},
-  {key:'montblanc',name:'Mont Blanc Legend',brand:'Mont Blanc'},
-  {key:'isseymiyake',name:'Issey Miyake L\'Eau d\'Issey',brand:'Issey Miyake'},
-  {key:'lattafaRaghba',name:'Lattafa Raghba',brand:'Lattafa'},
-  {key:'armafWoman',name:'Armaf Club de Nuit Woman',brand:'Armaf'},
-  {key:'rasasi',name:'Rasasi La Yuqawam',brand:'Rasasi'},
-  {key:'dunhill',name:'Dunhill Desire',brand:'Dunhill'},
-  {key:'versaceBright',name:'Versace Bright Crystal',brand:'Versace'},
-  {key:'juicyCouture',name:'Juicy Couture Viva La Juicy',brand:'Juicy Couture'},
-  {key:'theOneMan',name:'Dolce & Gabbana The One',brand:'Dolce & Gabbana'},
-  {key:'pinkSugar',name:'Aquolina Pink Sugar',brand:'Aquolina'},
-  {key:'carolina212',name:'Carolina Herrera 212',brand:'Carolina Herrera'},
-  {key:'lattafaAsad',name:'Lattafa Asad',brand:'Lattafa'},
-  {key:'narcisoPure',name:'Narciso Rodriguez Pure Musc',brand:'Narciso Rodriguez'},
-  {key:'afnan',name:'Afnan Supremacy Silver',brand:'Afnan'},
-  {key:'acquaDiGioProf',name:'Acqua di Gio Profumo EDP',brand:'Giorgio Armani'},
-  {key:'fahrenheit',name:'Dior Fahrenheit EDT',brand:'Dior'},
+  {key:'armaf',name:'Club de Nuit Intense Man EDP',brand:'Armaf'},
+  {key:'sauvage',name:'Sauvage EDP 100ml',brand:'Dior'},
+  {key:'lattafa',name:'Oud For Glory EDP 100ml',brand:'Lattafa'},
+  {key:'creed',name:'Aventus EDP 100ml',brand:'Creed'},
+  {key:'million',name:'1 Million EDT 100ml',brand:'Paco Rabanne'},
+  {key:'bleuChanel',name:'Bleu de Chanel EDP 100ml',brand:'Chanel'},
+  {key:'yslY',name:'Y EDP 100ml',brand:'YSL'},
+  {key:'versaceEros',name:'Eros EDT 100ml',brand:'Versace'},
+  {key:'blackOpium',name:'Black Opium EDP 90ml',brand:'YSL'},
+  {key:'goodGirl',name:'Good Girl EDP 80ml',brand:'Carolina Herrera'},
+  {key:'invictus',name:'Invictus EDT 100ml',brand:'Paco Rabanne'},
+  {key:'armaniCode',name:'Code EDP 110ml',brand:'Giorgio Armani'},
+  {key:'acquaDiGioProf',name:'Acqua di Gio Profumo',brand:'Giorgio Armani'},
+  {key:'fahrenheit',name:'Fahrenheit EDT',brand:'Dior'},
   {key:'terraHermes',name:'Terre d Hermes EDT',brand:'Hermes'},
   {key:'chanelAllure',name:'Allure Homme Sport EDT',brand:'Chanel'},
   {key:'valentino',name:'Valentino Uomo EDT',brand:'Valentino'},
@@ -1015,6 +977,9 @@ const allFragrances = [
   {key:'pacoLadyMillion',name:'Lady Million EDP',brand:'Paco Rabanne'},
   {key:'versaceErosFlame',name:'Versace Eros Flame EDP',brand:'Versace'},
   {key:'diorSauvageEDT',name:'Dior Sauvage EDT',brand:'Dior'},
+  {key:'chanelCocoMad',name:'Coco Mademoiselle EDP',brand:'Chanel'},
+  {key:'tomFordTobacco',name:'Tom Ford Tobacco Vanille EDP',brand:'Tom Ford'},
+  {key:'tomFordNeroli',name:'Tom Ford Neroli Portofino EDT',brand:'Tom Ford'},
   {key:'mfkBaccarat',name:'Baccarat Rouge 540 EDP',brand:'Maison Francis Kurkdjian'},
   {key:'joMalonePeony',name:'Peony & Blush Suede Cologne',brand:'Jo Malone'},
   {key:'joMalonePear',name:'English Pear & Freesia Cologne',brand:'Jo Malone'},
@@ -1042,1068 +1007,24 @@ const allFragrances = [
   {key:'alHaramain',name:'Amber Oud Gold EDP',brand:'Al Haramain'},
   {key:'rasasiHawas',name:'Rasasi Hawas EDT',brand:'Rasasi'},
   {key:'jmyrrhTonka',name:'Myrrh & Tonka Cologne Intense',brand:'Jo Malone'},
-  {key:'acquadiParma',name:'Acqua di Parma Colonia EDT',brand:'Acqua di Parma'},
-  {key:'creedSilver',name:'Silver Mountain Water EDP',brand:'Creed'},
-  {key:'muglerAlienGoddess',name:'Alien Goddess EDP',brand:'Mugler'},
-  {key:'jimmyChoo',name:'Jimmy Choo EDP',brand:'Jimmy Choo'},
-  {key:'elizabethArden',name:'Green Tea EDT',bran<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ScentSignal - Compare Fragrance Prices Across UK Retailers</title>
-<meta name="description" content="Compare fragrance and perfume prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more. Find the cheapest price for any fragrance in the UK instantly."/>
-<meta name="keywords" content="fragrance price comparison UK, cheapest perfume UK, perfume price tracker, cologne deals UK, best fragrance prices, compare perfume prices, cheap aftershave UK, fragrance deals"/>
-<meta name="robots" content="index, follow"/>
-<meta name="author" content="ScentSignal"/>
-<link rel="canonical" href="https://www.scentsignal.co.uk/"/>
-
-<!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="logo.jpg"/>
-<link rel="apple-touch-icon" href="logo.jpg"/>
-
-<!-- Open Graph - for sharing on social media -->
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.scentsignal.co.uk/"/>
-<meta property="og:title" content="ScentSignal - Compare Fragrance Prices Across UK Retailers"/>
-<meta property="og:description" content="Search any fragrance and instantly compare prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more. Always find the best UK price."/>
-<meta property="og:site_name" content="ScentSignal"/>
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="ScentSignal - Compare Fragrance Prices UK"/>
-<meta name="twitter:description" content="Search any fragrance and instantly compare prices across all major UK retailers. Find the cheapest price every time."/>
-
-<!-- Schema markup - helps Google understand what the site does -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ScentSignal",
-  "url": "https://www.scentsignal.co.uk",
-  "description": "UK fragrance price comparison site. Compare perfume and cologne prices across Amazon, eBay, Boots, Superdrug, Fragrance Direct and more.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.scentsignal.co.uk/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --white:#faf9f6;
-  --off:#f0ede6;
-  --clay:#e8ddd0;
-  --sand:#c9b99a;
-  --terra:#b5712a;
-  --rust:#8b3a1e;
-  --ink:#1a1209;
-  --mid:#6b5a47;
-  --text:#2d1f10;
-}
-html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--text);font-family:'Lora',serif;overflow-x:hidden;min-height:100vh}
-.cur,.cur-ring{display:none!important}
-a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name,.pill,.nav-btn,.logo,.nav-links a,.flinks a,.back-btn,.see-all,.fc-link{cursor:pointer!important}
-
-/* PAGES */
-.page{display:none}.page.active{display:block}
-
-/* ===== NAV ===== */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:64px;background:var(--white);border-bottom:1.5px solid var(--clay);
-}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:100%;display:flex;align-items:center;justify-content:space-between;}
-.logo{
-  font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
-  letter-spacing:-.01em;color:var(--ink);text-decoration:none;cursor:pointer;
-  display:flex;align-items:center;gap:10px;
-}
-.logo-dot{width:8px;height:8px;background:var(--terra);border-radius:50%;display:none}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-family:'Syne',sans-serif;font-size:13px;font-weight:500;color:var(--mid);text-decoration:none;letter-spacing:.02em;transition:color .2s;cursor:pointer}
-.nav-links a:hover{color:var(--terra)}
-.nav-btn{
-  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;
-  background:var(--terra);color:var(--white);border:none;
-  padding:9px 20px;cursor:pointer;transition:background .2s;text-decoration:none;
-}
-.nav-btn:hover{background:var(--rust)}
-
-/* ===== HOME ===== */
-
-/* HERO - split layout */
-.hero{
-  min-height:100vh;padding-top:64px;
-  display:grid;grid-template-columns:1fr 1fr;
-  position:relative;overflow:hidden;
-  max-width:1280px;margin:0 auto;
-}
-.hero-left{
-  padding:80px 64px;
-  display:flex;flex-direction:column;justify-content:center;
-  border-right:1.5px solid var(--clay);
-  position:relative;
-}
-.hero-right{
-  background:var(--off);
-  position:relative;overflow:hidden;
-  min-height:100vh;
-}
-.ring-deco,.ring-deco-2{display:none}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-
-.hero-tag{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--terra);
-  margin-bottom:24px;display:flex;align-items:center;gap:10px;
-  opacity:0;animation:up .7s ease forwards .1s;
-}
-.hero-tag::before{content:'';width:28px;height:1.5px;background:var(--terra)}
-.hero-h1{
-  font-family:'Syne',sans-serif;font-size:clamp(40px,5vw,68px);
-  font-weight:800;line-height:1.02;letter-spacing:-.03em;
-  margin-bottom:20px;color:var(--ink);
-  opacity:0;animation:up .7s ease forwards .25s;
-}
-.hero-h1 em{font-style:italic;font-family:'Lora',serif;color:var(--terra);font-weight:400;font-size:.92em}
-.hero-p{
-  font-size:15px;color:var(--mid);line-height:1.75;
-  margin-bottom:40px;max-width:400px;
-  opacity:0;animation:up .7s ease forwards .4s;
-}
-
-/* SEARCH */
-.search-form{
-  display:flex;flex-direction:column;gap:10px;width:100%;max-width:440px;
-  opacity:0;animation:up .7s ease forwards .55s;
-}
-.search-row{
-  display:flex;border:1.5px solid var(--clay);background:var(--white);
-  transition:border-color .2s,box-shadow .2s;
-}
-.search-row:focus-within{border-color:var(--terra);box-shadow:4px 4px 0 var(--clay)}
-.search-row input{
-  flex:1;border:none;outline:none;padding:14px 18px;
-  font-family:'Lora',serif;font-size:15px;color:var(--ink);background:none;cursor:pointer;
-}
-.search-row input::placeholder{color:var(--sand);font-style:italic}
-.search-row button{
-  background:var(--terra);color:var(--white);border:none;
-  padding:14px 24px;font-family:'Syne',sans-serif;font-size:12px;
-  font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s;
-}
-.search-row button:hover{background:var(--rust)}
-.quick-searches{display:flex;flex-wrap:wrap;gap:7px}
-.qs{
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:500;
-  color:var(--mid);border:1.5px solid var(--clay);padding:5px 13px;
-  cursor:pointer;transition:all .2s;letter-spacing:.03em;background:var(--white);
-}
-.qs:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
-
-/* RIGHT SIDE SCENT VISUAL */
-.scent-visual{position:relative;z-index:2;text-align:center}
-.scent-bottle{
-  width:120px;height:180px;
-  background:linear-gradient(160deg,var(--sand) 0%,var(--terra) 60%,var(--rust) 100%);
-  margin:0 auto 32px;position:relative;
-  clip-path:polygon(25% 0%,75% 0%,88% 15%,88% 85%,75% 100%,25% 100%,12% 85%,12% 15%);
-  animation:float 4s ease-in-out infinite;
-  box-shadow:8px 12px 32px rgba(139,58,30,.25);
-}
-.scent-bottle::after{
-  content:'';position:absolute;top:8px;left:8px;right:40%;bottom:20%;
-  background:rgba(255,255,255,.15);
-  clip-path:polygon(0 0,100% 0,60% 100%,0 100%);
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.slide-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease-in-out}
-.slide-img.active{opacity:1}
-.size-tab{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border:1.5px solid var(--clay);background:none;cursor:pointer;color:var(--mid);transition:all .2s}
-.size-tab.active{background:var(--terra);color:var(--white);border-color:var(--terra)}
-.seller-tag{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-left:4px}
-.tag-official{background:#e8f5e9;color:#2e7d32}
-.tag-market{background:#fff3e0;color:#e65100}
-.scent-sub{font-family:'Lora',serif;font-size:12px;color:var(--mid);font-style:italic}
-
-/* TICKER */
-.ticker{
-  border-top:1.5px solid var(--clay);border-bottom:1.5px solid var(--clay);
-  overflow:hidden;white-space:nowrap;padding:12px 0;background:var(--off);
-}
-.ticker-inner{
-  display:inline-flex;gap:0;animation:tick 28s linear infinite;
-}
-.ticker-item{
-  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;
-  letter-spacing:.05em;text-transform:uppercase;color:var(--mid);
-  padding:0 32px;
-}
-.ticker-item span{color:var(--terra);margin-left:6px}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* FEATURE STRIP */
-.feature-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-bottom:1.5px solid var(--clay);
-}
-.feat{
-  padding:36px 32px;border-right:1.5px solid var(--clay);
-  transition:background .3s;
-}
-.feat:last-child{border-right:none}
-.feat:hover{background:var(--off)}
-.feat-num{
-  font-family:'Syne',sans-serif;font-size:32px;font-weight:800;
-  color:var(--terra);line-height:1;margin-bottom:10px;letter-spacing:-.02em;
-}
-.feat-label{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.03em}
-.feat-sub{font-size:13px;color:var(--mid);line-height:1.5}
-
-/* HOW IT WORKS */
-.hiw{padding:96px 64px;max-width:1200px;margin:0 auto}
-.section-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.section-tag::before{content:'';width:24px;height:1.5px;background:var(--terra)}
-.section-h{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin-bottom:60px;color:var(--ink)}
-.section-h em{font-family:'Lora',serif;font-style:italic;color:var(--terra);font-weight:400}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--clay)}
-.step{background:var(--white);padding:44px 36px;position:relative;overflow:hidden}
-.step::before{content:attr(data-n);position:absolute;top:-10px;right:16px;font-family:'Syne',sans-serif;font-size:100px;font-weight:800;color:var(--off);line-height:1;pointer-events:none;transition:color .4s}
-.step:hover::before{color:var(--clay)}
-.step-icon{width:44px;height:44px;background:var(--off);display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--terra);position:relative;z-index:1}
-.step-t{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px;position:relative;z-index:1;letter-spacing:-.01em}
-.step-d{font-size:13px;color:var(--mid);line-height:1.7;position:relative;z-index:1}
-
-/* RETAILERS */
-.retailers{padding:60px 64px;background:var(--ink);display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center}
-.ret-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);white-space:nowrap}
-.ret-divider{width:1px;height:28px;background:rgba(201,185,154,.2)}
-.ret-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:rgba(250,249,246,.2);letter-spacing:.02em;transition:color .3s;cursor:pointer;text-decoration:none}
-.ret-name:hover{color:rgba(250,249,246,.8)}
-
-/* FEATURED */
-.featured{padding:96px 64px;max-width:1200px;margin:0 auto}
-.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--clay);margin-top:48px}
-.fcard{
-  background:var(--white);padding:32px 28px;cursor:pointer;
-  transition:background .3s;position:relative;overflow:hidden;
-}
-.fcard:hover{background:var(--off)}
-.fcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.fcard:hover::after{transform:scaleX(1)}
-.fc-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:6px}
-.fc-name{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-.01em;line-height:1.2}
-.fc-type{font-family:'Lora',serif;font-size:12px;color:var(--mid);font-style:italic;margin-bottom:22px}
-.fc-prices{display:flex;flex-direction:column;gap:5px;margin-bottom:20px}
-.fcp{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font-size:13px}
-.fcp.top{background:var(--terra);color:var(--white)}
-.fcp.top .fcp-name,.fcp.top .fcp-price{color:var(--white)}
-.fcp-name{color:var(--mid)}.fcp-price{font-family:'Syne',sans-serif;font-weight:700;color:var(--ink)}
-.fcp-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.08em;background:rgba(255,255,255,.25);padding:1px 6px}
-.fc-link{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:7px;transition:gap .3s}
-.fc-link:hover{gap:12px}
-
-/* ===== PRODUCT PAGE ===== */
-.product-page{padding-top:64px;min-height:100vh}
-.product-header{
-  background:var(--off);border-bottom:1.5px solid var(--clay);
-  padding:48px 64px 40px;
-}
-.breadcrumb{font-family:'Syne',sans-serif;font-size:12px;font-weight:500;color:var(--mid);margin-bottom:24px;display:flex;align-items:center;gap:10px}
-.breadcrumb a{color:var(--terra);text-decoration:none;cursor:pointer}
-.breadcrumb a:hover{text-decoration:underline}
-.ph-grid{display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:end}
-.ph-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:8px}
-.ph-name{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:800;color:var(--ink);line-height:1.02;letter-spacing:-.025em;margin-bottom:6px}
-.ph-meta{font-family:'Lora',serif;font-size:14px;color:var(--mid);font-style:italic}
-.ph-best{text-align:right}
-.ph-best-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
-.ph-price{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--terra);letter-spacing:-.03em;line-height:1}
-.ph-from{font-size:13px;color:var(--mid);font-family:'Lora',serif;font-style:italic}
-
-/* PRODUCT BODY */
-.product-body{display:grid;grid-template-columns:1fr 380px;gap:0;border-bottom:1.5px solid var(--clay)}
-.product-left{padding:56px 64px;border-right:1.5px solid var(--clay)}
-.product-right{padding:40px 36px}
-
-/* Notes - horizontal pill strip */
-.notes-row{margin-bottom:40px}
-.notes-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:12px}
-.notes-title::after{content:'';flex:1;height:1.5px;background:var(--clay)}
-.note-level{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.nl-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);width:46px;flex-shrink:0}
-.nl-pills{display:flex;flex-wrap:wrap;gap:6px}
-.npill{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;padding:4px 12px;background:var(--off);color:var(--text);border:1.5px solid var(--clay);transition:all .2s}
-.npill:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
-
-/* ACCORDS - horizontal bars with unique style */
-.accords{margin-bottom:40px}
-.accord{display:flex;align-items:center;gap:16px;margin-bottom:8px}
-.accord-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--text);width:80px;flex-shrink:0}
-.accord-track{flex:1;height:8px;background:var(--off);border:1.5px solid var(--clay);position:relative}
-.accord-fill{height:100%;background:linear-gradient(90deg,var(--terra),var(--sand))}
-.accord-val{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--terra);width:36px;text-align:right}
-
-/* DETAILS GRID */
-.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--clay);margin-bottom:40px;border:1.5px solid var(--clay)}
-.detail-cell{background:var(--white);padding:16px 18px}
-.dc-key{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:4px}
-.dc-val{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
-.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.dtag{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;padding:5px 12px;border:1.5px solid var(--clay);color:var(--mid)}
-.dtag.on{background:var(--terra);color:var(--white);border-color:var(--terra)}
-
-/* RIGHT - PRICE PANEL */
-.price-panel-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.price-panel-title::after{content:'';flex:1;height:1.5px;background:var(--clay)}
-.size-row{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
-.sz{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;padding:7px 14px;border:1.5px solid var(--clay);color:var(--mid);cursor:pointer;transition:all .2s;background:none}
-.sz.on{background:var(--terra);color:var(--white);border-color:var(--terra)}
-.sz:hover{border-color:var(--terra);color:var(--terra)}
-.price-entries{display:flex;flex-direction:column;gap:3px;margin-bottom:16px}
-.pe{
-  display:flex;align-items:center;text-decoration:none;
-  padding:13px 14px;background:var(--white);border:1.5px solid var(--clay);
-  transition:all .2s;cursor:pointer;gap:10px;
-}
-.pe:hover{border-color:var(--terra);background:var(--off);transform:translateX(3px)}
-.pe.best{background:var(--terra);border-color:var(--terra)}
-.pe-rank{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--sand);width:18px;flex-shrink:0}
-.pe.best .pe-rank{color:rgba(250,249,246,.6)}
-.pe-seller{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--text);flex:1}
-.pe.best .pe-seller{color:var(--white)}
-.pe-stk{font-size:11px;font-family:'Syne',sans-serif;font-weight:500}
-.stk-y{color:#5a7a3a}.stk-n{color:#9a4a3a}
-.pe.best .stk-y{color:rgba(255,255,255,.7)}
-.pe-price{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
-.pe.best .pe-price{color:var(--white)}
-.pe-badge{font-size:9px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.08em;background:rgba(255,255,255,.25);color:var(--white);padding:2px 6px;text-transform:uppercase}
-.pe-arr{color:var(--clay);transition:transform .2s,color .2s;flex-shrink:0}
-.pe:hover .pe-arr{transform:translateX(3px);color:var(--terra)}
-.pe.best .pe-arr{color:rgba(255,255,255,.4)}
-
-.alert-box{background:var(--off);border:1.5px solid var(--clay);padding:16px;margin-bottom:16px}
-.alert-box p{font-size:12px;color:var(--mid);margin-bottom:10px;line-height:1.5}
-.alert-box p strong{color:var(--ink)}
-.ab-btn{width:100%;background:none;border:1.5px solid var(--terra);color:var(--terra);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:10px;cursor:pointer;transition:all .2s}
-.ab-btn:hover{background:var(--terra);color:var(--white)}
-
-/* SIMILAR */
-.similar-section{padding:56px 64px;max-width:1200px;margin:0 auto}
-.sim-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--clay);margin-top:32px}
-.sim-card{background:var(--white);padding:24px 22px;cursor:pointer;transition:background .2s;text-decoration:none;display:block}
-.sim-card:hover{background:var(--off)}
-.sc-brand{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:5px}
-.sc-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-.01em}
-.sc-price{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--terra)}
-
-/* ===== ABOUT ===== */
-.about-page{padding-top:64px}
-.about-hero{
-  padding:80px 64px;background:var(--ink);color:var(--white);
-  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
-}
-.ah-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.ah-tag::before{content:'';width:24px;height:1.5px;background:var(--terra)}
-.ah-h{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.025em;color:var(--white)}
-.ah-h em{font-family:'Lora',serif;font-style:italic;color:var(--terra);font-weight:400}
-.ah-right p{font-size:15px;color:rgba(250,249,246,.65);line-height:1.8;margin-bottom:18px}
-.ah-right p strong{color:var(--white)}
-.about-body{padding:80px 64px;max-width:900px;margin:0 auto}
-.aff-box{background:var(--off);border:1.5px solid var(--clay);border-left:4px solid var(--terra);padding:24px 28px;margin-top:40px}
-.aff-box p{font-size:13px;color:var(--mid);line-height:1.75}
-.aff-box p strong{color:var(--ink)}
-
-/* ===== MODAL ===== */
-.modal-ov{position:fixed;inset:0;background:rgba(26,18,9,.85);z-index:600;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)}
-.modal-ov.on{display:flex}
-.modal{background:var(--white);padding:48px;max-width:440px;width:100%;position:relative;border-top:4px solid var(--terra);animation:up .3s ease}
-.modal-x{position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--mid);transition:color .2s;padding:4px;font-family:'Syne',sans-serif;font-weight:700}
-.modal-x:hover{color:var(--rust)}
-.modal-t{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--ink);margin-bottom:6px;letter-spacing:-.02em}
-.modal-t em{font-family:'Lora',serif;font-style:italic;color:var(--terra);font-weight:400}
-.modal-s{font-size:13px;color:var(--mid);margin-bottom:24px;line-height:1.6}
-.modal-inp{width:100%;border:1.5px solid var(--clay);padding:13px 16px;font-family:'Lora',serif;font-size:14px;color:var(--ink);outline:none;margin-bottom:10px;transition:border-color .2s;background:var(--white)}
-.modal-inp:focus{border-color:var(--terra)}
-.modal-inp::placeholder{color:var(--sand);font-style:italic}
-.modal-sub{width:100%;background:var(--terra);color:var(--white);border:none;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
-.modal-sub:hover{background:var(--rust)}
-.modal-note{font-size:11px;color:var(--mid);margin-top:12px;line-height:1.5;font-family:'Lora',serif;font-style:italic}
-
-/* COOKIE */
-.ck-banner{position:fixed;bottom:-140px;left:0;right:0;z-index:800;transition:bottom .5s cubic-bezier(.16,1,.3,1);pointer-events:none}
-.ck-banner.show{bottom:0;pointer-events:all}
-.ck-banner.bye{bottom:-140px;pointer-events:none}
-.ck-inner{background:var(--ink);border-top:3px solid var(--terra);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px}
-.ck-text p{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
-.ck-text span{font-size:12px;color:var(--sand);font-family:'Lora',serif;font-style:italic}
-.ck-btns{display:flex;gap:10px;flex-shrink:0}
-.ck-close{background:none;border:1.5px solid rgba(201,185,154,.3);color:var(--sand);font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 18px;cursor:pointer;transition:all .2s}
-.ck-close:hover{border-color:var(--sand);color:var(--white)}
-.ck-spray{background:var(--terra);color:var(--white);border:none;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden}
-.ck-spray:hover{background:var(--rust)}
-.sp-particles{position:absolute;inset:0;pointer-events:none;display:none;overflow:visible}
-.spp{position:absolute;border-radius:50%;background:var(--terra);animation:spfy .8s ease-out forwards}
-@keyframes spfy{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
-
-/* STICKY SEARCH BAR */
-.sticky-search{
-  position:sticky;top:64px;z-index:90;
-  background:var(--white);border-bottom:1.5px solid var(--clay);
-  padding:10px 48px;display:none;
-}
-.sticky-search.visible{display:block}
-.sticky-search-row{
-  display:flex;border:1.5px solid var(--clay);background:var(--white);
-  max-width:600px;transition:border-color .2s;
-}
-.sticky-search-row:focus-within{border-color:var(--terra)}
-.sticky-search-row input{
-  flex:1;border:none;outline:none;padding:10px 16px;
-  font-family:'Lora',serif;font-size:14px;color:var(--ink);background:none;cursor:pointer;
-}
-.sticky-search-row input::placeholder{color:var(--sand);font-style:italic}
-.sticky-search-row button{
-  background:var(--terra);color:var(--white);border:none;
-  padding:10px 20px;font-family:'Syne',sans-serif;font-size:11px;
-  font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
-}
-.sticky-search-row button:hover{background:var(--rust)}
-@media(max-width:900px){.sticky-search{padding:10px 16px}}
-.fl{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
-.fl span{color:var(--terra)}
-.fn{font-size:12px;color:var(--mid);font-family:'Lora',serif;font-style:italic}
-.flinks{display:flex;gap:22px}
-.flinks a{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--mid);text-decoration:none;letter-spacing:.04em;transition:color .2s;cursor:pointer}
-.flinks a:hover{color:var(--terra)}
-
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-@media(max-width:900px){
-  .nav-inner{padding:0 20px}.nav-links{display:none}
-  .hero{grid-template-columns:1fr;max-width:100%}.hero-right{display:none}
-  .hero-left{padding:48px 24px}
-  .feature-strip{grid-template-columns:repeat(2,1fr)}
-  .hiw,.featured{padding:60px 24px}.steps,.fgrid{grid-template-columns:1fr}
-  .retailers{padding:40px 24px;gap:24px}
-  .product-header{padding:36px 24px}.ph-grid{grid-template-columns:1fr;gap:20px}
-  .ph-best{text-align:left}
-  .product-body{grid-template-columns:1fr}.product-left{padding:36px 24px;border-right:none}
-  .product-right{padding:24px}.similar-section{padding:40px 24px}
-  .sim-grid{grid-template-columns:repeat(2,1fr)}
-  .about-hero{grid-template-columns:1fr;padding:48px 24px}
-  .about-body{padding:48px 24px}
-  .ck-inner{flex-direction:column;align-items:flex-start;padding:20px 24px}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:32px 24px}
-}
-/* Laptop - constrain wide sections */
-@media(min-width:901px) and (max-width:1400px){
-  .hero{max-width:100%}
-  .feature-strip .feat{padding:28px 24px}
-  .hiw,.featured{padding:80px 48px}
-  .retailers{padding:48px}
-  .product-header{padding:40px 48px}
-  .product-left{padding:48px}
-  .similar-section{padding:48px}
-}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ScentSignal",
-  "url": "https://www.scentsignal.co.uk",
-  "description": "UK fragrance price comparison - compare prices across Amazon, Boots, Superdrug, Fragrance Direct and more",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://www.scentsignal.co.uk/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-</head>
-<body>
-<div class="cur" id="cur"></div>
-<div class="cur-ring" id="curRing"></div>
-
-<nav>
-  <div class="nav-inner">
-    <button id="backBtn" onclick="goBack()" style="display:none;background:none;border:none;cursor:pointer;padding:8px;margin-right:4px;color:var(--ink);flex-shrink:0" aria-label="Go back">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    </button>
-    <a class="logo" href="#" onclick="show('home');return false;">
-    <img src="logo.jpg" alt="ScentSignal" style="width:38px;height:38px;object-fit:cover;border-radius:8px;flex-shrink:0"/>
-    ScentSignal</a>
-    <ul class="nav-links">
-      <li><a href="#" onclick="show('home');return false;">Home</a></li>
-      <li><a href="#" onclick="show('about');return false;">About</a></li>
-      <li><a href="#" onclick="showTopDeals();return false;">Top Deals</a></li>
-      <li><a href="#" onclick="show('contact');return false;">Contact</a></li>
-    </ul>
-    <a class="nav-btn" href="#" onclick="openModal();return false;">Price Alert</a>
-  </div>
-</nav>
-
-<!-- HOME -->
-<div id="page-home" class="page active">
-  <section class="hero">
-    <div class="hero-left">
-      <p class="hero-tag">UK Fragrance Price Comparison</p>
-      <h1 class="hero-h1">One search.<br/><em>Every price.</em><br/>Best deal wins.</h1>
-      <p class="hero-p">Stop tabbing between sites. Search any fragrance and we compare every major UK retailer instantly - sorted cheapest first.</p>
-      <div class="search-form">
-        <div class="search-row" style="position:relative">
-          <input id="homeSearch" type="text" placeholder="Search any fragrance..." autocomplete="off" oninput="showSuggestions(this.value)" onkeydown="if(event.key==='Enter')doSearch()"/>
-          <button onclick="doSearch()">Search</button>
-          <div id="suggestionBox" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1.5px solid var(--clay);border-top:none;z-index:200;max-height:260px;overflow-y:auto"></div>
-        </div>
-        
-<div class="popular-searches" id="popularSearches">
-  <p class="pop-label">🔥 Popular right now</p>
-  <div class="pop-tags" id="popTags"></div>
-</div>
-
-        <div class="quick-searches">
-          <button class="qs" onclick="goProd('armaf')">Armaf Club de Nuit</button>
-          <button class="qs" onclick="goProd('sauvage')">Dior Sauvage</button>
-          <button class="qs" onclick="goProd('lattafa')">Lattafa Oud For Glory</button>
-          <button class="qs" onclick="goProd('creed')">Creed Aventus</button>
-          <button class="qs" onclick="goProd('million')">1 Million</button>
-        </div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div id="heroSlider" style="position:absolute;top:0;left:0;width:100%;height:100%">
-          <img src="img1.jpg" class="slide-img active" alt="Acqua di Gio"/>
-          <img src="img2.jpg" class="slide-img" alt="Dior Sauvage"/>
-          <img src="img3.jpg" class="slide-img" alt="Valentino"/>
-          <img src="img4.jpg" class="slide-img" alt="Miu Miu"/>
-          <img src="img5.jpg" class="slide-img" alt="Versace Eros"/>
-          <img src="img6.jpg" class="slide-img" alt="Chanel Coco Noir"/>
-      </div>
-      <div style="position:absolute;bottom:40px;left:0;right:0;text-align:center;z-index:10">
-        <p style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.9);text-shadow:0 1px 8px rgba(0,0,0,0.4)">Best UK Fragrance Prices</p>
-      </div>
-    </div>
-  </section>
-
-
-<div class="deal-of-day" id="dealOfDay" style="display:none">
-  <div class="dod-inner">
-    <div class="dod-tag">⚡ Deal of the Day</div>
-    <div class="dod-name" id="dod-name"></div>
-    <div class="dod-price" id="dod-price"></div>
-    <div class="dod-retailer" id="dod-retailer"></div>
-    <button class="dod-btn" id="dod-btn">See Price →</button>
-  </div>
-</div>
-
-  <div class="ticker">
-    <div class="ticker-inner" id="tickerInner">
-      <span class="ticker-item" onclick="goProd('armaf')" style="cursor:pointer">Armaf Club de Nuit<span>£22.99</span></span>
-      <span class="ticker-item" onclick="goProd('sauvage')" style="cursor:pointer">Dior Sauvage EDP<span>£72.00</span></span>
-      <span class="ticker-item" onclick="goProd('lattafa')" style="cursor:pointer">Lattafa Oud For Glory<span>£18.99</span></span>
-      <span class="ticker-item" onclick="goProd('creed')" style="cursor:pointer">Creed Aventus<span>£198.00</span></span>
-      <span class="ticker-item" onclick="goProd('million')" style="cursor:pointer">Paco Rabanne 1 Million<span>£47.00</span></span>
-      <span class="ticker-item" onclick="goProd('bleuChanel')" style="cursor:pointer">Bleu de Chanel EDP<span>£85.00</span></span>
-      <span class="ticker-item" onclick="goProd('yslY')" style="cursor:pointer">YSL Y EDP<span>£54.00</span></span>
-      <span class="ticker-item" onclick="goProd('versaceEros')" style="cursor:pointer">Versace Eros<span>£38.00</span></span>
-      <span class="ticker-item" onclick="goProd('blackOpium')" style="cursor:pointer">YSL Black Opium<span>£68.00</span></span>
-      <span class="ticker-item" onclick="goProd('goodGirl')" style="cursor:pointer">Carolina Herrera Good Girl<span>£58.00</span></span>
-      <span class="ticker-item" onclick="goProd('invictus')" style="cursor:pointer">Paco Rabanne Invictus<span>£44.00</span></span>
-      <span class="ticker-item" onclick="goProd('armaniCode')" style="cursor:pointer">Armani Code EDP<span>£65.00</span></span>
-      <span class="ticker-item" onclick="goProd('armaf')" style="cursor:pointer">Armaf Club de Nuit<span>£22.99</span></span>
-      <span class="ticker-item" onclick="goProd('sauvage')" style="cursor:pointer">Dior Sauvage EDP<span>£72.00</span></span>
-      <span class="ticker-item" onclick="goProd('lattafa')" style="cursor:pointer">Lattafa Oud For Glory<span>£18.99</span></span>
-      <span class="ticker-item" onclick="goProd('creed')" style="cursor:pointer">Creed Aventus<span>£198.00</span></span>
-      <span class="ticker-item" onclick="goProd('million')" style="cursor:pointer">Paco Rabanne 1 Million<span>£47.00</span></span>
-      <span class="ticker-item" onclick="goProd('bleuChanel')" style="cursor:pointer">Bleu de Chanel EDP<span>£85.00</span></span>
-      <span class="ticker-item" onclick="goProd('yslY')" style="cursor:pointer">YSL Y EDP<span>£54.00</span></span>
-      <span class="ticker-item" onclick="goProd('versaceEros')" style="cursor:pointer">Versace Eros<span>£38.00</span></span>
-      <span class="ticker-item" onclick="goProd('blackOpium')" style="cursor:pointer">YSL Black Opium<span>£68.00</span></span>
-      <span class="ticker-item" onclick="goProd('goodGirl')" style="cursor:pointer">Carolina Herrera Good Girl<span>£58.00</span></span>
-      <span class="ticker-item" onclick="goProd('invictus')" style="cursor:pointer">Paco Rabanne Invictus<span>£44.00</span></span>
-      <span class="ticker-item" onclick="goProd('armaniCode')" style="cursor:pointer">Armani Code EDP<span>£65.00</span></span>
-    </div>
-  </div>
-
-  <div class="feature-strip">
-    <div class="feat"><div class="feat-num">12k+</div><div class="feat-label">Fragrances</div><div class="feat-sub">Every major brand and niche house listed</div></div>
-    <div class="feat" style="border-right:1.5px solid var(--clay)"><div class="feat-num">18</div><div class="feat-label">UK Retailers</div><div class="feat-sub">Amazon, eBay, Boots, Superdrug and more</div></div>
-    <div class="feat" style="border-right:1.5px solid var(--clay)"><div class="feat-num">£0</div><div class="feat-label">Free to Use</div><div class="feat-sub">Always free - we earn via affiliate links</div></div>
-    <div class="feat"><div class="feat-num">Live</div><div class="feat-label">Prices</div><div class="feat-sub">Updated regularly so you always see real prices</div></div>
-  </div>
-
-  <div class="hiw">
-    <p class="section-tag">How it works</p>
-    <h2 class="section-h">Three steps to the <em>best deal</em></h2>
-    <div class="steps">
-      <div class="step" data-n="01" onclick="document.getElementById('homeSearch').focus()" style="cursor:pointer">
-        <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-        <h3 class="step-t">Search any fragrance</h3>
-        <p class="step-d">Type any name, brand or house. From Armaf to Creed, designer to niche - we have it covered.</p>
-      </div>
-      <div class="step" data-n="02" onclick="goProd('sauvage')" style="cursor:pointer">
-        <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
-        <h3 class="step-t">See all prices ranked</h3>
-        <p class="step-d">Every UK retailer listed side by side. One price per retailer, cheapest at the top. No confusion.</p>
-      </div>
-      <div class="step" data-n="03" onclick="goProd('armaf')" style="cursor:pointer">
-        <div class="step-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <h3 class="step-t">Click and buy direct</h3>
-        <p class="step-d">Go straight to the retailer. You buy directly from them at the price shown. No markup from us.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="retailers">
-    <span class="ret-label">We compare</span>
-    <div class="ret-divider"></div>
-    <a class="ret-name" href="https://www.amazon.co.uk/s?k=fragrance+perfume&tag=scentsignal10-21" target="_blank" rel="noopener sponsored">Amazon</a>
-    <a class="ret-name" href="https://www.ebay.co.uk/sch/i.html?_nkw=perfume+fragrance&_sacat=0" target="_blank" rel="noopener sponsored">eBay</a>
-    <a class="ret-name" href="https://www.superdrug.com/fragrance" target="_blank" rel="noopener">Superdrug</a>
-    <a class="ret-name" href="https://www.boots.com/beauty/fragrance" target="_blank" rel="noopener">Boots</a>
-    <a class="ret-name" href="https://www.fragrancedirect.co.uk/fragrance" target="_blank" rel="noopener">Fragrance Direct</a>
-    <a class="ret-name" href="https://www.theperfumeshop.com/fragrance" target="_blank" rel="noopener">The Perfume Shop</a>
-    <a class="ret-name" href="https://www.lookfantastic.com/fragrance.list" target="_blank" rel="noopener">Lookfantastic</a>
-    <a class="ret-name" href="https://www.johnlewis.com/beauty/fragrance/c6000024380" target="_blank" rel="noopener">John Lewis</a>
-  </div>
-
-  <div class="featured">
-    <p class="section-tag">Featured today</p>
-    <h2 class="section-h">Popular <em>right now</em></h2>
-    <div class="fgrid" id="featuredGrid">
-      <div class="fcard" style="display:flex;align-items:center;justify-content:center;min-height:200px">
-        <p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic">Loading...</p>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="fl">Scent<span>Compare</span></div>
-    <p class="fn">Prices updated regularly - links may be affiliate links</p>
-    <div class="flinks"><a href="#" onclick="show('about');return false;">About</a><a href="#" onclick="show('privacy');return false;">Privacy</a><a href="#" onclick="show('about');return false;">Affiliates</a><a href="#" onclick="show('contact');return false;">Contact</a></div>
-  </footer>
-</div>
-
-<!-- PRODUCT PAGE -->
-<div id="page-product" class="page">
-  <div class="sticky-search" id="stickySearch">
-    <div class="sticky-search-row" style="position:relative">
-      <input type="text" id="stickySearchInput" placeholder="Search another fragrance..." autocomplete="off"
-        oninput="showStickySuggestions(this.value)"
-        onkeydown="if(event.key==='Enter')doStickySearch()"/>
-      <button onclick="doStickySearch()">Search</button>
-      <div id="stickySuggestionBox" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1.5px solid var(--clay);border-top:none;z-index:200;max-height:260px;overflow-y:auto"></div>
-    </div>
-  </div>
-  <div class="product-page">
-    <div class="product-header">
-      <div class="breadcrumb"><a href="#" onclick="show('home');return false;">Home</a> / <a href="#" onclick="show('home');return false;">Search</a> / <span id="ph-crumb">Armaf Club de Nuit</span></div>
-      <div class="ph-grid">
-        <div style="display:flex;align-items:center;gap:28px">
-          <div id="ph-img-wrap" style="width:100px;height:100px;flex-shrink:0;background:var(--off);border:1.5px solid var(--clay);display:flex;align-items:center;justify-content:center;overflow:hidden">
-            <img id="ph-img" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:none"/>
-            <svg id="ph-img-placeholder" width="40" height="40" fill="none" stroke="var(--sand)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3H8L6 7h12l-2-4z"/><circle cx="12" cy="13" r="2"/></svg>
-          </div>
-          <div>
-            <p class="ph-brand" id="ph-brand">Armaf</p>
-            <h1 class="ph-name" id="ph-name">Club de Nuit Intense Man</h1>
-            <p class="ph-meta" id="ph-meta">Eau de Parfum - 105ml - Launched 2015</p>
-          </div>
-        </div>
-        <div></div>
-        <div class="ph-best">
-          <p class="ph-best-label">Best UK Price</p>
-          <p class="ph-price" id="ph-price">£22.99</p>
-          <p class="ph-from" id="ph-from">on Amazon UK</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-body">
-      <div class="product-left">
-        <div class="notes-row">
-          <p class="notes-title">Fragrance Notes</p>
-          <div id="pd-notes"></div>
-        </div>
-        <div class="accords">
-          <p class="notes-title">Scent Profile</p>
-          <div id="pd-accords"></div>
-        </div>
-        <div class="details-grid" id="pd-details">
-          <div class="detail-cell"><p class="dc-key">House</p><p class="dc-val" id="di-house">Armaf</p></div>
-          <div class="detail-cell"><p class="dc-key">Launched</p><p class="dc-val" id="di-year">2015</p></div>
-          <div class="detail-cell"><p class="dc-key">Concentration</p><p class="dc-val" id="di-conc">Eau de Parfum</p></div>
-          <div class="detail-cell"><p class="dc-key">Gender</p><p class="dc-val" id="di-gender">Masculine</p></div>
-          <div class="detail-cell"><p class="dc-key">Longevity</p><p class="dc-val" id="di-long">8-12 hours</p></div>
-          <div class="detail-cell"><p class="dc-key">Sillage</p><p class="dc-val" id="di-sil">Heavy</p></div>
-        </div>
-        <p class="notes-title" style="margin-bottom:12px">Best Season</p>
-        <div class="tags-row" id="di-seasons">
-          <span class="dtag on">Autumn</span><span class="dtag on">Winter</span><span class="dtag">Spring</span><span class="dtag">Summer</span>
-        </div>
-        <p class="notes-title" style="margin-top:20px;margin-bottom:12px">Occasion</p>
-        <div class="tags-row" id="di-occ">
-          <span class="dtag on">Evening</span><span class="dtag on">Night Out</span><span class="dtag on">Office</span><span class="dtag">Casual</span>
-        </div>
-      </div>
-
-      <div class="product-right">
-        <p class="price-panel-title">Compare Prices</p>
-        <div id="pd-size-tabs" style="display:none;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap"></div>
-        <div id="pd-prices"></div>
-        <div class="alert-box">
-          <p>Get notified when this drops below your <strong>target price.</strong></p>
-          <button class="ab-btn" onclick="openModal()">Set Price Alert</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="similar-section">
-      <p class="section-tag">You might also like</p>
-      <h2 class="section-h" style="margin-bottom:0">Similar <em>fragrances</em></h2>
-      <div class="sim-grid" id="pd-similar">
-        <a class="sim-card" href="#" onclick="goProd('creed');return false;"><p class="sc-brand">Creed</p><p class="sc-name">Aventus</p><p class="sc-price">from £198</p></a>
-        <a class="sim-card" href="#" onclick="goProd('sauvage');return false;"><p class="sc-brand">Dior</p><p class="sc-name">Sauvage EDP</p><p class="sc-price">from £72</p></a>
-        <a class="sim-card" href="#" onclick="goProd('lattafa');return false;"><p class="sc-brand">Lattafa</p><p class="sc-name">Oud For Glory</p><p class="sc-price">from £18.99</p></a>
-        <a class="sim-card" href="#" onclick="goProd('million');return false;"><p class="sc-brand">Paco Rabanne</p><p class="sc-name">1 Million</p><p class="sc-price">from £47</p></a>
-      </div>
-    </div>
-
-    <footer>
-      <div class="fl">Scent<span>Compare</span></div>
-      <p class="fn">Prices updated regularly - links may be affiliate links</p>
-      <div class="flinks"><a href="#" onclick="show('home');return false;">Home</a><a href="#" onclick="show('about');return false;">About</a><a href="#">Privacy</a><a href="#">Contact</a></div>
-    </footer>
-  </div>
-</div>
-
-<!-- ABOUT PAGE -->
-<div id="page-about" class="page">
-  <div class="about-page">
-    <div class="about-hero">
-      <div>
-        <p class="ah-tag">Our story</p>
-        <h1 class="ah-h">Built by a<br/><em>fragrance lover</em><br/>for everyone</h1>
-      </div>
-      <div class="ah-right">
-        <p>ScentSignal started from a simple frustration - finding the best UK price for a fragrance meant opening five different tabs, comparing manually, and still not being sure you got the best deal.</p>
-        <p>We are fragrance enthusiasts. We know Armaf Club de Nuit is one of the greatest value buys ever made. We know the UK market can vary by <strong>£30 or more</strong> for the exact same bottle.</p>
-        <p>So we built the tool we always wanted - one search, every UK retailer, sorted by price. Simple.</p>
-      </div>
-    </div>
-    <div class="about-body">
-      <p class="section-tag">How we work</p>
-      <h2 class="section-h" style="margin-bottom:24px">Honest by <em>design</em></h2>
-      <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:18px">We compare prices across Amazon UK, eBay, Superdrug, Boots, Fragrance Direct, The Perfume Shop, Lookfantastic, John Lewis and more - with new retailers added regularly.</p>
-      <p style="font-size:15px;color:var(--mid);line-height:1.8">Every product page includes fragrance notes, scent profiles, longevity and sillage - so you make an informed decision, not just a cheap one. The fragrance community deserves better tools.</p>
-      <div class="aff-box">
-        <p><strong>On affiliate links:</strong> When you click through to a retailer and buy, we may earn a small commission. This costs you nothing - the price you see is the price you pay. Commissions keep this site free. We never inflate prices or favour one retailer - cheapest always goes first, every time.</p>
-      </div>
-    </div>
-    <footer>
-      <div class="fl">Scent<span>Compare</span></div>
-      <p class="fn">Prices updated regularly - links may be affiliate links</p>
-      <div class="flinks"><a href="#" onclick="show('home');return false;">Home</a><a href="#">Privacy</a><a href="#">Contact</a></div>
-    </footer>
-  </div>
-</div>
-
-<!-- CONTACT PAGE -->
-<div id="page-privacy" class="page">
-  <div class="about-page">
-    <div style="max-width:720px;margin:0 auto;padding:80px 32px">
-      <h1 style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;margin-bottom:8px">Privacy Policy</h1>
-      <p style="color:var(--mid);font-family:'Lora',serif;font-size:13px;margin-bottom:40px">Last updated: June 2026</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">Who we are</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">ScentSignal (scentsignal.co.uk) is a UK fragrance price comparison website. We help you find the best price across major UK retailers.</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">What data we collect</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">We do not collect personal data. We do not require you to create an account. We do not store your searches or browsing history on our servers.</p>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">We use cookies solely to remember your cookie preference. No tracking cookies are used.</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">Affiliate links</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">Some links on this site are affiliate links. When you click through and make a purchase, we may earn a small commission from the retailer. This does not affect the price you pay. We are a participant in the Amazon Associates programme, an affiliate advertising programme designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.co.uk.</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">Third party services</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">We use Supabase for our product database and Fragella for fragrance data enrichment. These services may process anonymised request data in accordance with their own privacy policies.</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">Your rights</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">Since we do not collect personal data, there is nothing to request, correct or delete. If you have any questions contact us at support@scentsignal.co.uk</p>
-
-      <h2 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;margin-top:32px">Changes</h2>
-      <p style="font-family:'Lora',serif;font-size:15px;line-height:1.8;color:var(--ink);margin-bottom:16px">We may update this policy from time to time. Any changes will be posted on this page.</p>
-    </div>
-    <p class="fn">Prices updated regularly - links may be affiliate links</p>
-  </div>
-</div>
-<div id="page-contact" class="page">
-  <div style="padding-top:64px;min-height:100vh">
-    <div style="max-width:640px;margin:0 auto;padding:80px 48px">
-      <p class="section-tag">Get in touch</p>
-      <h1 style="font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:800;color:var(--ink);letter-spacing:-.025em;line-height:1.05;margin-bottom:16px">Contact <em style="font-family:'Lora',serif;font-style:italic;color:var(--terra);font-weight:400">Us</em></h1>
-      <p style="font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:48px">Got a question, found a price error, want to suggest a fragrance to add, or just want to say hi? We read everything.</p>
-      <div style="display:flex;flex-direction:column;gap:12px" id="contactForm">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <input class="modal-inp" type="text" placeholder="Your name" id="c-name" style="margin-bottom:0"/>
-          <input class="modal-inp" type="email" placeholder="Your email" id="c-email" style="margin-bottom:0"/>
-        </div>
-        <select class="modal-inp" id="c-type" style="margin-bottom:0;color:var(--mid);font-family:'Lora',serif;font-style:italic">
-          <option value="">What is this about?</option>
-          <option>Price error or wrong information</option>
-          <option>Suggest a fragrance to add</option>
-          <option>Affiliate or partnership</option>
-          <option>General question</option>
-          <option>Just saying hi</option>
-        </select>
-        <textarea class="modal-inp" id="c-msg" placeholder="Your message..." rows="5" style="margin-bottom:0;resize:vertical;font-family:'Lora',serif;font-size:14px"></textarea>
-        <button class="modal-sub" onclick="submitContact()" style="font-size:13px">Send Message</button>
-        <p class="modal-note" style="text-align:center">We aim to reply within 48 hours.</p>
-      </div>
-    </div>
-    <footer>
-      <div class="fl">Scent<span>Compare</span></div>
-      <p class="fn">Prices updated regularly - links may be affiliate links</p>
-      <div class="flinks"><a href="#" onclick="show('home');return false;">Home</a><a href="#" onclick="show('about');return false;">About</a><a href="#">Privacy</a></div>
-    </footer>
-  </div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-ov" id="modalOv">
-  <div class="modal" id="modalInner">
-    <button class="modal-x" onclick="closeModal()">&#x2715;</button>
-    <h2 class="modal-t">Price <em>Alert</em></h2>
-    <p class="modal-s">Tell us the price you want to pay and we will email you the moment it hits that.</p>
-    <input class="modal-inp" type="text" id="al-frag" placeholder="Fragrance name"/>
-    <input class="modal-inp" type="number" id="al-price" placeholder="Target price e.g. 19.99"/>
-    <input class="modal-inp" type="email" id="al-email" placeholder="Your email"/>
-    <button class="modal-sub" onclick="submitAlert()">Notify Me</button>
-    <p class="modal-note">No spam. Only this alert. Unsubscribe any time.</p>
-  </div>
-</div>
-
-<!-- COOKIE -->
-<div class="ck-banner" id="ckBanner">
-  <div class="sp-particles" id="spParts"></div>
-  <div class="ck-inner">
-    <div class="ck-text">
-      <p>A quick word on cookies</p>
-      <span>We use cookies so when you click through and buy, we earn a small commission at no cost to you - that's how we stay free.</span>
-    </div>
-    <div class="ck-btns">
-      <button class="ck-close" onclick="ckClose()">Close</button>
-      <button class="ck-spray" onclick="ckAccept()">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9h4l2-5h6l2 5h4v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"/></svg>
-        Spray &amp; Accept
-      </button>
-    </div>
-  </div>
-</div>
-
-<script>
-const SUPABASE_URL = 'https://hzqvvinrqlnkeuztuzib.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6cXZ2aW5ycWxua2V1enR1emliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4NDY2NTYsImV4cCI6MjA5NjQyMjY1Nn0.6L3GvHHxUV_-erSJRvlbrlvyIiOdFI7gF0llQkaPgQI';
-const AMAZON_TAG = 'scentsignal10-21';
-const ALIEXPRESS_TAG = 'scentsignal_10';
-const EBAY_CAMP = '5338941669';
-
-// Fetch headers for Supabase
-const headers = {
-  'apikey': SUPABASE_KEY,
-  'Authorization': `Bearer ${SUPABASE_KEY}`,
-  'Content-Type': 'application/json'
-};
-
-const FRAGELLA_KEY = '3cd682ba225f83208e4deb6765f2f9253d0b2b75cbf82bc3f19ae2b3e2cd18a8';
-const fragellaCache = {};
-
-async function fetchFragellaData(name) {
-  const cacheKey = name.toLowerCase().trim();
-  if (fragellaCache[cacheKey]) return fragellaCache[cacheKey];
-  try {
-    const res = await fetch(
-      `https://api.fragella.com/api/v1/fragrances?search=${encodeURIComponent(name)}&limit=1`,
-      { headers: { 'x-api-key': FRAGELLA_KEY } }
-    );
-    if (!res.ok) { console.warn('Fragella status:', res.status); return null; }
-    const data = await res.json();
-    const fragrance = Array.isArray(data) ? data[0] : (data.data ? data.data[0] : data);
-    if (fragrance && fragrance['Name']) {
-      fragellaCache[cacheKey] = fragrance;
-      return fragrance;
-    }
-    return null;
-  } catch(e) {
-    console.error('Fragella error:', e.message);
-    return null;
-  }
-}
-
-// Cache products in memory after first load
-let productsCache = null;
-
-async function fetchProducts() {
-  if (productsCache) return productsCache;
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, { headers });
-    const data = await res.json();
-    productsCache = data;
-    return data;
-  } catch(e) {
-    console.error('Failed to fetch products:', e);
-    return [];
-  }
-}
-
-async function fetchSellers(productKey) {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/sellers?product_key=eq.${productKey}&order=price.asc`, { headers });
-    return await res.json();
-  } catch(e) {
-    console.error('Failed to fetch sellers:', e);
-    return [];
-  }
-}
-
-const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
-document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'});
-document.querySelectorAll('a,button,.fcard,.sim-card,.pe,.qs,.sz,.ret-name').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.classList.add('h');ring.classList.add('h')});
-  el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h')});
-});
-
-// All fragrance names for suggestions
-const allFragrances = [
-  {key:'armaf',name:'Armaf Club de Nuit Intense Man',brand:'Armaf'},
-  {key:'sauvage',name:'Dior Sauvage EDP',brand:'Dior'},
-  {key:'lattafa',name:'Lattafa Oud For Glory',brand:'Lattafa'},
-  {key:'creed',name:'Creed Aventus',brand:'Creed'},
-  {key:'million',name:'Paco Rabanne 1 Million',brand:'Paco Rabanne'},
-  {key:'bleuChanel',name:'Bleu de Chanel EDP',brand:'Chanel'},
-  {key:'yslY',name:'YSL Y EDP',brand:'YSL'},
-  {key:'versaceEros',name:'Versace Eros',brand:'Versace'},
-  {key:'acquaDiGio',name:'Armani Acqua di Gio',brand:'Giorgio Armani'},
-  {key:'spicebomb',name:'Viktor & Rolf Spicebomb',brand:'Viktor & Rolf'},
-  {key:'leMale',name:'Jean Paul Gaultier Le Male',brand:'Jean Paul Gaultier'},
-  {key:'tomFordOud',name:'Tom Ford Oud Wood',brand:'Tom Ford'},
-  {key:'tomFordBlack',name:'Tom Ford Black Orchid',brand:'Tom Ford'},
-  {key:'narciso',name:'Narciso Rodriguez For Him',brand:'Narciso Rodriguez'},
-  {key:'cocoMademoiselle',name:'Chanel Coco Mademoiselle',brand:'Chanel'},
-  {key:'blackOpium',name:'YSL Black Opium',brand:'YSL'},
-  {key:'laVieBelle',name:'Lancome La Vie Est Belle',brand:'Lancome'},
-  {key:'goodGirl',name:'Carolina Herrera Good Girl',brand:'Carolina Herrera'},
-  {key:'daisy',name:'Marc Jacobs Daisy',brand:'Marc Jacobs'},
-  {key:'alienMugler',name:'Mugler Alien',brand:'Mugler'},
-  {key:'angelMugler',name:'Mugler Angel',brand:'Mugler'},
-  {key:'siArmani',name:'Giorgio Armani Si',brand:'Giorgio Armani'},
-  {key:'flowerbomb',name:'Viktor & Rolf Flowerbomb',brand:'Viktor & Rolf'},
-  {key:'chanelN5',name:'Chanel No 5',brand:'Chanel'},
-  {key:'linterdit',name:'Givenchy L\'Interdit',brand:'Givenchy'},
-  {key:'boss',name:'Hugo Boss Bottled',brand:'Hugo Boss'},
-  {key:'lightBlue',name:'Dolce & Gabbana Light Blue',brand:'Dolce & Gabbana'},
-  {key:'coachDreams',name:'Coach Dreams',brand:'Coach'},
-  {key:'burberryHer',name:'Burberry Her',brand:'Burberry'},
-  {key:'jadore',name:'Dior J\'adore',brand:'Dior'},
-  {key:'missDior',name:'Miss Dior EDP',brand:'Dior'},
-  {key:'pradaCandy',name:'Prada Candy',brand:'Prada'},
-  {key:'givenchy',name:'Givenchy Gentleman',brand:'Givenchy'},
-  {key:'invictus',name:'Paco Rabanne Invictus',brand:'Paco Rabanne'},
-  {key:'yslLHomme',name:'YSL L\'Homme',brand:'YSL'},
-  {key:'armaniCode',name:'Armani Code EDP',brand:'Giorgio Armani'},
-  {key:'montblanc',name:'Mont Blanc Legend',brand:'Mont Blanc'},
-  {key:'isseymiyake',name:'Issey Miyake L\'Eau d\'Issey',brand:'Issey Miyake'},
-  {key:'lattafaRaghba',name:'Lattafa Raghba',brand:'Lattafa'},
-  {key:'armafWoman',name:'Armaf Club de Nuit Woman',brand:'Armaf'},
-  {key:'rasasi',name:'Rasasi La Yuqawam',brand:'Rasasi'},
-  {key:'dunhill',name:'Dunhill Desire',brand:'Dunhill'},
-  {key:'versaceBright',name:'Versace Bright Crystal',brand:'Versace'},
-  {key:'juicyCouture',name:'Juicy Couture Viva La Juicy',brand:'Juicy Couture'},
-  {key:'theOneMan',name:'Dolce & Gabbana The One',brand:'Dolce & Gabbana'},
-  {key:'pinkSugar',name:'Aquolina Pink Sugar',brand:'Aquolina'},
-  {key:'carolina212',name:'Carolina Herrera 212',brand:'Carolina Herrera'},
-  {key:'lattafaAsad',name:'Lattafa Asad',brand:'Lattafa'},
-  {key:'narcisoPure',name:'Narciso Rodriguez Pure Musc',brand:'Narciso Rodriguez'},
-  {key:'afnan',name:'Afnan Supremacy Silver',brand:'Afnan'},
-  {key:'acquaDiGioProf',name:'Acqua di Gio Profumo EDP',brand:'Giorgio Armani'},
-  {key:'fahrenheit',name:'Dior Fahrenheit EDT',brand:'Dior'},
-  {key:'terraHermes',name:'Terre d Hermes EDT',brand:'Hermes'},
-  {key:'chanelAllure',name:'Allure Homme Sport EDT',brand:'Chanel'},
-  {key:'valentino',name:'Valentino Uomo EDT',brand:'Valentino'},
-  {key:'gucciGuiltMan',name:'Gucci Guilty EDT',brand:'Gucci'},
-  {key:'dolceGabbanaOne',name:'The One EDT',brand:'Dolce & Gabbana'},
-  {key:'bvlgariManBlack',name:'Bvlgari Man In Black EDP',brand:'Bvlgari'},
-  {key:'pradaLunaRossa',name:'Prada Luna Rossa Carbon EDT',brand:'Prada'},
-  {key:'versaceDylanBlue',name:'Versace Dylan Blue EDT',brand:'Versace'},
-  {key:'empArmaniStronger',name:'Stronger With You EDT',brand:'Emporio Armani'},
-  {key:'jeanPaulGaultierUltra',name:'Ultra Male EDT',brand:'Jean Paul Gaultier'},
-  {key:'manceraCedrat',name:'Cedrat Boise EDP',brand:'Mancera'},
-  {key:'parfumsMarly',name:'Layton EDP',brand:'Parfums de Marly'},
-  {key:'nishaneHacivat',name:'Hacivat EDP',brand:'Nishane'},
-  {key:'initioOud',name:'Oud for Greatness EDP',brand:'Initio'},
-  {key:'xerjoffNaxos',name:'Naxos EDP',brand:'Xerjoff'},
-  {key:'chanelChance',name:'Chanel Chance EDP',brand:'Chanel'},
-  {key:'chanelChanceTendre',name:'Chance Eau Tendre EDP',brand:'Chanel'},
-  {key:'chanelCocoNoir',name:'Chanel Coco Noir EDP',brand:'Chanel'},
-  {key:'yslLibre',name:'YSL Libre EDP',brand:'YSL'},
-  {key:'chloeEDP',name:'Chloe Eau de Parfum',brand:'Chloe'},
-  {key:'pradaParadoxe',name:'Prada Paradoxe EDP',brand:'Prada'},
-  {key:'gucciBoom',name:'Gucci Bloom EDP',brand:'Gucci'},
-  {key:'chanelN5',name:'Chanel No 5 EDP',brand:'Chanel'},
-  {key:'pacoLadyMillion',name:'Lady Million EDP',brand:'Paco Rabanne'},
-  {key:'versaceErosFlame',name:'Versace Eros Flame EDP',brand:'Versace'},
-  {key:'diorSauvageEDT',name:'Dior Sauvage EDT',brand:'Dior'},
-  {key:'mfkBaccarat',name:'Baccarat Rouge 540 EDP',brand:'Maison Francis Kurkdjian'},
-  {key:'joMalonePeony',name:'Peony & Blush Suede Cologne',brand:'Jo Malone'},
-  {key:'joMalonePear',name:'English Pear & Freesia Cologne',brand:'Jo Malone'},
-  {key:'joMaloneSage',name:'Wood Sage & Sea Salt Cologne',brand:'Jo Malone'},
-  {key:'joMaloneLime',name:'Lime Basil & Mandarin Cologne',brand:'Jo Malone'},
-  {key:'byredoBal',name:'Bal d Afrique EDP',brand:'Byredo'},
-  {key:'byredoGypsy',name:'Gypsy Water EDP',brand:'Byredo'},
-  {key:'byredoMojave',name:'Mojave Ghost EDP',brand:'Byredo'},
-  {key:'mmjazzClub',name:'Replica Jazz Club EDT',brand:'Maison Margiela'},
-  {key:'mmByFireplace',name:'Replica By the Fireplace EDT',brand:'Maison Margiela'},
-  {key:'mmBeachWalk',name:'Replica Beach Walk EDT',brand:'Maison Margiela'},
-  {key:'mmBubbleBath',name:'Replica Bubble Bath EDT',brand:'Maison Margiela'},
-  {key:'mmLemonTrees',name:'Replica Under the Lemon Trees EDT',brand:'Maison Margiela'},
-  {key:'leLaboSantal',name:'Santal 33 EDP',brand:'Le Labo'},
-  {key:'leLaboRose',name:'Rose 31 EDP',brand:'Le Labo'},
-  {key:'kilianAngel',name:'Angel Share EDP',brand:'Kilian'},
-  {key:'amouageInterlude',name:'Interlude Man EDP',brand:'Amouage'},
-  {key:'fredericPortrait',name:'Portrait of a Lady EDP',brand:'Frederic Malle'},
-  {key:'parfumsMarlyCourage',name:'Pegasus EDP',brand:'Parfums de Marly'},
-  {key:'parfumsHerod',name:'Herod EDP',brand:'Parfums de Marly'},
-  {key:'parfumsPercival',name:'Percival EDP',brand:'Parfums de Marly'},
-  {key:'afnan9PM',name:'Afnan 9PM EDP',brand:'Afnan'},
-  {key:'afnan9AM',name:'Afnan 9AM EDP',brand:'Afnan'},
-  {key:'lattafaKhamrah',name:'Lattafa Khamrah EDP',brand:'Lattafa'},
-  {key:'alHaramain',name:'Amber Oud Gold EDP',brand:'Al Haramain'},
-  {key:'rasasiHawas',name:'Rasasi Hawas EDT',brand:'Rasasi'},
-  {key:'jmyrrhTonka',name:'Myrrh & Tonka Cologne Intense',brand:'Jo Malone'},
-  {key:'acquadiParma',name:'Acqua di Parma Colonia EDT',brand:'Acqua di Parma'},
+  {key:'acquadiParma',name:'Colonia EDT',brand:'Acqua di Parma'},
   {key:'creedSilver',name:'Silver Mountain Water EDP',brand:'Creed'},
   {key:'muglerAlienGoddess',name:'Alien Goddess EDP',brand:'Mugler'},
   {key:'jimmyChoo',name:'Jimmy Choo EDP',brand:'Jimmy Choo'},
   {key:'elizabethArden',name:'Green Tea EDT',brand:'Elizabeth Arden'},
-  {key:'britney',name:'Fantasy EDP',brand:'Britney Spears'},
+  {key:'britney',name:'Britney Spears Fantasy EDP',brand:'Britney Spears'},
   {key:'scottHammond',name:'Cool Water EDT',brand:'Davidoff'},
   {key:'joop',name:'Joop Homme EDT',brand:'Joop'},
-  {key:'diorHypnotic',name:'Hypnotic Poison EDT',brand:'Dior'},
+  {key:'gucciGuiltWoman',name:'Gucci Guilty EDP Women',brand:'Gucci'},
+  {key:'linterdit',name:'Givenchy L Interdit EDP',brand:'Givenchy'},
+  {key:'burberryGoddess',name:'Burberry Goddess EDP',brand:'Burberry'},
+  {key:'kenzoPower',name:'Kenzo Flower EDP',brand:'Kenzo'},
+  {key:'diorHypnotic',name:'Dior Hypnotic Poison EDT',brand:'Dior'},
   {key:'chanelN19',name:'Chanel No 19 EDP',brand:'Chanel'},
   {key:'calvinObsess',name:'Obsession EDP',brand:'Calvin Klein'},
   {key:'calvinEternityW',name:'Eternity Women EDP',brand:'Calvin Klein'},
   {key:'chloeEDP2',name:'Chloe Love Story EDP',brand:'Chloe'},
-  {key:'versaceYellowDiamond',name:'Yellow Diamond EDT',brand:'Versace'},
+  {key:'versaceYellowDiamond',name:'Versace Yellow Diamond EDT',brand:'Versace'},
   {key:'versaceCrystalNo',name:'Crystal Noir EDP',brand:'Versace'},
   {key:'gucciRush',name:'Gucci Rush EDT',brand:'Gucci'},
   {key:'lolita',name:'Lolita Lempicka EDP',brand:'Lolita Lempicka'},
@@ -2120,10 +1041,10 @@ const allFragrances = [
   {key:'zaraRed',name:'Zara Red Temptation EDP',brand:'Zara'},
   {key:'zaraGourmand',name:'Zara Gourmand EDP',brand:'Zara'},
   {key:'zaraVibrant',name:'Zara Vibrant Leather EDP',brand:'Zara'},
-  {key:'guerlainHabitRouge',name:'Habit Rouge EDT',brand:'Guerlain'},
+  {key:'guerlainHabitRouge',name:'Guerlain Habit Rouge EDT',brand:'Guerlain'},
   {key:'guerlainMonGuerlain',name:'Mon Guerlain EDP',brand:'Guerlain'},
   {key:'chopardWish',name:'Chopard Wish EDP',brand:'Chopard'},
-  {key:'givenchiPi',name:'Pi EDT',brand:'Givenchy'},
+  {key:'givenchiPi',name:'Givenchy Pi EDT',brand:'Givenchy'},
   {key:'notino3',name:'Sauvage Parfum',brand:'Dior'},
   {key:'notino4',name:'Bleu de Chanel Parfum',brand:'Chanel'},
   {key:'mcPacoRabanne',name:'1 Million Lucky EDT',brand:'Paco Rabanne'},
@@ -2132,41 +1053,20 @@ const allFragrances = [
   {key:'azzaroChrome',name:'Azzaro Chrome EDT',brand:'Azzaro'},
   {key:'azzaroWanted',name:'Azzaro Wanted EDT',brand:'Azzaro'},
   {key:'ferragamoIncanto',name:'Incanto Charms EDT',brand:'Salvatore Ferragamo'},
-  {key:'cachareAlma',name:'Amor Amor EDT',brand:'Cacharel'},
+  {key:'cachareAlma',name:'Cacharel Amor Amor EDT',brand:'Cacharel'},
   {key:'ghostFrag',name:'Ghost The Fragrance EDT',brand:'Ghost'},
-  {key:'annaSui',name:'Flight of Fancy EDT',brand:'Anna Sui'},
+  {key:'annaSui',name:'Anna Sui Flight of Fancy EDT',brand:'Anna Sui'},
   {key:'gucciFlG',name:'Flora Gorgeous Gardenia EDP',brand:'Gucci'},
   {key:'marcosFerr',name:'Signorina EDP',brand:'Salvatore Ferragamo'},
-  {key:'versaceDylanPurple',name:'Dylan Purple EDP',brand:'Versace'},
-  {key:'guerlainL2',name:'Insolence EDP',brand:'Guerlain'},
+  {key:'versaceDylanPurple',name:'Versace Dylan Purple EDP',brand:'Versace'},
+  {key:'guerlainL2',name:'Guerlain Insolence EDP',brand:'Guerlain'},
   {key:'valentinoBornRomaU',name:'Born in Roma Uomo EDP',brand:'Valentino'},
   {key:'hhugoXY',name:'Hugo XY EDT',brand:'Hugo Boss'},
   {key:'bossBottledNight',name:'Boss Bottled Night EDT',brand:'Hugo Boss'},
   {key:'davidBeck',name:'David Beckham Instinct EDT',brand:'David Beckham'},
-  {key:'kenzo2',name:'L Eau par Kenzo EDT',brand:'Kenzo'},
-  {key:'kenzoPower',name:'Kenzo Flower EDP',brand:'Kenzo'},
-  {key:'chanelN19',name:'Chanel No 19 EDP',brand:'Chanel'},
-  {key:'chanelCocoMad',name:'Chanel Coco Mademoiselle EDP',brand:'Chanel'},
-  {key:'tomFordTobacco',name:'Tom Ford Tobacco Vanille EDP',brand:'Tom Ford'},
-  {key:'tomFordNeroli',name:'Tom Ford Neroli Portofino EDT',brand:'Tom Ford'}
+  {key:'kenzo2',name:'Kenzo L Eau par Kenzo EDT',brand:'Kenzo'}
 ];
 
-function showSuggestions(val) {
-  const box = document.getElementById('suggestionBox');
-  if (!val || val.length < 1) { box.style.display='none'; return; }
-  const q = val.toLowerCase();
-  const matches = allFragrances.filter(f =>
-    f.name.toLowerCase().includes(q) || f.brand.toLowerCase().includes(q)
-  ).sort((a,b) => a.name.localeCompare(b.name)).slice(0, 6);
-  if (!matches.length) { box.style.display='none'; return; }
-  box.innerHTML = matches.map(f => `
-    <div onclick="pickSuggestion('${f.key}','${f.name.replace(/'/g,"\\'")}')
-" style="padding:10px 16px;cursor:pointer;font-family:'Lora',serif;font-size:13px;border-bottom:1px solid var(--off);display:flex;align-items:center;gap:10px" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
-      <span style="font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);min-width:60px">${f.brand}</span>
-      <span style="color:var(--ink)">${f.name}</span>
-    </div>`).join('');
-  box.style.display = 'block';
-}
 
 function pickSuggestion(key, name) {
   document.getElementById('homeSearch').value = name;
@@ -2350,139 +1250,727 @@ const localProds = {
   tomFordNeroli:{key:'tomFordNeroli',brand:'Tom Ford',name:'Tom Ford Neroli Portofino EDT',meta:'Eau de Toilette - 50ml - Launched 2011',gender:'Unisex',house:'Tom Ford',year:'2011',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Neroli','Mandarin','Lemon'],heart_notes:['Myrtle','Rosemary'],base_notes:['Amber','Musk'],accords:[{name:'Fresh',pct:90},{name:'Citrus',pct:85},{name:'Floral',pct:65},{name:'Light',pct:75},{name:'Mediterranean',pct:80}]},
   mfkBaccarat:{key:'mfkBaccarat',brand:'Maison Francis Kurkdjian',name:'Baccarat Rouge 540 EDP',meta:'Eau de Parfum - 70ml - Launched 2015',gender:'Unisex',house:'Maison Francis Kurkdjian',year:'2015',concentration:'Eau de Parfum',longevity:'10-14 hours',sillage:'Very Heavy',seasons:['Autumn','Winter','Spring'],occasions:['Evening','Special Occasion'],top_notes:['Saffron','Jasmine'],heart_notes:['Amberwood','Ambergris'],base_notes:['Fir Resin','Cedar'],accords:[{name:'Sweet',pct:85},{name:'Floral',pct:70},{name:'Warm',pct:80},{name:'Amber',pct:90},{name:'Woody',pct:65}]},
   joMalonePeony:{key:'joMalonePeony',brand:'Jo Malone',name:'Peony & Blush Suede Cologne',meta:'Cologne - 100ml - Launched 2013',gender:'Feminine',house:'Jo Malone',year:'2013',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Red Apple'],heart_notes:['Peony'],base_notes:['Suede','Blonde Wood','Musk'],accords:[{name:'Floral',pct:80},{name:'Powdery',pct:70},{name:'Sweet',pct:65},{name:'Soft',pct:75},{name:'Fresh',pct:60}]},
-  joMalonePear:{key:'joMalonePear',brand:'Jo Malone',name:'English Pear & Freesia Cologne',meta:'Cologne - 100ml - Launched 2010',gender:'Unisex',house:'Jo Malone',year:'2010',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Autumn'],occasions:['Casual','Daily'],top_n￼Enterd:'Elizabeth Arden'},
-  {key:'britney',name:'Fantasy EDP',brand:'Britney Spears'},
-  {key:'scottHammond',name:'Cool Water EDT',brand:'Davidoff'},
-  {key:'joop',name:'Joop Homme EDT',brand:'Joop'},
-  {key:'diorHypnotic',name:'Hypnotic Poison EDT',brand:'Dior'},
-  {key:'chanelN19',name:'Chanel No 19 EDP',brand:'Chanel'},
-  {key:'calvinObsess',name:'Obsession EDP',brand:'Calvin Klein'},
-  {key:'calvinEternityW',name:'Eternity Women EDP',brand:'Calvin Klein'},
-  {key:'chloeEDP2',name:'Chloe Love Story EDP',brand:'Chloe'},
-  {key:'versaceYellowDiamond',name:'Yellow Diamond EDT',brand:'Versace'},
-  {key:'versaceCrystalNo',name:'Crystal Noir EDP',brand:'Versace'},
-  {key:'gucciRush',name:'Gucci Rush EDT',brand:'Gucci'},
-  {key:'lolita',name:'Lolita Lempicka EDP',brand:'Lolita Lempicka'},
-  {key:'narrativePure',name:'Pure Musc For Her EDP',brand:'Narciso Rodriguez'},
-  {key:'initioRehab',name:'Rehab EDP',brand:'Initio'},
-  {key:'penhalGroup',name:'Halfeti EDP',brand:'Penhaligons'},
-  {key:'casamorati',name:'Casamorati 1888 EDP',brand:'Xerjoff'},
-  {key:'diptyquePhi',name:'Philosykos EDT',brand:'Diptyque'},
-  {key:'diptyqueDo',name:'Do Son EDT',brand:'Diptyque'},
-  {key:'serge',name:'Fille en Aiguilles EDP',brand:'Serge Lutens'},
-  {key:'memoIrish',name:'Irish Leather EDP',brand:'Memo Paris'},
-  {key:'julietteNotPerfume',name:'Not a Perfume EDP',brand:'Juliette Has a Gun'},
-  {key:'zaraGardenia',name:'Zara Gardenia EDP',brand:'Zara'},
-  {key:'zaraRed',name:'Zara Red Temptation EDP',brand:'Zara'},
-  {key:'zaraGourmand',name:'Zara Gourmand EDP',brand:'Zara'},
-  {key:'zaraVibrant',name:'Zara Vibrant Leather EDP',brand:'Zara'},
-  {key:'guerlainHabitRouge',name:'Habit Rouge EDT',brand:'Guerlain'},
-  {key:'guerlainMonGuerlain',name:'Mon Guerlain EDP',brand:'Guerlain'},
-  {key:'chopardWish',name:'Chopard Wish EDP',brand:'Chopard'},
-  {key:'givenchiPi',name:'Pi EDT',brand:'Givenchy'},
-  {key:'notino3',name:'Sauvage Parfum',brand:'Dior'},
-  {key:'notino4',name:'Bleu de Chanel Parfum',brand:'Chanel'},
-:'mcPacoRabanne',name:'1 Million Lucky EDT',brand:'Paco Rabanne'},
-  {key:'diorSauvageColog',name:'Dior Sauvage Cologne',brand:'Dior'},
-  {key:'bulgariAqva',name:'Bvlgari Aqva EDT',brand:'Bvlgari'},
-  {key:'azzaroChrome',name:'Azzaro Chrome EDT',brand:'Azzaro'},
-  {key:'azzaroWanted',name:'Azzaro Wanted EDT',brand:'Azzaro'},
-  {key:'ferragamoIncanto',name:'Incanto Charms EDT',brand:'Salvatore Ferragamo'},
-  {key:'cachareAlma',name:'Amor Amor EDT',brand:'Cacharel'},
-  {key:'ghostFrag',name:'Ghost The Fragrance EDT',brand:'Ghost'},
-  {key:'annaSui',name:'Flight of Fancy EDT',brand:'Anna Sui'},
-  {key:'gucciFlG',name:'Flora Gorgeous Gardenia EDP',brand:'Gucci'},
-  {key:'marcosFerr',name:'Signorina EDP',brand:'Salvatore Ferragamo'},
-  {key:'versaceDylanPurple',name:'Dylan Purple EDP',brand:'Versace'},
-  {key:'guerlainL2',name:'Insolence EDP',brand:'Guerlain'},
-  {key:'valentinoBornRomaU',name:'Born in Roma Uomo EDP',brand:'Valentino'},
-  {key:'hhugoXY',name:'Hugo XY EDT',brand:'Hugo Boss'},
-  {key:'bossBottledNight',name:'Boss Bottled Night EDT',brand:'Hugo Boss'},
-  {key:'davidBeck',name:'David Beckham Instinct EDT',brand:'David Beckham'},
-  {key:'kenzo2',name:'L Eau par Kenzo EDT',brand:'Kenzo'},
-  {key:'kenzoPower',name:'Kenzo Flower EDP',brand:'Kenzo'},
-  {key:'chanelN19',name:'Chanel No 19 EDP',brand:'Chanel'},
-  {key:'chanelCocoMad',name:'Chanel Coco Mademoiselle EDP',brand:'Chanel'},
-  {key:'tomFordTobacco',name:'Tom Ford Tobacco Vanille EDP',brand:'Tom Ford'},
-  {key:'tomFordNeroli',name:'Tom Ford Neroli Portofino EDT',brand:'Tom Ford'}
-];
+  joMalonePear:{key:'joMalonePear',brand:'Jo Malone',name:'English Pear & Freesia Cologne',meta:'Cologne - 100ml - Launched 2010',gender:'Unisex',house:'Jo Malone',year:'2010',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Autumn'],occasions:['Casual','Daily'],top_notes:['Pear','Melon'],heart_notes:['Freesia','Rose'],base_notes:['Patchouli','Musk','Amber'],accords:[{name:'Fruity',pct:85},{name:'Floral',pct:70},{name:'Fresh',pct:75},{name:'Light',pct:80},{name:'Sweet',pct:60}]},
+  joMaloneSage:{key:'joMaloneSage',brand:'Jo Malone',name:'Wood Sage & Sea Salt Cologne',meta:'Cologne - 100ml - Launched 2014',gender:'Unisex',house:'Jo Malone',year:'2014',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Sea Salt','Ambrette'],heart_notes:['Sage'],base_notes:['Driftwood'],accords:[{name:'Fresh',pct:85},{name:'Aquatic',pct:80},{name:'Aromatic',pct:70},{name:'Earthy',pct:65},{name:'Mineral',pct:75}]},
+  joMaloneLime:{key:'joMaloneLime',brand:'Jo Malone',name:'Lime Basil & Mandarin Cologne',meta:'Cologne - 100ml - Launched 1999',gender:'Unisex',house:'Jo Malone',year:'1999',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily','Office'],top_notes:['Lime','Mandarin'],heart_notes:['Basil','White Thyme'],base_notes:['Musk','Amber'],accords:[{name:'Fresh',pct:90},{name:'Citrus',pct:85},{name:'Aromatic',pct:70},{name:'Green',pct:65},{name:'Light',pct:80}]},
+  byredoBal:{key:'byredoBal',brand:'Byredo',name:'Bal d Afrique EDP',meta:'Eau de Parfum - 100ml - Launched 2009',gender:'Unisex',house:'Byredo',year:'2009',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Evening'],top_notes:['Bergamot','Lemon','Neroli'],heart_notes:['Marigold','Violet','Cyclamen'],base_notes:['Musk','Vetiver','Amber'],accords:[{name:'Floral',pct:75},{name:'Fresh',pct:70},{name:'Citrus',pct:65},{name:'Woody',pct:55},{name:'Unisex',pct:80}]},
+  byredoGypsy:{key:'byredoGypsy',brand:'Byredo',name:'Gypsy Water EDP',meta:'Eau de Parfum - 100ml - Launched 2008',gender:'Unisex',house:'Byredo',year:'2008',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Light',seasons:['Spring','Autumn'],occasions:['Casual','Daily'],top_notes:['Bergamot','Lemon','Pepper'],heart_notes:['Incense','Pine Needles','Orris'],base_notes:['Amber','Vanilla','Sandalwood'],accords:[{name:'Woody',pct:80},{name:'Fresh',pct:70},{name:'Aromatic',pct:65},{name:'Earthy',pct:60},{name:'Resinous',pct:55}]},
+  byredoMojave:{key:'byredoMojave',brand:'Byredo',name:'Mojave Ghost EDP',meta:'Eau de Parfum - 100ml - Launched 2014',gender:'Unisex',house:'Byredo',year:'2014',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Ambrette','Sapodilla'],heart_notes:['Magnolia','Violet','Nesberry'],base_notes:['Sandalwood','Cedarwood'],accords:[{name:'Woody',pct:75},{name:'Floral',pct:70},{name:'Fresh',pct:65},{name:'Earthy',pct:60},{name:'Unisex',pct:80}]},
+  mmjazzClub:{key:'mmjazzClub',brand:'Maison Margiela',name:'Replica Jazz Club EDT',meta:'Eau de Toilette - 100ml - Launched 2013',gender:'Unisex',house:'Maison Margiela',year:'2013',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Casual'],top_notes:['Pink Pepper','Lemon','Neroli'],heart_notes:['Clary Sage','Vetiver'],base_notes:['Musk','Rum','Tobacco'],accords:[{name:'Tobacco',pct:80},{name:'Woody',pct:75},{name:'Spicy',pct:65},{name:'Warm',pct:70},{name:'Aromatic',pct:60}]},
+  mmByFireplace:{key:'mmByFireplace',brand:'Maison Margiela',name:'Replica By the Fireplace EDT',meta:'Eau de Toilette - 100ml - Launched 2015',gender:'Unisex',house:'Maison Margiela',year:'2015',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Casual','Evening'],top_notes:['Clementine','Pink Pepper'],heart_notes:['Chestnut','Guaiac Wood'],base_notes:['Vanilla','Cashmeran'],accords:[{name:'Smoky',pct:85},{name:'Sweet',pct:70},{name:'Woody',pct:65},{name:'Warm',pct:75},{name:'Cosy',pct:80}]},
+  mmBeachWalk:{key:'mmBeachWalk',brand:'Maison Margiela',name:'Replica Beach Walk EDT',meta:'Eau de Toilette - 100ml - Launched 2017',gender:'Unisex',house:'Maison Margiela',year:'2017',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Bergamot','Lemon'],heart_notes:['Iris'],base_notes:['Coconut','Musk'],accords:[{name:'Fresh',pct:85},{name:'Citrus',pct:80},{name:'Tropical',pct:70},{name:'Aquatic',pct:65},{name:'Light',pct:75}]},
+  mmBubbleBath:{key:'mmBubbleBath',brand:'Maison Margiela',name:'Replica Bubble Bath EDT',meta:'Eau de Toilette - 100ml - Launched 2021',gender:'Unisex',house:'Maison Margiela',year:'2021',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Bergamot'],heart_notes:['Violet','Iris'],base_notes:['Musk','Sandalwood'],accords:[{name:'Clean',pct:90},{name:'Soapy',pct:85},{name:'Fresh',pct:80},{name:'Powdery',pct:70},{name:'Light',pct:75}]},
+  mmLemonTrees:{key:'mmLemonTrees',brand:'Maison Margiela',name:'Replica Under the Lemon Trees EDT',meta:'Eau de Toilette - 100ml - Launched 2020',gender:'Unisex',house:'Maison Margiela',year:'2020',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Bergamot','Lemon'],heart_notes:['Thyme','Petitgrain'],base_notes:['Musk'],accords:[{name:'Citrus',pct:90},{name:'Fresh',pct:85},{name:'Green',pct:70},{name:'Light',pct:75},{name:'Aromatic',pct:60}]},
+  leLaboSantal:{key:'leLaboSantal',brand:'Le Labo',name:'Santal 33 EDP',meta:'Eau de Parfum - 100ml - Launched 2011',gender:'Unisex',house:'Le Labo',year:'2011',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Casual','Evening'],top_notes:['Cardamom','Iris','Ambrox'],heart_notes:['Violet','Sandalwood'],base_notes:['Cedarwood','Leather','Musk'],accords:[{name:'Woody',pct:90},{name:'Smoky',pct:75},{name:'Leather',pct:70},{name:'Earthy',pct:65},{name:'Warm',pct:70}]},
+  leLaboRose:{key:'leLaboRose',brand:'Le Labo',name:'Rose 31 EDP',meta:'Eau de Parfum - 100ml - Launched 2006',gender:'Unisex',house:'Le Labo',year:'2006',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Autumn'],occasions:['Evening','Date Night'],top_notes:['Cumin','Coriander'],heart_notes:['Rose'],base_notes:['Cedar','Musk','Guaiac Wood'],accords:[{name:'Woody',pct:80},{name:'Floral',pct:75},{name:'Spicy',pct:65},{name:'Rose',pct:80},{name:'Earthy',pct:55}]},
+  kilianAngel:{key:'kilianAngel',brand:'Kilian',name:'Angel Share EDP',meta:'Eau de Parfum - 50ml - Launched 2019',gender:'Unisex',house:'Kilian',year:'2019',concentration:'Eau de Parfum',longevity:'10-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Cognac','Cinnamon'],heart_notes:['Tonka Bean'],base_notes:['Sandalwood','Oak'],accords:[{name:'Sweet',pct:90},{name:'Warm',pct:85},{name:'Woody',pct:70},{name:'Gourmand',pct:85},{name:'Smoky',pct:65}]},
+  amouageInterlude:{key:'amouageInterlude',brand:'Amouage',name:'Interlude Man EDP',meta:'Eau de Parfum - 100ml - Launched 2012',gender:'Masculine',house:'Amouage',year:'2012',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Oregano','Bergamot'],heart_notes:['Incense','Amber'],base_notes:['Oud','Leather','Sandalwood'],accords:[{name:'Smoky',pct:85},{name:'Incense',pct:90},{name:'Spicy',pct:80},{name:'Woody',pct:75},{name:'Dark',pct:80}]},
+  fredericPortrait:{key:'fredericPortrait',brand:'Frederic Malle',name:'Portrait of a Lady EDP',meta:'Eau de Parfum - 100ml - Launched 2010',gender:'Feminine',house:'Frederic Malle',year:'2010',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Raspberry','Blackcurrant'],heart_notes:['Turkish Rose','Patchouli'],base_notes:['Sandalwood','Musk','Benzoin'],accords:[{name:'Floral',pct:85},{name:'Rose',pct:90},{name:'Woody',pct:70},{name:'Sweet',pct:65},{name:'Warm',pct:60}]},
+  parfumsMarlyCourage:{key:'parfumsMarlyCourage',brand:'Parfums de Marly',name:'Pegasus EDP',meta:'Eau de Parfum - 125ml - Launched 2011',gender:'Masculine',house:'Parfums de Marly',year:'2011',concentration:'Eau de Parfum',longevity:'10-12 hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Bergamot','Heliotrope'],heart_notes:['Jasmine','Lavender'],base_notes:['Vanilla','Sandalwood','White Musk'],accords:[{name:'Sweet',pct:85},{name:'Aromatic',pct:80},{name:'Powdery',pct:75},{name:'Warm',pct:78},{name:'Elegant',pct:80}]},
+  parfumsHerod:{key:'parfumsHerod',brand:'Parfums de Marly',name:'Herod EDP',meta:'Eau de Parfum - 125ml - Launched 2012',gender:'Masculine',house:'Parfums de Marly',year:'2012',concentration:'Eau de Parfum',longevity:'10-12 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Pepper','Cinnamon'],heart_notes:['Tobacco','Osmanthus'],base_notes:['Vanilla','Cedarwood','Sandalwood'],accords:[{name:'Tobacco',pct:85},{name:'Sweet',pct:80},{name:'Spicy',pct:75},{name:'Woody',pct:70},{name:'Warm',pct:75}]},
+  parfumsPercival:{key:'parfumsPercival',brand:'Parfums de Marly',name:'Percival EDP',meta:'Eau de Parfum - 125ml - Launched 2019',gender:'Masculine',house:'Parfums de Marly',year:'2019',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Office','Casual'],top_notes:['Lemon','Bergamot'],heart_notes:['White Tea','Jasmine'],base_notes:['Musk','Cedarwood'],accords:[{name:'Fresh',pct:85},{name:'Citrus',pct:80},{name:'Aromatic',pct:70},{name:'Clean',pct:75},{name:'Woody',pct:55}]},
+  afnan9PM:{key:'afnan9PM',brand:'Afnan',name:'Afnan 9PM EDP',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Masculine',house:'Afnan',year:'2019',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Apple','Cinnamon','Cardamom'],heart_notes:['Patchouli','Jasmine'],base_notes:['Vanilla','Musk','Amber'],accords:[{name:'Sweet',pct:85},{name:'Spicy',pct:75},{name:'Warm',pct:70},{name:'Oriental',pct:65},{name:'Gourmand',pct:70}]},
+  afnan9AM:{key:'afnan9AM',brand:'Afnan',name:'Afnan 9AM EDP',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Masculine',house:'Afnan',year:'2019',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Office','Casual'],top_notes:['Bergamot','Lemon','Grapefruit'],heart_notes:['Geranium','Vetiver'],base_notes:['Musk','Cedarwood'],accords:[{name:'Fresh',pct:85},{name:'Citrus',pct:80},{name:'Woody',pct:60},{name:'Aromatic',pct:55},{name:'Clean',pct:70}]},
+  lattafaKhamrah:{key:'lattafaKhamrah',brand:'Lattafa',name:'Lattafa Khamrah EDP',meta:'Eau de Parfum - 100ml - Launched 2021',gender:'Unisex',house:'Lattafa',year:'2021',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Rum','Oud'],heart_notes:['Rose','Oud'],base_notes:['Musk','Vanilla','Amber'],accords:[{name:'Sweet',pct:90},{name:'Oud',pct:85},{name:'Warm',pct:80},{name:'Oriental',pct:85},{name:'Gourmand',pct:75}]},
+  alHaramain:{key:'alHaramain',brand:'Al Haramain',name:'Amber Oud Gold EDP',meta:'Eau de Parfum - 60ml - Launched 2019',gender:'Unisex',house:'Al Haramain',year:'2019',concentration:'Eau de Parfum',longevity:'12+ hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Saffron','Rose'],heart_notes:['Oud','Amber'],base_notes:['Musk','Sandalwood'],accords:[{name:'Oud',pct:90},{name:'Sweet',pct:80},{name:'Warm',pct:85},{name:'Amber',pct:90},{name:'Oriental',pct:85}]},
+  rasasiHawas:{key:'rasasiHawas',brand:'Rasasi',name:'Rasasi Hawas EDT',meta:'Eau de Toilette - 100ml - Launched 2017',gender:'Masculine',house:'Rasasi',year:'2017',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Sports'],top_notes:['Apple','Coconut Water','Sea Notes'],heart_notes:['Jasmine','Geranium'],base_notes:['Musk','Driftwood'],accords:[{name:'Fresh',pct:85},{name:'Aquatic',pct:80},{name:'Fruity',pct:65},{name:'Woody',pct:55},{name:'Clean',pct:70}]},
+  jmyrrhTonka:{key:'jmyrrhTonka',brand:'Jo Malone',name:'Myrrh & Tonka Cologne Intense',meta:'Cologne Intense - 100ml - Launched 2016',gender:'Unisex',house:'Jo Malone',year:'2016',concentration:'Cologne Intense',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Lavender'],heart_notes:['Tonka Bean','Myrrh'],base_notes:['Benzoin','Almond','Vanilla'],accords:[{name:'Sweet',pct:85},{name:'Warm',pct:80},{name:'Resinous',pct:75},{name:'Gourmand',pct:70},{name:'Woody',pct:55}]},
+  acquadiParma:{key:'acquadiParma',brand:'Acqua di Parma',name:'Colonia EDT',meta:'Eau de Toilette - 100ml - Launched 1916',gender:'Unisex',house:'Acqua di Parma',year:'1916',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Office','Daily'],top_notes:['Calabrian Lemon','Bergamot','Sweet Orange'],heart_notes:['Lavender','Rose'],base_notes:['Vetiver','Patchouli','Musk'],accords:[{name:'Citrus',pct:90},{name:'Fresh',pct:85},{name:'Classic',pct:90},{name:'Light',pct:80},{name:'Clean',pct:75}]},
+  creedSilver:{key:'creedSilver',brand:'Creed',name:'Silver Mountain Water EDP',meta:'Eau de Parfum - 100ml - Launched 1995',gender:'Masculine',house:'Creed',year:'1995',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Office'],top_notes:['Bergamot','Mandarin'],heart_notes:['Green Tea','Blackcurrant'],base_notes:['Sandalwood','Musk','Vetiver'],accords:[{name:'Fresh',pct:85},{name:'Green',pct:80},{name:'Citrus',pct:70},{name:'Woody',pct:60},{name:'Tea',pct:75}]},
+  muglerAlienGoddess:{key:'muglerAlienGoddess',brand:'Mugler',name:'Alien Goddess EDP',meta:'Eau de Parfum - 90ml - Launched 2021',gender:'Feminine',house:'Mugler',year:'2021',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Bergamot','Lemon'],heart_notes:['Jasmine Sambac'],base_notes:['Vanilla','Cashmeran'],accords:[{name:'Sweet',pct:85},{name:'Floral',pct:75},{name:'Warm',pct:70},{name:'Gourmand',pct:80},{name:'Powdery',pct:60}]},
+  jimmyChoo:{key:'jimmyChoo',brand:'Jimmy Choo',name:'Jimmy Choo EDP',meta:'Eau de Parfum - 100ml - Launched 2011',gender:'Feminine',house:'Jimmy Choo',year:'2011',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Pear','Blush Pink Peony'],heart_notes:['Tiger Orchid','Toffee Apple'],base_notes:['Patchouli','Caramel'],accords:[{name:'Sweet',pct:80},{name:'Fruity',pct:75},{name:'Floral',pct:70},{name:'Gourmand',pct:65},{name:'Woody',pct:55}]},
+  elizabethArden:{key:'elizabethArden',brand:'Elizabeth Arden',name:'Green Tea EDT',meta:'Eau de Toilette - 100ml - Launched 1999',gender:'Feminine',house:'Elizabeth Arden',year:'1999',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Daily','Casual','Office'],top_notes:['Green Tea','Rhubarb'],heart_notes:['Jasmine','Carnation'],base_notes:['Musk','Amber','Oakmoss'],accords:[{name:'Fresh',pct:85},{name:'Green',pct:80},{name:'Tea',pct:90},{name:'Light',pct:75},{name:'Clean',pct:70}]},
+  britney:{key:'britney',brand:'Britney Spears',name:'Britney Spears Fantasy EDP',meta:'Eau de Parfum - 100ml - Launched 2005',gender:'Feminine',house:'Britney Spears',year:'2005',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Casual','Night Out'],top_notes:['Red Lychee','Kiwi','Quince'],heart_notes:['Cupcake','White Chocolate','Jasmine'],base_notes:['Musk','Orris','Woody Notes'],accords:[{name:'Sweet',pct:90},{name:'Gourmand',pct:85},{name:'Fruity',pct:75},{name:'Floral',pct:60},{name:'Fun',pct:80}]},
+  scottHammond:{key:'scottHammond',brand:'Davidoff',name:'Cool Water EDT',meta:'Eau de Toilette - 125ml - Launched 1988',gender:'Masculine',house:'Davidoff',year:'1988',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Sports','Casual'],top_notes:['Sea Water','Mint','Green Nuances'],heart_notes:['Geranium','Lavender','Rosemary'],base_notes:['Sandalwood','Cedarwood','Musk','Amber'],accords:[{name:'Aquatic',pct:90},{name:'Fresh',pct:85},{name:'Aromatic',pct:65},{name:'Woody',pct:55},{name:'Citrus',pct:60}]},
+  joop:{key:'joop',brand:'Joop',name:'Joop Homme EDT',meta:'Eau de Toilette - 125ml - Launched 1989',gender:'Masculine',house:'Joop',year:'1989',concentration:'Eau de Toilette',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Bergamot','Mandarin','Cinnamon'],heart_notes:['Jasmine','Lily of the Valley'],base_notes:['Sandalwood','Musk','Amber'],accords:[{name:'Sweet',pct:85},{name:'Oriental',pct:80},{name:'Floral',pct:65},{name:'Warm',pct:70},{name:'Powdery',pct:60}]},
+  gucciGuiltWoman:{key:'gucciGuiltWoman',brand:'Gucci',name:'Gucci Guilty EDP Women',meta:'Eau de Parfum - 90ml - Launched 2021',gender:'Feminine',house:'Gucci',year:'2021',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Mandarin','Pink Pepper'],heart_notes:['Lilac','Rose'],base_notes:['Patchouli','Amber Wood'],accords:[{name:'Floral',pct:75},{name:'Musky',pct:70},{name:'Spicy',pct:65},{name:'Woody',pct:60},{name:'Sweet',pct:55}]},
+  linterdit:{key:'linterdit',brand:'Givenchy',name:'Givenchy L Interdit EDP',meta:'Eau de Parfum - 80ml - Launched 2018',gender:'Feminine',house:'Givenchy',year:'2018',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Bergamot','Pear'],heart_notes:['Orange Blossom','Jasmine'],base_notes:['Patchouli','Vetiver','White Musk'],accords:[{name:'Floral',pct:80},{name:'White Floral',pct:75},{name:'Woody',pct:65},{name:'Sweet',pct:55},{name:'Dark',pct:60}]},
+  burberryGoddess:{key:'burberryGoddess',brand:'Burberry',name:'Burberry Goddess EDP',meta:'Eau de Parfum - 100ml - Launched 2023',gender:'Feminine',house:'Burberry',year:'2023',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Lavender'],heart_notes:['Lavender'],base_notes:['Vanilla','Musk'],accords:[{name:'Sweet',pct:80},{name:'Aromatic',pct:75},{name:'Warm',pct:70},{name:'Powdery',pct:65},{name:'Gourmand',pct:60}]},
+  kenzoPower:{key:'kenzoPower',brand:'Kenzo',name:'Kenzo Flower EDP',meta:'Eau de Parfum - 100ml - Launched 2000',gender:'Feminine',house:'Kenzo',year:'2000',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Office','Daily'],top_notes:['Hawthorn','Bulgarian Rose'],heart_notes:['Parma Violet','Heliotrope'],base_notes:['White Musk','Vanilla'],accords:[{name:'Floral',pct:80},{name:'Powdery',pct:75},{name:'Clean',pct:72},{name:'Violet',pct:78},{name:'Sweet',pct:58}]},
+  diorHypnotic:{key:'diorHypnotic',brand:'Dior',name:'Dior Hypnotic Poison EDT',meta:'Eau de Toilette - 100ml - Launched 1998',gender:'Feminine',house:'Dior',year:'1998',concentration:'Eau de Toilette',longevity:'10-12 hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Apricot','Plum','Coconut'],heart_notes:['Jasmine','Rose'],base_notes:['Musk','Vanilla','Sandalwood'],accords:[{name:'Sweet',pct:88},{name:'Oriental',pct:82},{name:'Gourmand',pct:78},{name:'Warm',pct:72},{name:'Sensual',pct:80}]},
+  chanelN19:{key:'chanelN19',brand:'Chanel',name:'Chanel No 19 EDP',meta:'Eau de Parfum - 100ml - Launched 1970',gender:'Feminine',house:'Chanel',year:'1970',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Spring','Autumn'],occasions:['Office','Evening'],top_notes:['Aldehydes','Galbanum','Bergamot'],heart_notes:['Iris','Rose','Lily of the Valley'],base_notes:['Vetiver','Sandalwood','Oakmoss'],accords:[{name:'Green',pct:82},{name:'Floral',pct:80},{name:'Iris',pct:88},{name:'Classic',pct:90},{name:'Powdery',pct:70}]},
+  calvinObsess:{key:'calvinObsess',brand:'Calvin Klein',name:'Obsession EDP',meta:'Eau de Parfum - 100ml - Launched 1985',gender:'Feminine',house:'Calvin Klein',year:'1985',concentration:'Eau de Parfum',longevity:'10-12 hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Mandarin','Bergamot','Oakmoss'],heart_notes:['Jasmine','Orange Blossom'],base_notes:['Vetiver','Sandalwood','Musk'],accords:[{name:'Oriental',pct:85},{name:'Classic',pct:88},{name:'Musky',pct:80},{name:'Warm',pct:75},{name:'Sweet',pct:65}]},
+  calvinEternityW:{key:'calvinEternityW',brand:'Calvin Klein',name:'Eternity Women EDP',meta:'Eau de Parfum - 100ml - Launched 1988',gender:'Feminine',house:'Calvin Klein',year:'1988',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Office','Casual'],top_notes:['Freesia','Sage','Lily of the Valley'],heart_notes:['Narcissus','Violet','Jasmine'],base_notes:['Sandalwood','Amber'],accords:[{name:'Floral',pct:82},{name:'Classic',pct:85},{name:'Fresh',pct:75},{name:'Green',pct:68},{name:'Clean',pct:72}]},
+  chloeEDP2:{key:'chloeEDP2',brand:'Chloe',name:'Chloe Love Story EDP',meta:'Eau de Parfum - 75ml - Launched 2014',gender:'Feminine',house:'Chloe',year:'2014',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Neroli','Lychee'],heart_notes:['Orange Blossom','Stephanotis'],base_notes:['Musk','Cedarwood'],accords:[{name:'Floral',pct:80},{name:'White Floral',pct:78},{name:'Fresh',pct:72},{name:'Sweet',pct:62},{name:'Light',pct:68}]},
+  versaceYellowDiamond:{key:'versaceYellowDiamond',brand:'Versace',name:'Versace Yellow Diamond EDT',meta:'Eau de Toilette - 90ml - Launched 2011',gender:'Feminine',house:'Versace',year:'2011',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Office'],top_notes:['Lemon','Pear','Watermelon'],heart_notes:['Neroli','Freesia'],base_notes:['Amber','Musk','Guaiac Wood'],accords:[{name:'Fresh',pct:80},{name:'Citrus',pct:78},{name:'Floral',pct:68},{name:'Light',pct:72},{name:'Sweet',pct:58}]},
+  versaceCrystalNo:{key:'versaceCrystalNo',brand:'Versace',name:'Crystal Noir EDP',meta:'Eau de Parfum - 90ml - Launched 2004',gender:'Feminine',house:'Versace',year:'2004',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Pepper','Cardamom'],heart_notes:['Gardenia','Orange Blossom'],base_notes:['Sandalwood','Musk','Amber'],accords:[{name:'Floral',pct:80},{name:'White Floral',pct:75},{name:'Oriental',pct:65},{name:'Sweet',pct:60},{name:'Sensual',pct:68}]},
+  gucciRush:{key:'gucciRush',brand:'Gucci',name:'Gucci Rush EDT',meta:'Eau de Toilette - 75ml - Launched 1999',gender:'Feminine',house:'Gucci',year:'1999',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Peach','Freesia','Gardenia'],heart_notes:['Rose','Iris','Coriander'],base_notes:['Patchouli','Musk','Vanilla'],accords:[{name:'Floral',pct:78},{name:'Oriental',pct:75},{name:'Sweet',pct:70},{name:'Dark',pct:68},{name:'Fruity',pct:62}]},
+  lolita:{key:'lolita',brand:'Lolita Lempicka',name:'Lolita Lempicka EDP',meta:'Eau de Parfum - 100ml - Launched 1997',gender:'Feminine',house:'Lolita Lempicka',year:'1997',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Anise','Ivy'],heart_notes:['Violet','Iris'],base_notes:['Musk','Praline','Vanilla'],accords:[{name:'Sweet',pct:80},{name:'Gourmand',pct:75},{name:'Floral',pct:65},{name:'Spicy',pct:60},{name:'Oriental',pct:70}]},
+  narrativePure:{key:'narrativePure',brand:'Narciso Rodriguez',name:'Pure Musc For Her EDP',meta:'Eau de Parfum - 100ml - Launched 2012',gender:'Feminine',house:'Narciso Rodriguez',year:'2012',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Daily','Office'],top_notes:['Bergamot','Pink Pepper'],heart_notes:['Musk','Rose'],base_notes:['Musk','Sandalwood'],accords:[{name:'Musky',pct:90},{name:'Clean',pct:85},{name:'Floral',pct:65},{name:'Powdery',pct:70},{name:'Soft',pct:80}]},
+  initioRehab:{key:'initioRehab',brand:'Initio',name:'Rehab EDP',meta:'Eau de Parfum - 90ml - Launched 2016',gender:'Unisex',house:'Initio',year:'2016',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Bergamot'],heart_notes:['Cotton','Iris'],base_notes:['Musk','Sandalwood'],accords:[{name:'Clean',pct:90},{name:'Musky',pct:85},{name:'Soft',pct:80},{name:'Powdery',pct:70},{name:'Fresh',pct:65}]},
+  penhalGroup:{key:'penhalGroup',brand:'Penhaligons',name:'Halfeti EDP',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Unisex',house:'Penhaligons',year:'2019',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Bergamot','Rose'],heart_notes:['Oud','Amber'],base_notes:['Musk','Sandalwood'],accords:[{name:'Rose',pct:80},{name:'Oud',pct:75},{name:'Woody',pct:70},{name:'Oriental',pct:68},{name:'Luxury',pct:82}]},
+  casamorati:{key:'casamorati',brand:'Xerjoff',name:'Casamorati 1888 EDP',meta:'Eau de Parfum - 100ml - Launched 2016',gender:'Unisex',house:'Xerjoff',year:'2016',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Bergamot','Pink Pepper'],heart_notes:['Rose','Iris'],base_notes:['Tobacco','Sandalwood','Musk'],accords:[{name:'Floral',pct:75},{name:'Tobacco',pct:70},{name:'Powdery',pct:80},{name:'Woody',pct:65},{name:'Sweet',pct:60}]},
+  diptyquePhi:{key:'diptyquePhi',brand:'Diptyque',name:'Philosykos EDT',meta:'Eau de Toilette - 100ml - Launched 1996',gender:'Unisex',house:'Diptyque',year:'1996',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Fig Leaf','Fig Tree'],heart_notes:['Fig'],base_notes:['White Cedar','Fig Wood'],accords:[{name:'Green',pct:85},{name:'Woody',pct:80},{name:'Fresh',pct:70},{name:'Earthy',pct:65},{name:'Natural',pct:75}]},
+  diptyqueDo:{key:'diptyqueDo',brand:'Diptyque',name:'Do Son EDT',meta:'Eau de Toilette - 100ml - Launched 2004',gender:'Unisex',house:'Diptyque',year:'2004',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Tuberose','Sea Breeze'],heart_notes:['Tuberose'],base_notes:['White Musk'],accords:[{name:'Floral',pct:80},{name:'White Floral',pct:75},{name:'Fresh',pct:70},{name:'Aquatic',pct:60},{name:'Light',pct:65}]},
+  serge:{key:'serge',brand:'Serge Lutens',name:'Fille en Aiguilles EDP',meta:'Eau de Parfum - 50ml - Launched 2009',gender:'Unisex',house:'Serge Lutens',year:'2009',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Incense','Pine'],heart_notes:['Frankincense','Pine'],base_notes:['Amber','Vanilla'],accords:[{name:'Resinous',pct:85},{name:'Smoky',pct:75},{name:'Woody',pct:80},{name:'Warm',pct:65},{name:'Dark',pct:70}]},
+  memoIrish:{key:'memoIrish',brand:'Memo Paris',name:'Irish Leather EDP',meta:'Eau de Parfum - 75ml - Launched 2012',gender:'Unisex',house:'Memo Paris',year:'2012',concentration:'Eau de Parfum',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Galbanum','Bergamot'],heart_notes:['Iris','Orris'],base_notes:['Leather','Cedar','Vetiver'],accords:[{name:'Leather',pct:85},{name:'Woody',pct:75},{name:'Earthy',pct:70},{name:'Aromatic',pct:65},{name:'Fresh',pct:55}]},
+  julietteNotPerfume:{key:'julietteNotPerfume',brand:'Juliette Has a Gun',name:'Not a Perfume EDP',meta:'Eau de Parfum - 100ml - Launched 2010',gender:'Unisex',house:'Juliette Has a Gun',year:'2010',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Daily','Office'],top_notes:['Ambrette'],heart_notes:['Ambrette'],base_notes:['Ambrette'],accords:[{name:'Clean',pct:85},{name:'Musky',pct:90},{name:'Skin',pct:80},{name:'Fresh',pct:70},{name:'Minimal',pct:85}]},
+  zaraGardenia:{key:'zaraGardenia',brand:'Zara',name:'Zara Gardenia EDP',meta:'Eau de Parfum - 100ml - Launched 2021',gender:'Feminine',house:'Zara',year:'2021',concentration:'Eau de Parfum',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Bergamot'],heart_notes:['Gardenia','Jasmine'],base_notes:['Musk','Sandalwood'],accords:[{name:'Floral',pct:80},{name:'White Floral',pct:75},{name:'Fresh',pct:65},{name:'Sweet',pct:55},{name:'Light',pct:60}]},
+  zaraRed:{key:'zaraRed',brand:'Zara',name:'Zara Red Temptation EDP',meta:'Eau de Parfum - 100ml - Launched 2022',gender:'Feminine',house:'Zara',year:'2022',concentration:'Eau de Parfum',longevity:'4-6 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Casual','Night Out'],top_notes:['Cherry','Blackcurrant'],heart_notes:['Rose','Jasmine'],base_notes:['Musk','Patchouli'],accords:[{name:'Sweet',pct:80},{name:'Fruity',pct:75},{name:'Floral',pct:65},{name:'Dark',pct:55},{name:'Affordable',pct:90}]},
+  zaraGourmand:{key:'zaraGourmand',brand:'Zara',name:'Zara Gourmand EDP',meta:'Eau de Parfum - 100ml - Launched 2022',gender:'Unisex',house:'Zara',year:'2022',concentration:'Eau de Parfum',longevity:'4-6 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Casual','Daily'],top_notes:['Bergamot'],heart_notes:['Vanilla','Caramel'],base_notes:['Musk','Sandalwood'],accords:[{name:'Sweet',pct:85},{name:'Gourmand',pct:80},{name:'Warm',pct:65},{name:'Vanilla',pct:85},{name:'Affordable',pct:90}]},
+  zaraVibrant:{key:'zaraVibrant',brand:'Zara',name:'Zara Vibrant Leather EDP',meta:'Eau de Parfum - 100ml - Launched 2021',gender:'Masculine',house:'Zara',year:'2021',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Office','Casual'],top_notes:['Bergamot','Cardamom'],heart_notes:['Leather','Geranium'],base_notes:['Vetiver','Musk'],accords:[{name:'Leather',pct:80},{name:'Woody',pct:75},{name:'Spicy',pct:65},{name:'Fresh',pct:55},{name:'Affordable',pct:90}]},
+  guerlainHabitRouge:{key:'guerlainHabitRouge',brand:'Guerlain',name:'Guerlain Habit Rouge EDT',meta:'Eau de Toilette - 100ml - Launched 1965',gender:'Masculine',house:'Guerlain',year:'1965',concentration:'Eau de Toilette',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Special Occasion'],top_notes:['Lemon','Bergamot'],heart_notes:['Rose','Jasmine'],base_notes:['Vanilla','Civet','Sandalwood'],accords:[{name:'Oriental',pct:85},{name:'Spicy',pct:75},{name:'Warm',pct:80},{name:'Classic',pct:90},{name:'Sweet',pct:65}]},
+  guerlainMonGuerlain:{key:'guerlainMonGuerlain',brand:'Guerlain',name:'Mon Guerlain EDP',meta:'Eau de Parfum - 100ml - Launched 2017',gender:'Feminine',house:'Guerlain',year:'2017',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Bergamot','Lavender'],heart_notes:['Lavender','Sambac Jasmine'],base_notes:['Vanilla','Sandalwood','Musk'],accords:[{name:'Sweet',pct:75},{name:'Aromatic',pct:80},{name:'Floral',pct:70},{name:'Warm',pct:65},{name:'Powdery',pct:60}]},
+  chopardWish:{key:'chopardWish',brand:'Chopard',name:'Chopard Wish EDP',meta:'Eau de Parfum - 75ml - Launched 2000',gender:'Feminine',house:'Chopard',year:'2000',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Star Fruit','Kiwi'],heart_notes:['Freesia','Jasmine'],base_notes:['Musk','Amber'],accords:[{name:'Fruity',pct:80},{name:'Floral',pct:70},{name:'Sweet',pct:65},{name:'Fresh',pct:60},{name:'Light',pct:55}]},
+  givenchiPi:{key:'givenchiPi',brand:'Givenchy',name:'Givenchy Pi EDT',meta:'Eau de Toilette - 100ml - Launched 1998',gender:'Masculine',house:'Givenchy',year:'1998',concentration:'Eau de Toilette',longevity:'8-10 hours',sillage:'Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Mandarin','Tarragon'],heart_notes:['Basil','Geranium'],base_notes:['Amber','Vanilla','Sandalwood'],accords:[{name:'Warm',pct:80},{name:'Sweet',pct:75},{name:'Oriental',pct:70},{name:'Spicy',pct:60},{name:'Woody',pct:55}]},
+  notino3:{key:'notino3',brand:'Dior',name:'Sauvage Parfum',meta:'Parfum - 60ml - Launched 2019',gender:'Masculine',house:'Dior',year:'2019',concentration:'Parfum',longevity:'12+ hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Bergamot'],heart_notes:['Lavender'],base_notes:['Ambroxan','Haitian Vetiver'],accords:[{name:'Fresh',pct:85},{name:'Woody',pct:75},{name:'Aromatic',pct:70},{name:'Intense',pct:90},{name:'Warm',pct:65}]},
+  notino4:{key:'notino4',brand:'Chanel',name:'Bleu de Chanel Parfum',meta:'Parfum - 100ml - Launched 2018',gender:'Masculine',house:'Chanel',year:'2018',concentration:'Parfum',longevity:'12+ hours',sillage:'Very Heavy',seasons:['Autumn','Winter'],occasions:['Evening','Office'],top_notes:['Citrus','Mint'],heart_notes:['Labdanum','Jasmine'],base_notes:['Sandalwood','Cedarwood','Vetiver'],accords:[{name:'Woody',pct:85},{name:'Aromatic',pct:80},{name:'Fresh',pct:65},{name:'Warm',pct:70},{name:'Intense',pct:85}]},
+  mcPacoRabanne:{key:'mcPacoRabanne',brand:'Paco Rabanne',name:'1 Million Lucky EDT',meta:'Eau de Toilette - 100ml - Launched 2018',gender:'Masculine',house:'Paco Rabanne',year:'2018',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Plum','Hazelnut'],heart_notes:['Clary Sage'],base_notes:['Vetiver','Patchouli'],accords:[{name:'Fresh',pct:75},{name:'Fruity',pct:70},{name:'Woody',pct:60},{name:'Sweet',pct:55},{name:'Gourmand',pct:60}]},
+  diorSauvageColog:{key:'diorSauvageColog',brand:'Dior',name:'Dior Sauvage Cologne',meta:'Cologne - 100ml - Launched 2018',gender:'Masculine',house:'Dior',year:'2018',concentration:'Cologne',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Calabrian Bergamot','Blackcurrant'],heart_notes:['Lavender'],base_notes:['Ambroxan'],accords:[{name:'Fresh',pct:85},{name:'Citrus',pct:88},{name:'Light',pct:80},{name:'Aromatic',pct:65},{name:'Clean',pct:72}]},
+  bulgariAqva:{key:'bulgariAqva',brand:'Bvlgari',name:'Bvlgari Aqva EDT',meta:'Eau de Toilette - 100ml - Launched 2005',gender:'Masculine',house:'Bvlgari',year:'2005',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Sports','Casual'],top_notes:['Posidonia','Marine Notes'],heart_notes:['Amber','Precious Wood'],base_notes:['Musk','Amber'],accords:[{name:'Aquatic',pct:90},{name:'Fresh',pct:85},{name:'Marine',pct:80},{name:'Light',pct:70},{name:'Clean',pct:65}]},
+  azzaroChrome:{key:'azzaroChrome',brand:'Azzaro',name:'Azzaro Chrome EDT',meta:'Eau de Toilette - 100ml - Launched 1996',gender:'Masculine',house:'Azzaro',year:'1996',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Sports','Office'],top_notes:['Bergamot','Lemon','Pineapple'],heart_notes:['Coriander','Jasmine'],base_notes:['Sandalwood','Oakmoss','Musk'],accords:[{name:'Fresh',pct:85},{name:'Aquatic',pct:75},{name:'Citrus',pct:80},{name:'Woody',pct:55},{name:'Clean',pct:65}]},
+  azzaroWanted:{key:'azzaroWanted',brand:'Azzaro',name:'Azzaro Wanted EDT',meta:'Eau de Toilette - 100ml - Launched 2016',gender:'Masculine',house:'Azzaro',year:'2016',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Date Night'],top_notes:['Lemon','Ginger','Cardamom'],heart_notes:['Juniperberry','Vetiver'],base_notes:['Amberwood','Suede'],accords:[{name:'Spicy',pct:75},{name:'Woody',pct:70},{name:'Fresh',pct:65},{name:'Citrus',pct:60},{name:'Warm',pct:55}]},
+  ferragamoIncanto:{key:'ferragamoIncanto',brand:'Salvatore Ferragamo',name:'Incanto Charms EDT',meta:'Eau de Toilette - 100ml - Launched 2006',gender:'Feminine',house:'Salvatore Ferragamo',year:'2006',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Lychee','Strawberry'],heart_notes:['Peony','Gardenia'],base_notes:['Sandalwood','Musk'],accords:[{name:'Fruity',pct:78},{name:'Floral',pct:72},{name:'Fresh',pct:70},{name:'Sweet',pct:65},{name:'Light',pct:68}]},
+  cachareAlma:{key:'cachareAlma',brand:'Cacharel',name:'Cacharel Amor Amor EDT',meta:'Eau de Toilette - 100ml - Launched 2003',gender:'Feminine',house:'Cacharel',year:'2003',concentration:'Eau de Toilette',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Blood Orange','Cassis'],heart_notes:['Rose','Jasmine'],base_notes:['Musk','Vetiver'],accords:[{name:'Fruity',pct:78},{name:'Floral',pct:72},{name:'Fresh',pct:70},{name:'Sweet',pct:65},{name:'Fun',pct:68}]},
+  ghostFrag:{key:'ghostFrag',brand:'Ghost',name:'Ghost The Fragrance EDT',meta:'Eau de Toilette - 100ml - Launched 1994',gender:'Feminine',house:'Ghost',year:'1994',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Daily','Casual'],top_notes:['Melon','Peach'],heart_notes:['White Lily','Sandalwood'],base_notes:['Musk'],accords:[{name:'Fresh',pct:75},{name:'Floral',pct:70},{name:'Light',pct:72},{name:'Clean',pct:68},{name:'Sweet',pct:55}]},
+  annaSui:{key:'annaSui',brand:'Anna Sui',name:'Anna Sui Flight of Fancy EDT',meta:'Eau de Toilette - 75ml - Launched 2005',gender:'Feminine',house:'Anna Sui',year:'2005',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Kiwi','Lychee','Apple'],heart_notes:['Peony','Magnolia'],base_notes:['Musk','Sandalwood'],accords:[{name:'Fruity',pct:78},{name:'Floral',pct:72},{name:'Fresh',pct:68},{name:'Sweet',pct:62},{name:'Light',pct:70}]},
+  gucciFlG:{key:'gucciFlG',brand:'Gucci',name:'Flora Gorgeous Gardenia EDP',meta:'Eau de Parfum - 100ml - Launched 2021',gender:'Feminine',house:'Gucci',year:'2021',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Pear','Red Currant'],heart_notes:['Gardenia'],base_notes:['Patchouli','Brown Sugar'],accords:[{name:'Floral',pct:82},{name:'Fruity',pct:75},{name:'Sweet',pct:70},{name:'White Floral',pct:78},{name:'Fresh',pct:65}]},
+  marcosFerr:{key:'marcosFerr',brand:'Salvatore Ferragamo',name:'Signorina EDP',meta:'Eau de Parfum - 100ml - Launched 2011',gender:'Feminine',house:'Salvatore Ferragamo',year:'2011',concentration:'Eau de Parfum',longevity:'5-7 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Raspberry','Pink Lady Apple'],heart_notes:['Peony','Rose'],base_notes:['Musk','Blond Woods'],accords:[{name:'Fruity',pct:80},{name:'Floral',pct:75},{name:'Sweet',pct:68},{name:'Fresh',pct:65},{name:'Feminine',pct:72}]},
+  versaceDylanPurple:{key:'versaceDylanPurple',brand:'Versace',name:'Versace Dylan Purple EDP',meta:'Eau de Parfum - 100ml - Launched 2021',gender:'Feminine',house:'Versace',year:'2021',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Moderate',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Plum','Peach','Cassis'],heart_notes:['Violet','Iris'],base_notes:['Musk','Sandalwood','Patchouli'],accords:[{name:'Fruity',pct:80},{name:'Floral',pct:70},{name:'Sweet',pct:65},{name:'Fresh',pct:55},{name:'Powdery',pct:50}]},
+  guerlainL2:{key:'guerlainL2',brand:'Guerlain',name:'Guerlain Insolence EDP',meta:'Eau de Parfum - 100ml - Launched 2006',gender:'Feminine',house:'Guerlain',year:'2006',concentration:'Eau de Parfum',longevity:'6-8 hours',sillage:'Heavy',seasons:['Spring','Summer'],occasions:['Casual','Date Night'],top_notes:['Bergamot','Red Berries'],heart_notes:['Violet','Iris'],base_notes:['Musk','Sandalwood'],accords:[{name:'Floral',pct:80},{name:'Violet',pct:85},{name:'Fruity',pct:68},{name:'Sweet',pct:62},{name:'Powdery',pct:65}]},
+  valentinoBornRomaU:{key:'valentinoBornRomaU',brand:'Valentino',name:'Born in Roma Uomo EDP',meta:'Eau de Parfum - 100ml - Launched 2019',gender:'Masculine',house:'Valentino',year:'2019',concentration:'Eau de Parfum',longevity:'7-9 hours',sillage:'Moderate',seasons:['Spring','Autumn'],occasions:['Office','Casual'],top_notes:['Bergamot','Davana'],heart_notes:['Sage','Mace'],base_notes:['Vetiver','Cedarwood'],accords:[{name:'Aromatic',pct:75},{name:'Woody',pct:72},{name:'Fresh',pct:68},{name:'Spicy',pct:62},{name:'Masculine',pct:70}]},
+  hhugoXY:{key:'hhugoXY',brand:'Hugo Boss',name:'Hugo XY EDT',meta:'Eau de Toilette - 100ml - Launched 2006',gender:'Masculine',house:'Hugo Boss',year:'2006',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Sports'],top_notes:['Bergamot','Peppercorn'],heart_notes:['Seaweed','Cedarwood'],base_notes:['Musk','Amber'],accords:[{name:'Fresh',pct:78},{name:'Aquatic',pct:72},{name:'Citrus',pct:65},{name:'Woody',pct:55},{name:'Light',pct:68}]},
+  bossBottledNight:{key:'bossBottledNight',brand:'Hugo Boss',name:'Boss Bottled Night EDT',meta:'Eau de Toilette - 100ml - Launched 2010',gender:'Masculine',house:'Hugo Boss',year:'2010',concentration:'Eau de Toilette',longevity:'6-8 hours',sillage:'Moderate',seasons:['Autumn','Winter'],occasions:['Evening','Night Out'],top_notes:['Birch Leaves','Lavender'],heart_notes:['Cardamom','Jasmine'],base_notes:['Louro Amarelo','Musk'],accords:[{name:'Woody',pct:78},{name:'Dark',pct:72},{name:'Aromatic',pct:68},{name:'Fresh',pct:58},{name:'Warm',pct:62}]},
+  davidBeck:{key:'davidBeck',brand:'David Beckham',name:'David Beckham Instinct EDT',meta:'Eau de Toilette - 75ml - Launched 2005',gender:'Masculine',house:'David Beckham',year:'2005',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Grapefruit','Cardamom'],heart_notes:['Birch'],base_notes:['Musk','Vetiver'],accords:[{name:'Fresh',pct:70},{name:'Woody',pct:65},{name:'Citrus',pct:68},{name:'Light',pct:62},{name:'Affordable',pct:88}]},
+  kenzo2:{key:'kenzo2',brand:'Kenzo',name:'Kenzo L Eau par Kenzo EDT',meta:'Eau de Toilette - 100ml - Launched 1996',gender:'Unisex',house:'Kenzo',year:'1996',concentration:'Eau de Toilette',longevity:'4-6 hours',sillage:'Light',seasons:['Spring','Summer'],occasions:['Casual','Daily'],top_notes:['Water Mint','Coriander'],heart_notes:['Water Lily'],base_notes:['White Musk'],accords:[{name:'Aquatic',pct:80},{name:'Fresh',pct:78},{name:'Light',pct:75},{name:'Clean',pct:72},{name:'Natural',pct:68}]}
 
+};
+
+const localSellers = {
+  armaf:[{seller_name:'Amazon UK',price:22.99,in_stock:true},{seller_name:'eBay',price:24.50,in_stock:true},{seller_name:'Fragrance Direct',price:26.99,in_stock:true},{seller_name:'The Perfume Shop',price:28.00,in_stock:true},{seller_name:'Boots',price:31.00,in_stock:true}],
+  sauvage:[{seller_name:'Superdrug',price:72.00,in_stock:true},{seller_name:'Boots',price:79.00,in_stock:true},{seller_name:'Amazon UK',price:81.50,in_stock:true},{seller_name:'John Lewis',price:84.00,in_stock:true},{seller_name:'The Perfume Shop',price:85.00,in_stock:true}],
+  lattafa:[{seller_name:'Fragrance Direct',price:18.99,in_stock:true},{seller_name:'Amazon UK',price:21.00,in_stock:true},{seller_name:'eBay',price:23.49,in_stock:true}],
+  creed:[{seller_name:'eBay',price:198.00,in_stock:true},{seller_name:'Amazon UK',price:219.00,in_stock:true},{seller_name:'John Lewis',price:235.00,in_stock:true},{seller_name:'Boots',price:240.00,in_stock:true}],
+  million:[{seller_name:'Fragrance Direct',price:47.00,in_stock:true},{seller_name:'Superdrug',price:48.00,in_stock:true},{seller_name:'Boots',price:52.00,in_stock:true},{seller_name:'Amazon UK',price:54.99,in_stock:true}],
+  bleuChanel:[{seller_name:'Superdrug',price:85.00,in_stock:true},{seller_name:'Lookfantastic',price:88.00,in_stock:true},{seller_name:'Boots',price:89.00,in_stock:true},{seller_name:'Amazon UK',price:92.00,in_stock:true}],
+  yslY:[{seller_name:'Superdrug',price:54.00,in_stock:true},{seller_name:'Lookfantastic',price:56.00,in_stock:true},{seller_name:'Amazon UK',price:57.00,in_stock:true},{seller_name:'Boots',price:59.00,in_stock:true}],
+  versaceEros:[{seller_name:'Fragrance Direct',price:38.00,in_stock:true},{seller_name:'Amazon UK',price:40.00,in_stock:true},{seller_name:'Superdrug',price:42.00,in_stock:true},{seller_name:'Boots',price:45.00,in_stock:true}],
+  blackOpium:[{seller_name:'Superdrug',price:68.00,in_stock:true},{seller_name:'Lookfantastic',price:69.00,in_stock:true},{seller_name:'Amazon UK',price:70.00,in_stock:true},{seller_name:'Boots',price:72.00,in_stock:true}],
+  goodGirl:[{seller_name:'Fragrance Direct',price:58.00,in_stock:true},{seller_name:'Amazon UK',price:61.00,in_stock:true},{seller_name:'Lookfantastic',price:62.00,in_stock:true},{seller_name:'Boots',price:66.00,in_stock:true}],
+  invictus:[{seller_name:'Fragrance Direct',price:44.00,in_stock:true},{seller_name:'Amazon UK',price:46.00,in_stock:true},{seller_name:'Superdrug',price:48.00,in_stock:true},{seller_name:'Boots',price:52.00,in_stock:true}],
+  armaniCode:[{seller_name:'Superdrug',price:65.00,in_stock:true},{seller_name:'Amazon UK',price:67.00,in_stock:true},{seller_name:'Lookfantastic',price:68.00,in_stock:true},{seller_name:'Boots',price:70.00,in_stock:true}]
+};
+
+async function goProd(key) {
+  show('product');
+  document.getElementById('ph-name').textContent = 'Loading...';
+  document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching prices...</p>';
+
+  // Use local data immediately if available
+  let p = localProds[key] || null;
+  let sellers = localSellers[key] || [];
+  if (p) renderProduct(p, sellers);
+
+  try {
+    // Fetch database data first
+    const [dbProducts, dbSellers] = await Promise.all([
+      fetchProducts(),
+      fetchSellers(key)
+    ]);
+
+    const dbP = dbProducts.find(x => x.key === key);
+    const finalP = dbP || p;
+    const finalSellers = dbSellers.length > 0 ? dbSellers : sellers;
+
+    if (!finalP) return;
+
+    // Render with DB data first
+    renderProduct(finalP, finalSellers);
+
+    // Now fetch Fragella using the product name
+    const searchName = finalP.name;
+    const fragellaData = await fetchFragellaData(searchName);
+
+    if (fragellaData) {
+      const imgUrl = fragellaData['Image URL'] || null;
+      if (imgUrl) finalP.image_url = imgUrl;
+
+      const notes = fragellaData['Notes'] || {};
+      if (notes['Top']?.length > 0) finalP.top_notes = notes['Top'].map(n => n.name);
+      if (notes['Middle']?.length > 0) finalP.heart_notes = notes['Middle'].map(n => n.name);
+      if (notes['Base']?.length > 0) finalP.base_notes = notes['Base'].map(n => n.name);
+
+      const accordsObj = fragellaData['Main Accords Percentage'] || {};
+      const accordEntries = Object.entries(accordsObj);
+      if (accordEntries.length > 0) {
+        const pctMap = {'Dominant':90,'Strong':75,'Moderate':60,'Subtle':40,'Trace':25};
+        finalP.accords = accordEntries.slice(0,5).map(([name, strength]) => ({
+          name: name.charAt(0).toUpperCase() + name.slice(1),
+          pct: pctMap[strength] || 50
+        }));
+      }
+
+      const seasonMap = {'spring':'Spring','summer':'Summer','fall':'Autumn','winter':'Winter'};
+      const seasons = fragellaData['Season Ranking'] || [];
+      if (seasons.length > 0) finalP.seasons = seasons.slice(0,2).map(s => seasonMap[s.name] || s.name);
+
+      const occMap = {'professional':'Office','casual':'Casual','night out':'Night Out','romantic':'Date Night','sport':'Sports'};
+      const occasions = fragellaData['Occasion Ranking'] || [];
+      if (occasions.length > 0) finalP.occasions = occasions.slice(0,3).map(o => occMap[o.name] || o.name);
+
+      if (fragellaData['Longevity']) finalP.longevity = fragellaData['Longevity'];
+      if (fragellaData['Sillage']) finalP.sillage = fragellaData['Sillage'];
+      if (fragellaData['OilType']) finalP.concentration = fragellaData['OilType'];
+      if (fragellaData['Year']) finalP.year = fragellaData['Year'];
+      if (fragellaData['Gender']) finalP.gender = fragellaData['Gender'];
+
+      // Re-render with enriched Fragella data
+      renderProduct(finalP, finalSellers);
+    }
+  } catch(e) {
+    console.error('Failed to load product data:', e);
+  }
+}
+
+function filterBySize(size, btn) {
+  document.querySelectorAll('.size-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Filter visible price entries by size
+  document.querySelectorAll('#pd-prices .pe').forEach(el => {
+    const txt = el.textContent;
+    el.style.display = txt.includes(size + 'ml') || !txt.match(/\d+ml/) ? '' : 'none';
+  });
+}
+
+const officialRetailers = new Set(['Boots','Superdrug','Lookfantastic','John Lewis','The Perfume Shop','Fragrance Direct','Amazon UK']);
+
+// Extract ml from meta string e.g. "Eau de Parfum - 100ml - Launched 2015"
+function getMl(meta) {
+  const match = (meta || '').match(/(\d+)\s*ml/i);
+  return match ? parseInt(match[1]) : null;
+}
+
+function renderProduct(p, sellers) {
+  // Image
+  const img = document.getElementById('ph-img');
+  const placeholder = document.getElementById('ph-img-placeholder');
+  if (p.image_url) {
+    img.src = p.image_url;
+    img.alt = p.name;
+    img.style.display = 'block';
+    placeholder.style.display = 'none';
+  } else {
+    img.style.display = 'none';
+    placeholder.style.display = 'block';
+  }
+
+  // Notes
+  const topNotes = p.top_notes || [];
+  const heartNotes = p.heart_notes || [];
+  const baseNotes = p.base_notes || [];
+  document.getElementById('pd-notes').innerHTML = `
+    <div class="note-level"><span class="nl-label">Top</span><div class="nl-pills">${topNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+    <div class="note-level"><span class="nl-label">Heart</span><div class="nl-pills">${heartNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+    <div class="note-level"><span class="nl-label">Base</span><div class="nl-pills">${baseNotes.map(n=>`<span class="npill">${n}</span>`).join('')}</div></div>
+  `;
+
+  // Accords
+  const accords = p.accords || [];
+  document.getElementById('pd-accords').innerHTML = accords.map(a => `
+    <div class="accord">
+      <span class="accord-name">${a.name}</span>
+      <div class="accord-track"><div class="accord-fill" style="width:${a.pct}%"></div></div>
+      <span class="accord-val">${a.pct}%</span>
+    </div>`).join('');
+
+  // Header
+  document.getElementById('ph-crumb').textContent = p.name;
+  document.getElementById('ph-brand').textContent = p.brand;
+  document.getElementById('ph-name').textContent = p.name;
+  document.getElementById('ph-meta').textContent = p.meta;
+  document.getElementById('di-house').textContent = p.house || p.brand;
+  document.getElementById('di-year').textContent = p.year || '-';
+  document.getElementById('di-conc').textContent = p.concentration || '-';
+  document.getElementById('di-gender').textContent = p.gender || '-';
+  document.getElementById('di-long').textContent = p.longevity || '-';
+  document.getElementById('di-sil').textContent = p.sillage || '-';
+
+  // Best price
+  if (sellers.length > 0) {
+    document.getElementById('ph-price').textContent = '£' + parseFloat(sellers[0].price).toFixed(2);
+    document.getElementById('ph-from').textContent = 'on ' + sellers[0].seller_name;
+  }
+
+  // Seasons
+  const allS = ['Spring','Summer','Autumn','Winter'];
+  const seasons = p.seasons || [];
+  document.getElementById('di-seasons').innerHTML = allS.map(s =>
+    `<span class="dtag ${seasons.includes(s)?'on':''}">${s}</span>`).join('');
+
+  // Occasions
+  const occ = p.occasions || [];
+  document.getElementById('di-occ').innerHTML = occ.map(o =>
+    `<span class="dtag on">${o}</span>`).join('');
+
+  // Size tabs - group sellers by size
+  const sizeTabs = document.getElementById('pd-size-tabs');
+  const mlFromMeta = getMl(p.meta);
+  const sellerSizes = [...new Set(sellers.map(s => getMl(s.meta || p.meta) || mlFromMeta).filter(Boolean))];
+
+  if (sellerSizes.length > 1) {
+    sizeTabs.style.display = 'flex';
+    sizeTabs.innerHTML = sellerSizes.sort((a,b) => a-b).map((size, i) => `
+      <button class="size-tab${i===0?' active':''}" onclick="filterBySize(${size}, this)">${size}ml</button>`).join('');
+  } else {
+    sizeTabs.style.display = 'none';
+  }
+
+  // Prices with official/marketplace tags and price per ml
+  const ml = getMl(p.meta);
+  document.getElementById('pd-prices').innerHTML = sellers.map((s,i) => {
+    const price = parseFloat(s.price);
+    const ppm = ml ? `<span style="font-size:10px;color:${i===0?'rgba(255,255,255,0.7)':'var(--mid)'};font-family:'Lora',serif;font-style:italic;margin-left:4px">${(price/ml).toFixed(2)}p/ml</span>` : '';
+    const isOfficial = officialRetailers.has(s.seller_name);
+    const tag = isOfficial
+      ? `<span class="seller-tag tag-official">Official</span>`
+      : `<span class="seller-tag tag-market">Marketplace</span>`;
+    return `
+    <a class="pe${i===0?' best':''}" href="${getSellerLink(s.seller_name, p.name, p.asin)}" target="_blank" rel="noopener sponsored">
+      <span class="pe-rank">${i+1}</span>
+      <span class="pe-seller">${s.seller_name}${tag}</span>
+      <span class="pe-stk ${s.in_stock?'stk-y':'stk-n'}">${s.in_stock?'In Stock':'Check'}</span>
+      <span class="pe-price">£${price.toFixed(2)}${ppm}</span>
+      ${i===0?'<span class="pe-badge">BEST</span>':''}
+      <svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>`}).join('');
+}
+
+async function doSearch() {
+  const raw = document.getElementById('homeSearch').value.trim();
+  const q = raw.toLowerCase();
+  if (!q) return;
+
+  show('product');
+  document.getElementById('ph-name').textContent = 'Searching...';
+  document.getElementById('ph-brand').textContent = '';
+  document.getElementById('ph-meta').textContent = '';
+  document.getElementById('ph-price').textContent = '';
+  document.getElementById('ph-from').textContent = '';
+  document.getElementById('pd-prices').innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">Fetching prices...</p>';
+  document.getElementById('pd-notes').innerHTML = '';
+  document.getElementById('pd-accords').innerHTML = '';
+
+  const pctMap = {'Dominant':90,'Strong':75,'Moderate':60,'Subtle':40,'Trace':25};
+  const seasonMap = {'spring':'Spring','summer':'Summer','fall':'Autumn','winter':'Winter'};
+  const occMap = {'professional':'Office','casual':'Casual','night out':'Night Out','romantic':'Date Night','sport':'Sports'};
+
+  const fragella = await fetchFragellaData(raw);
+
+  if (fragella && fragella['Name']) {
+    // Verify Fragella returned something related to what was searched
+    const fragellaName = (fragella['Name'] || '').toLowerCase();
+    const fragellaBrand = (fragella['Brand'] || '').toLowerCase();
+    const searchWords = q.split(' ').filter(w => w.length > 2);
+    const isMatch = searchWords.some(word =>
+      fragellaName.includes(word) || fragellaBrand.includes(word)
+    );
+
+    if (!isMatch) {
+      const enc = encodeURIComponent(raw);
+      const firstWord = raw.split(' ')[0];
+      document.getElementById('ph-name').textContent = raw;
+      document.getElementById('ph-brand').textContent = 'Search Results';
+      document.getElementById('ph-meta').textContent = `We couldn't find "${raw}" exactly - check prices across UK retailers below`;
+      document.getElementById('ph-price').textContent = '';
+      document.getElementById('ph-from').textContent = '';
+      document.getElementById('pd-notes').innerHTML = `<p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic">No fragrance notes found for "${raw}". Try searching with just "<strong>${firstWord}</strong>" for broader results.</p>`;
+      document.getElementById('pd-accords').innerHTML = '';
+      document.getElementById('pd-prices').innerHTML = `
+        <p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic;margin-bottom:16px">Searching UK retailers for "${raw}":</p>
+        <a class="pe best" href="https://www.amazon.co.uk/s?k=${enc}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored"><span class="pe-rank">1</span><span class="pe-seller">Amazon UK</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><span class="pe-badge">BEST</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc}&_sacat=0" target="_blank" rel="noopener sponsored"><span class="pe-rank">2</span><span class="pe-seller">eBay</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">3</span><span class="pe-seller">Fragrance Direct</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.theperfumeshop.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">4</span><span class="pe-seller">The Perfume Shop</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.boots.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">5</span><span class="pe-seller">Boots</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.superdrug.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">6</span><span class="pe-seller">Superdrug</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+      return;
+    }
+    const notes = fragella['Notes'] || {};
+    const accordsObj = fragella['Main Accords Percentage'] || {};
+    const fragName = fragella['Name'] || raw;
+    const fragBrand = fragella['Brand'] || '';
+
+    const p = {
+      key: 'search_result',
+      brand: fragBrand,
+      name: fragName,
+      meta: (fragella['OilType'] || 'Eau de Parfum') + (fragella['Year'] ? ' - Launched ' + fragella['Year'] : ''),
+      gender: fragella['Gender'] || 'Unisex',
+      house: fragBrand,
+      year: fragella['Year'] || '',
+      concentration: fragella['OilType'] || '',
+      longevity: fragella['Longevity'] || '',
+      sillage: fragella['Sillage'] || '',
+      seasons: (fragella['Season Ranking'] || []).slice(0,2).map(s => seasonMap[s.name] || s.name),
+      occasions: (fragella['Occasion Ranking'] || []).slice(0,3).map(o => occMap[o.name] || o.name),
+      image_url: fragella['Image URL'] || null,
+      top_notes: (notes['Top'] || []).map(n => n.name),
+      heart_notes: (notes['Middle'] || []).map(n => n.name),
+      base_notes: (notes['Base'] || []).map(n => n.name),
+      accords: Object.entries(accordsObj).slice(0,5).map(([name, strength]) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        pct: pctMap[strength] || 50
+      }))
+    };
+
+    let sellers = [];
+    try {
+      const products = await fetchProducts();
+      const dbMatch = products.find(pr => pr.name.toLowerCase().includes(fragName.toLowerCase().split(' ').slice(0,2).join(' ')));
+      if (dbMatch) sellers = await fetchSellers(dbMatch.key);
+      if (sellers.length === 0) {
+        const lk = Object.keys(localProds).find(k => localProds[k].name.toLowerCase().includes(fragName.toLowerCase().split(' ').slice(0,2).join(' ')));
+        if (lk) sellers = localSellers[lk] || [];
+      }
+    } catch(e) {}
+
+    renderProduct(p, sellers);
+
+    if (sellers.length === 0) {
+      const enc = encodeURIComponent(fragName);
+      document.getElementById('pd-prices').innerHTML = `
+        <a class="pe best" href="https://www.amazon.co.uk/s?k=${enc}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored"><span class="pe-rank">1</span><span class="pe-seller">Amazon UK</span><span class="pe-stk stk-y">View on Amazon</span><span class="pe-price">Check Price</span><span class="pe-badge">BEST</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc}&_sacat=0" target="_blank" rel="noopener sponsored"><span class="pe-rank">2</span><span class="pe-seller">eBay</span><span class="pe-stk stk-y">View on eBay</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.aliexpress.com/wholesale?SearchText=${enc}&aff_id=${ALIEXPRESS_TAG}&aff_platform=portals-tool" target="_blank" rel="noopener sponsored"><span class="pe-rank">3</span><span class="pe-seller">AliExpress</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">4</span><span class="pe-seller">Fragrance Direct</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.theperfumeshop.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">5</span><span class="pe-seller">The Perfume Shop</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.boots.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">6</span><span class="pe-seller">Boots</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="pe" href="https://www.superdrug.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">7</span><span class="pe-seller">Superdrug</span><span class="pe-stk stk-y">View</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+    }
+
+  } else {
+    const enc = encodeURIComponent(raw);
+    document.getElementById('ph-name').textContent = raw;
+    document.getElementById('ph-brand').textContent = 'Search Results';
+    document.getElementById('ph-meta').textContent = 'Showing available retailers';
+    document.getElementById('pd-prices').innerHTML = `
+      <p style="color:var(--mid);font-size:13px;font-family:'Lora',serif;font-style:italic;margin-bottom:16px">Searching across UK retailers for "${raw}":</p>
+      <a class="pe best" href="https://www.amazon.co.uk/s?k=${enc}&tag=${AMAZON_TAG}" target="_blank" rel="noopener sponsored"><span class="pe-rank">1</span><span class="pe-seller">Amazon UK</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><span class="pe-badge">BEST</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc}&_sacat=0" target="_blank" rel="noopener sponsored"><span class="pe-rank">2</span><span class="pe-seller">eBay</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.fragrancedirect.co.uk/search#q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">3</span><span class="pe-seller">Fragrance Direct</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.theperfumeshop.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">4</span><span class="pe-seller">The Perfume Shop</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.boots.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">5</span><span class="pe-seller">Boots</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pe" href="https://www.superdrug.com/search?q=${enc}" target="_blank" rel="noopener"><span class="pe-rank">6</span><span class="pe-seller">Superdrug</span><span class="pe-stk stk-y">Search</span><span class="pe-price">Check Price</span><svg class="pe-arr" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`;
+  }
+}
+
+
+
+document.getElementById('homeSearch').addEventListener('keydown', e => { if(e.key==='Enter') doSearch() });
+document.querySelectorAll('.sz').forEach(b => b.addEventListener('click', function(){
+  document.querySelectorAll('.sz').forEach(x => x.classList.remove('on'));
+  this.classList.add('on');
+}));
+
+function openModal(){document.getElementById('modalOv').classList.add('on')}
+function closeModal(){document.getElementById('modalOv').classList.remove('on')}
+function submitAlert(){
+  if(!document.getElementById('al-email').value)return;
+  document.getElementById('modalInner').innerHTML=`<div style="text-align:center;padding:16px 0"><div style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--terra);margin-bottom:14px">✓</div><h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em">Alert Set</h2><p style="font-size:13px;color:var(--mid);line-height:1.6;font-family:'Lora',serif;font-style:italic">We will email you the moment the price drops.</p><button onclick="closeModal()" style="margin-top:24px;background:var(--terra);color:var(--white);border:none;padding:13px 28px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Done</button></div>`;
+}
+document.getElementById('modalOv').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+function submitContact(){
+  const name=document.getElementById('c-name').value;
+  const email=document.getElementById('c-email').value;
+  const msg=document.getElementById('c-msg').value;
+  if(!email||!msg)return;
+  document.getElementById('contactForm').innerHTML=`<div style="text-align:center;padding:32px 0"><div style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--terra);margin-bottom:14px">✓</div><h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.02em">Message Sent</h2><p style="font-size:14px;color:var(--mid);line-height:1.6;font-family:'Lora',serif;font-style:italic">Thanks ${name||'for reaching out'}. We will get back to you within 48 hours.</p></div>`;
+}
+
+function showTopDeals(){
+  show('home');
+  setTimeout(() => {
+    const el = document.querySelector('.featured');
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+function initCk(){
+  // Remove old cookie key to ensure banner shows
+  if (localStorage.getItem('sc_ck')) return;
+  setTimeout(()=>{
+    const banner = document.getElementById('ckBanner');
+    if (banner) banner.classList.add('show');
+  }, 2000);
+}
+function ckAccept(){localStorage.setItem('sc_ck','yes');sprayIt();ckDismiss()}
+function ckClose(){localStorage.setItem('sc_ck','no');ckDismiss()}
+function ckDismiss(){const b=document.getElementById('ckBanner');b.classList.add('bye');setTimeout(()=>b.remove(),600)}
+function sprayIt(){
+  const c=document.getElementById('spParts');c.innerHTML='';
+  for(let i=0;i<24;i++){const el=document.createElement('div');el.className='spp';const a=Math.random()*160-80,d=Math.random()*140+50,sz=Math.random()*5+2;
+  el.style.cssText=`width:${sz}px;height:${sz}px;left:60%;bottom:20px;--dx:${Math.sin(a*Math.PI/180)*d}px;--dy:${-Math.abs(Math.cos(a*Math.PI/180))*d}px;animation-delay:${Math.random()*.15}s`;c.appendChild(el)}
+  c.style.display='block';setTimeout(()=>c.style.display='none',1000);
+}
+async function loadFeatured() {
+  try {
+    const featured = ['armaf','sauvage','lattafa','creed','million','bleuChanel'];
+    const products = await fetchProducts();
+    const featProds = featured.map(k => products.find(p => p.key === k)).filter(Boolean).slice(0,3);
+
+    const grid = document.getElementById('featuredGrid');
+    if (!grid) return;
+
+    // Fetch sellers for each featured product
+    const sellerPromises = featProds.map(p => fetchSellers(p.key));
+    const allSellers = await Promise.all(sellerPromises);
+
+    grid.innerHTML = featProds.map((p, i) => {
+      const sellers = allSellers[i].slice(0,3);
+      const best = sellers[0];
+      return `
+        <div class="fcard" onclick="goProd('${p.key}')">
+          <p class="fc-brand">${p.brand}</p>
+          <h3 class="fc-name">${p.name}</h3>
+          <p class="fc-type">${p.meta}</p>
+          <div class="fc-prices">
+            ${sellers.map((s,si) => `
+              <div class="fcp ${si===0?'top':''}">
+                <span class="fcp-name">${s.seller_name}</span>
+                ${si===0?'<span class="fcp-badge">BEST</span>':''}
+                <span class="fcp-price">£${parseFloat(s.price).toFixed(2)}</span>
+              </div>`).join('')}
+          </div>
+          <a class="fc-link" href="#" onclick="goProd('${p.key}');return false;">
+            Compare all
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>`;
+    }).join('');
+  } catch(e) {
+    console.error('Failed to load featured:', e);
+  }
+}
+
+// Load featured on page start
+loadFeatured();
+
+// ============================================================
+// FUZZY SEARCH
+// ============================================================
+function fuzzyMatch(str, query) {
+  str = str.toLowerCase();
+  query = query.toLowerCase().trim();
+  if (!query) return false;
+  if (str.includes(query)) return true;
+
+  // Check each word in query against str
+  const words = query.split(' ').filter(w => w.length > 1);
+  if (words.some(w => str.includes(w))) return true;
+
+  // Check each word in str against query words
+  const strWords = str.split(' ');
+  if (strWords.some(sw => words.some(qw => sw.startsWith(qw) || qw.startsWith(sw)))) return true;
+
+  // Allow 1 char typo for words > 3 chars
+  for (const qw of words) {
+    if (qw.length > 3) {
+      for (let i = 0; i < qw.length; i++) {
+        const variant = qw.slice(0,i) + qw.slice(i+1);
+        if (str.includes(variant)) return true;
+      }
+    }
+  }
+
+  // Common misspellings
+  const fixes = {
+    'savage':'sauvage','savaje':'sauvage','sauvaje':'sauvage',
+    'chanell':'chanel','aventas':'aventus','aqua di gio':'acqua di gio',
+    'versache':'versace','guci':'gucci','flowerbom':'flowerbomb',
+    'blackopium':'black opium','jadore':"j'adore",
+    'la vie belle':'la vie est belle','bleu chanel':'bleu de chanel',
+    'david':'david beckham','beckham':'david beckham',
+    'briteny':'britney','britneys':'britney spears',
+    'davidof':'davidoff','calvinklein':'calvin klein',
+    'jo malone':'jo malone','jomalone':'jo malone',
+  };
+  for (const [wrong, right] of Object.entries(fixes)) {
+    if (query.includes(wrong) && str.includes(right)) return true;
+    if (str.includes(wrong) && query.includes(right)) return true;
+  }
+  return false;
+}
+
+// ============================================================
+// POPULAR SEARCHES - stored in localStorage
+// ============================================================
+const defaultPopular = ['Dior Sauvage','Creed Aventus','Armaf Club de Nuit','Chanel Bleu','YSL Black Opium','Jo Malone Peony','Tom Ford Oud','Baccarat Rouge'];
+
+function getPopularSearches() {
+  try {
+    const stored = JSON.parse(localStorage.getItem('ss_popular') || '[]');
+    return stored.length > 0 ? stored.slice(0,8) : defaultPopular;
+  } catch(e) { return defaultPopular; }
+}
+
+function addPopularSearch(term) {
+  try {
+    let stored = JSON.parse(localStorage.getItem('ss_popular') || '[]');
+    stored = stored.filter(s => s.toLowerCase() !== term.toLowerCase());
+    stored.unshift(term);
+    stored = stored.slice(0,8);
+    localStorage.setItem('ss_popular', JSON.stringify(stored));
+  } catch(e) {}
+}
+
+// Load all products from DB into suggestions
+async function loadAllFragrancesFromDB() {
+  try {
+    const products = await fetchProducts();
+    products.forEach(p => {
+      if (!allFragrances.find(f => f.key === p.key)) {
+        allFragrances.push({key: p.key, name: p.name, brand: p.brand || ''});
+      }
+    });
+    console.log('Total suggestions:', allFragrances.length);
+  } catch(e) {}
+}
+
+function renderPopularSearches() {
+  const tags = document.getElementById('popTags');
+  if (!tags) return;
+  const popularWithKeys = [
+    {key:'sauvage',name:'Dior Sauvage'},
+    {key:'armaf',name:'Armaf Club de Nuit'},
+    {key:'creed',name:'Creed Aventus'},
+    {key:'blackOpium',name:'YSL Black Opium'},
+    {key:'bleuChanel',name:'Bleu de Chanel'},
+    {key:'mfkBaccarat',name:'Baccarat Rouge 540'},
+    {key:'joMalonePeony',name:'Jo Malone Peony'},
+    {key:'tomFordOud',name:'Tom Ford Oud Wood'},
+  ];
+  tags.innerHTML = popularWithKeys.map(p => `
+    <span class="pop-tag" onclick="goProd('${p.key}')">${p.name}</span>
+  `).join('');
+}
+
+function quickSearch(term) {
+  document.getElementById('homeSearch').value = term;
+  addPopularSearch(term);
+  // Try to find exact match first
+  const match = allFragrances.find(f =>
+    f.name.toLowerCase() === term.toLowerCase() ||
+    f.name.toLowerCase().includes(term.toLowerCase())
+  );
+  if (match) {
+    goProd(match.key);
+  } else {
+    doSearch();
+  }
+}
+
+// ============================================================
+// DEAL OF THE DAY
+// ============================================================
+async function loadDealOfDay() {
+  try {
+    const products = await fetchProducts();
+    if (!products.length) return;
+    const today = new Date().getDate();
+    const deal = products[today % products.length];
+    const sellers = await fetchSellers(deal.key);
+    if (!sellers.length) return;
+    const best = sellers.sort((a,b) => a.price - b.price)[0];
+    document.getElementById('dod-name').textContent = deal.name;
+    document.getElementById('dod-price').textContent = '£' + parseFloat(best.price).toFixed(2);
+    document.getElementById('dod-retailer').textContent = 'on ' + best.seller_name;
+    document.getElementById('dod-btn').onclick = () => goProd(deal.key);
+    document.getElementById('dealOfDay').style.display = 'flex';
+  } catch(e) {}
+}
+
+// ============================================================
+// SHARE PRODUCT
+// ============================================================
+function shareProduct() {
+  const name = document.getElementById('ph-name').textContent;
+  const price = document.getElementById('ph-price').textContent;
+  const from = document.getElementById('ph-from').textContent;
+  const text = `Found ${name} for ${price} ${from} on ScentSignal 👇
+https://www.scentsignal.co.uk`;
+  
+  if (navigator.share) {
+    navigator.share({ title: name, text: text, url: 'https://www.scentsignal.co.uk' });
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Link copied to clipboard!');
+    });
+  }
+}
+
+function showToast(msg) {
+  let t = document.getElementById('shareToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'shareToast';
+    t.className = 'share-toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============================================================
+// WISHLIST
+// ============================================================
+function getWishlist() {
+  try { return JSON.parse(localStorage.getItem('ss_wishlist') || '[]'); }
+  catch(e) { return []; }
+}
+
+function toggleWishlist(key, name) {
+  let list = getWishlist();
+  const idx = list.findIndex(x => x.key === key);
+  if (idx > -1) {
+    list.splice(idx, 1);
+    showToast('Removed from wishlist');
+  } else {
+    list.push({key, name, added: new Date().toISOString()});
+    showToast('Added to wishlist ♥');
+  }
+  localStorage.setItem('ss_wishlist', JSON.stringify(list));
+  updateWishlistBtn(key);
+}
+
+function updateWishlistBtn(key) {
+  const btn = document.getElementById('wishlistBtn');
+  if (!btn) return;
+  const saved = getWishlist().some(x => x.key === key);
+  btn.classList.toggle('saved', saved);
+  btn.innerHTML = saved
+    ? '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Saved'
+    : '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Save Deal';
+}
+
+// ============================================================
+// FEEDBACK BUTTON
+// ============================================================
+function initFeedback() {
+  const btn = document.createElement('button');
+  btn.className = 'feedback-btn';
+  btn.innerHTML = '💬 Feedback';
+  btn.onclick = () => {
+    const msg = prompt('Any feedback or missing retailer? Tell us:');
+    if (msg) showToast('Thanks for the feedback!');
+  };
+  document.body.appendChild(btn);
+}
+
+// ============================================================
+// UPDATE showSuggestions TO USE FUZZY MATCH
+// ============================================================
 function showSuggestions(val) {
   const box = document.getElementById('suggestionBox');
   if (!val || val.length < 1) { box.style.display='none'; return; }
   const q = val.toLowerCase();
   const matches = allFragrances.filter(f =>
-    f.name.toLowerCase().includes(q) || f.brand.toLowerCase().includes(q)
+    fuzzyMatch(f.name, q) || fuzzyMatch(f.brand, q)
   ).sort((a,b) => a.name.localeCompare(b.name)).slice(0, 6);
   if (!matches.length) { box.style.display='none'; return; }
   box.innerHTML = matches.map(f => `
-    <div onclick="pickSuggestion('${f.key}','${f.name.replace(/'/g,"\\'")}')
-" style="padding:10px 16px;cursor:pointer;font-family:'Lora',serif;font-size:13px;border-bottom:1px solid var(--off);display:flex;align-items:center;gap:10px" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
-      <span style="font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);min-width:60px">${f.brand}</span>
-      <span style="color:var(--ink)">${f.name}</span>
-    </div>`).join('');
-  box.style.display = 'block';
-}
-
-function pickSuggestion(key, name) {
-  document.getElementById('homeSearch').value = name;
-  document.getElementById('suggestionBox').style.display = 'none';
-  goProd(key);
-}
-
-document.addEventListener('click', function(e) {
-  const box = document.getElementById('suggestionBox');
-  if (box && !box.contains(e.target) && e.target.id !== 'homeSearch') {
-    box.style.display = 'none';
-  }
-});
-
-function goBack(){
-  if (history.length > 1) {
-    history.back();
-  } else {
-    show('home');
-  }
-}
-
-function show(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo(0,0);
-  const sticky = document.getElementById('stickySearch');
-  if (sticky) sticky.classList.toggle('visible', id !== 'home');
-  // Show back button on non-home pages
-  const backBtn = document.getElementById('backBtn');
-  if (backBtn) backBtn.style.display = id !== 'home' ? 'flex' : 'none';
-  // Push to browser history so back button works
-  if (history.state !== id) {
-    history.pushState(id, '', '#' + id);
-  }
-}
-
-// Handle browser back/forward
-window.addEventListener('popstate', function(e) {
-  const id = e.state || 'home';
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  window.scrollTo(0,0);
-  const sticky = document.getElementById('stickySearch');
-  if (sticky) sticky.classList.toggle('visible', id !== 'home');
-});
-
-// Set initial history state
-history.replaceState('home', '', '#home');
-
-function showStickySuggestions(val) {
-  const box = document.getElementById('stickySuggestionBox');
-  if (!val || val.length < 1) { box.style.display='none'; return; }
-  const q = val.toLowerCase();
-  const matches = allFragrances.filter(f =>
-    f.name.toLowerCase().includes(q) || f.brand.toLowerCase().includes(q)
-  ).sort((a,b) => a.name.localeCompare(b.name)).slice(0, 6);
-  if (!matches.length) { box.style.display='none'; return; }
-  box.innerHTML = matches.map(f => `
-    <div onclick="pickStickySuggestion('${f.key}','${f.name.replace(/'/g,"\\'")}')"
+    <div onclick="pickSuggestion('${f.key}','${f.name.replace(/'/g,"\'")}')"
       style="padding:10px 16px;cursor:pointer;font-family:'Lora',serif;font-size:13px;border-bottom:1px solid var(--off);display:flex;align-items:center;gap:10px"
       onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
       <span style="font-size:10px;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--terra);min-width:60px">${f.brand}</span>
@@ -2491,6 +1979,59 @@ function showStickySuggestions(val) {
   box.style.display = 'block';
 }
 
-function pickStickySuggestion(key, name) {
-  document.getElementById('stickySuggestionBox').style.display = 'none';
-  document.getElementById('stickySearchInput').value = '';
+// ============================================================
+// ADD SHARE + WISHLIST TO renderProduct
+// ============================================================
+const _origRenderProduct = renderProduct;
+renderProduct = function(p, sellers) {
+  _origRenderProduct(p, sellers);
+
+  // Remove existing to prevent duplicates
+  const existing = document.getElementById('prodExtras');
+  if (existing) existing.remove();
+
+  const pricePanel = document.getElementById('pd-prices');
+  if (pricePanel && p.key) {
+    const extras = document.createElement('div');
+    extras.id = 'prodExtras';
+    extras.innerHTML = `
+      <button class="share-btn" onclick="shareProduct()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        Share this deal
+      </button>
+      <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist('${p.key}','${(p.name||'').replace(/'/g,"\'")}')" >
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Save Deal
+      </button>
+      <p class="last-updated">Prices last checked today · Some may vary</p>
+    `;
+    pricePanel.after(extras);
+    updateWishlistBtn(p.key);
+  }
+};
+
+// ============================================================
+// INIT ALL NEW FEATURES
+// ============================================================
+renderPopularSearches();
+loadDealOfDay();
+initFeedback();
+loadAllFragrancesFromDB();
+
+// Hero slideshow - changes every 7 seconds
+function initSlider(){
+  const slides = document.querySelectorAll('.slide-img');
+  if (!slides.length) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 7000);
+}
+initSlider();
+initCk();
+</script>
+<script src="https://cdn.fragella.com/enrich.js" data-client-id="pub_17f8fd1ff122f39ca9c527b6344699157d02a065f0bec152"></script>
+</body>
+</html>
