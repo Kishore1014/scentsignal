@@ -1,0 +1,40 @@
+name: Validate Before Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check JS syntax in index.html
+        run: |
+          node -e "
+            const fs = require('fs');
+            const content = fs.readFileSync('index.html', 'utf8');
+            const start = content.indexOf('<script>', 40000) + 8;
+            const end = content.indexOf('</script>', start);
+            const js = content.slice(start, end);
+            try {
+              new Function(js);
+              console.log('✅ JS syntax OK - safe to deploy');
+            } catch(e) {
+              console.error('❌ JS ERROR:', e.message);
+              process.exit(1);
+            }
+          "
+
+      - name: Check file size is reasonable
+        run: |
+          size=$(wc -c < index.html)
+          echo "File size: $size bytes"
+          if [ $size -lt 10000 ]; then
+            echo "❌ File too small - something went wrong"
+            exit 1
+          fi
+          echo "✅ File size OK"
